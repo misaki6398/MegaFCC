@@ -1,0 +1,30 @@
+h1 {
+  font-weight: bold;
+  font-size: 32px;
+}
+
+.filter-input {
+  outline: 0;
+  border: 0;
+  padding: 10px 0px 0px 0px;
+  margin: 5px auto;
+  width: 80%;
+  display: block;
+}
+
+table {
+  width: 100%;
+}
+
+
+::ng-deep .mat-focused .mat-form-field-label {
+  /*change color of label*/
+  color: #69f0ae !important;
+ }
+
+::ng-deep.mat-form-field-ripple {
+ /*change color of underline when focused*/
+ background-color: #69f0ae !important;;
+}
+
+

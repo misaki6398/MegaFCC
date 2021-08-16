@@ -1,0 +1,91 @@
+.h-70vh {
+  max-height: 70vh;
+}
+
+.h-30vh {
+  max-height: 27vh;
+}
+
+.h-50vh {
+  max-height: 50vh;
+}
+
+.mat-tab-group {
+  margin-bottom: 40px;
+}
+
+.filter-input {
+  outline: 0;
+  border: 0;
+  margin: 0 auto;
+  width: 80%;
+  display: block;
+}
+
+table {
+  width: 100%;
+}
+
+
+::ng-deep .mat-focused .mat-form-field-label {
+  /*change color of label*/
+  color: #69f0ae !important;
+}
+
+::ng-deep.mat-form-field-ripple {
+  /*change color of underline when focused*/
+  background-color: #69f0ae !important;
+  ;
+}
+
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 8px;
+}
+
+
+::-webkit-scrollbar-track {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  margin: 5px 0 5px 0;
+}
+
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  background: rgb(146, 145, 145);
+}
+
+
+
+table {
+  width: 100%;
+}
+
+tr.detail-row {
+  height: 0;
+}
+
+tr.element-row:not(.example-expanded-row):hover {
+  background: rgb(104, 103, 103);
+}
+
+tr.element-row:not(.example-expanded-row):active {
+  background: rgb(78, 78, 78);
+}
+
+.element {
+  &-detail {
+    overflow: hidden;
+    display: flex;
+  }
+  &-description {
+    padding: 16px;
+  }
+  &-select {
+    padding-top: 16px;
+  }
+}
+
+

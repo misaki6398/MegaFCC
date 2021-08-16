@@ -1,0 +1,103 @@
+<div class="page-wrapper chiller-theme" [ngClass]="{toggled: openNav}">
+
+  <a id="show-sidebar" class="btn btn-sm btn-dark" (click)="buttonCloseNav()">
+    <i class="fas fa-bars"></i>
+  </a>
+  <nav id="sidebar" class="sidebar-wrapper">
+    <div class="sidebar-content">
+      <div class="sidebar-brand">
+        <a href="#">Mega ECM</a>
+        <div id="close-sidebar" (click)="buttonCloseNav()">
+          <i class="fas fa-times"></i>
+        </div>
+      </div>
+      <div class="sidebar-header">
+        <div class="user-pic">
+          <img class="img-responsive img-rounded" src="./assets/slim.jpg" alt="User picture">
+        </div>
+        <div class="user-info">
+          <span class="user-name">31 Hou
+          </span>
+          <span class="user-role">Garbage</span>
+          <span class="user-status">
+            <i class="fa fa-circle"></i>
+            <span>Online</span>
+          </span>
+        </div>
+      </div>
+      <!-- sidebar-header  -->
+      <div class="sidebar-search">
+        <div>
+          <div class="input-group">
+            <input type="text" class="form-control search-menu" placeholder="Search...">
+            <div class="input-group-append">
+              <span class="input-group-text">
+                <i class="fa fa-search" aria-hidden="true"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- sidebar-search  -->
+      <div class="sidebar-menu" *ngFor="let navbar of navbars; let navIndex = index">
+        <ul>
+          <li class="header-menu">
+            <span>{{navbar.title}}</span>
+          </li>
+          <div *ngFor="let menuItem of navbar.menuItems; let menuIndex = index">
+            <li class="sidebar-dropdown" [ngClass]="{active: menuItem.active}" *ngIf="menuItem.subItems.length > 0">
+              <a [routerLink]="menuItem.url" (click)="clickMenu(navIndex,menuIndex)">
+                <i [class]="menuItem.icon"></i>
+                <span>{{menuItem.title}}</span>
+              </a>
+              <div class="sidebar-submenu" [ngClass]="{active: menuItem.active}">
+                <ul>
+                  <li *ngFor="let subitem of menuItem.subItems">
+                    <a [routerLink]="subitem.url">{{subitem.title}}
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li *ngIf="menuItem.subItems.length === 0">
+              <a [routerLink]="menuItem.url">
+                <i [class]="menuItem.icon"></i>
+                <span>{{menuItem.title}}</span>
+                <!-- 下面是可以拿來當小標籤用，目前沒使用 -->
+                <!-- <span class="badge badge-pill badge-warning">New</span> -->
+                <!-- <span class="badge badge-pill badge-success">Pro</span> -->
+                <!-- <span class="badge badge-pill badge-primary">Beta</span> -->
+              </a>
+            </li>
+          </div>
+        </ul>
+      </div>
+      <!-- sidebar-menu  -->
+    </div>
+    <!-- sidebar-content  -->
+
+    <!-- Footer 以後可以用 -->
+    <!-- <div class="sidebar-footer">
+      <a href="#">
+        <i class="fa fa-bell"></i>
+        <span class="badge badge-pill badge-warning notification">3</span>
+      </a>
+      <a href="#">
+        <i class="fa fa-envelope"></i>
+        <span class="badge badge-pill badge-success notification">7</span>
+      </a>
+      <a href="#">
+        <i class="fa fa-cog"></i>
+        <span class="badge-sonar"></span>
+      </a>
+      <a href="#">
+        <i class="fa fa-power-off"></i>
+      </a>
+    </div> -->
+  </nav>
+
+
+  <main class="page-content">
+    <router-outlet></router-outlet>
+  </main>
+</div>

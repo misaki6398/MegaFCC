@@ -1,0 +1,153 @@
+<!--
+<div class="overflow-auto">
+
+  <pre lang="xml">{{xmlString | xml}}</pre>
+</div> -->
+<div class="row">
+  <h1>Transation Filter - Case Detail</h1>
+  <div class="col-xl-10 col-sm-12 h-70vh overflow-auto">
+
+    <!-- <mat-form-field class="filter-input">
+      <mat-label>Type to filter the column...</mat-label>
+      <input matInput (keyup)="applyFilter($event)" #input placeholder="You can filter below columns">
+    </mat-form-field> -->
+
+    <table mat-table [dataSource]="tableDataSource" multiTemplateDataRows matSort class="mat-elevation-z8">
+
+      <ng-container matColumnDef="{{column}}" *ngFor="let column of displayedColumns">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{column}} </th>
+        <td mat-cell *matCellDef="let element">
+          {{element[column]}}
+      </ng-container>
+
+      <ng-container matColumnDef="expandedDetail">
+        <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+          <div class="element-detail row" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+            <div class="element-description overflow-auto h-50vh col-10">
+              <table class="table table-dark">
+                <tbody>
+                  <tr>
+                    <th scope="row">Record ID</th>
+                    <td>61649</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">List Type</th>
+                    <td>DJW</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Sublist Type</th>
+                    <td>DJW-SAN</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Record Origin Lists</th>
+                    <td>EU, FR-MINEFI, GB-FCDO, GB-HMT, LU-CSSF, MC-SICCFIN</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Origin Details</th>
+                    <td>
+                      <pre>
+CSSF (Luxembourg) Sanctions List; EC (CFSP) 2016/849 Democratic People's Republic of Korea List;
+EC (CFSP) 2017/994 Democratic People's Republic of Korea List;
+EC (CFSP) 2020/1136 Democratic
+People's Republic Korea List;
+EC 1251/2010 Democratic People's Republic of Korea List;
+EC 1283/2009 Democratic People's Republic of Korea List;
+EC 1355/2011 Democratic People's Republic of Korea List;
+EC 2009/1002/CFSP Democratic People's Republic of Korea List;
+EC 2010/800/CFSP Democratic People's Republic of Korea List;
+EC 2013/183/CFSP Democratic People's Republic of Korea List;
+EC 2017/1509 Democratic People's Republic of Korea List;
+EC 2017/993 Democratic People's Republic of Korea List;
+EC 2020/1129 Democratic People's Republic of Korea List;
+FCDO (UK) Sanctions List - Asset Freeze;
+Finance and Economy Ministry (Monaco) Economic Sanctions;
+French Economy Ministry - EU and UN Asset Freezing Measures;
+HM Treasury Consolidated List
+
+                    </pre>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">url</th>
+                    <td>https://developer.dowjones.com/site/docs/risk_and_compliance_feeds/dow_jones_watchlist/index.gsp
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="element-select col-2">
+              <mat-form-field appearance="fill">
+                <mat-label>State</mat-label>
+                <mat-select>
+                  <mat-option>None</mat-option>
+                  <mat-option *ngFor="let state of states" [value]="state">{{state}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let element; columns: displayedColumns;" class="element-row"
+        [class.example-expanded-row]="expandedElement === element"
+        (click)="expandedElement = expandedElement === element ? null : element">
+      </tr>
+      <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+      </tr>
+
+
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 15, 100]" showFirstLastButtons></mat-paginator>
+    <hr>
+    <div class="row">
+      <div class="col-xl-8 col-sm-6"></div>
+      <div class="col-xl-2 col-sm-3">
+        <button mat-raised-button color="accent">Recomman Release</button>
+      </div>
+      <div class="col-xl-2 col-sm-3">
+        <button mat-raised-button color="warn">Recomman Block</button>
+      </div>
+    </div>
+
+
+  </div>
+  <div class="col-xl-2 col-sm-12 h-70vh overflow-auto">
+    <table class="table table-dark">
+      <tbody>
+        <tr>
+          <th scope="row" colspan="2">Hit Colunms</th>
+        </tr>
+        <tr *ngFor="let column of distinctColumns">
+          <th scope="row">{{column.tagName}}</th>
+          <td>{{column.matchData}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- <mat-tab-group>
+      <mat-tab label="Raw Data">
+        <pre lang="xml">{{xmlString | xml}}</pre>
+      </mat-tab>
+      <mat-tab label="Message">
+        Content 2
+      </mat-tab>
+    </mat-tab-group> -->
+  </div>
+
+
+  <div class="col-12 h-30vh overflow-auto">
+    <mat-tab-group>
+      <mat-tab label="Audit">
+        Audit
+      </mat-tab>
+      <mat-tab label="Attachment">
+        Attachment
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+
+</div>
