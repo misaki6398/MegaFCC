@@ -28,7 +28,7 @@ namespace MegaTFLT.Models.MegaEcm.Models
 
         //----From Message Body----
         //<Document><FIToFICstmrCdtTrf><CdtTrfTxInf><InstdAmt>
-        public string Currenecy { get; set; }
+        public string Currency { get; set; }
         //<InstdAmt Ccy>
         public float? Amount { get; set; }
         //<InstdAmt>

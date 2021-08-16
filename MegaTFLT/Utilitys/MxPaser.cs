@@ -51,7 +51,7 @@ namespace MegaTFLT.Utilitys
                         isFindFrom = true;
                     else if (!isFindTo && oneMsg.ToId == null && "To" == strElement)
                         isFindTo = true;
-                    else if (!isFindInstdAmt && (oneMsg.Amount == null || oneMsg.Currenecy == null) && "InstdAmt" == strElement)
+                    else if (!isFindInstdAmt && (oneMsg.Amount == null || oneMsg.Currency == null) && "InstdAmt" == strElement)
                         isFindInstdAmt = true;
                     // ----Peocess Message----
 
@@ -63,8 +63,8 @@ namespace MegaTFLT.Utilitys
                             Console.WriteLine($"{strElement}:[{i}][{reader.Name}]:{reader.Value}");
 
                             // ----Peocess Message----
-                            if (isFindInstdAmt && oneMsg.Currenecy == null && "InstdAmt" == strElement && "Ccy" == reader.Name)
-                                oneMsg.Currenecy = reader.Value;
+                            if (isFindInstdAmt && oneMsg.Currency == null && "InstdAmt" == strElement && "Ccy" == reader.Name)
+                                oneMsg.Currency = reader.Value;
                             // ----Peocess Message----
 
                         }

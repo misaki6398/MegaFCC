@@ -5,8 +5,6 @@ VisualStudioVersion = 16.6.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MegaEcmBackEnd", "MegaEcmBackEnd\MegaEcmBackEnd.csproj", "{609820CA-5574-47E7-A695-168BF49167A1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MegaTFLTPrototype", "MegaTFLTPrototype\MegaTFLTPrototype.csproj", "{FE0EC06A-7A77-432C-840D-89A5F3837345}"
-EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "MegaEcmFrontEnd", "MegaEcmFrontEnd\", "{06156288-DABB-4801-9007-11883B6FCCC4}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
@@ -27,6 +25,8 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "MegaEcmFrontEnd", "MegaEcmF
 		VWDPort = "64154"
 		SlnRelativePath = "MegaEcmFrontEnd\"
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MegaTFLT", "MegaTFLT\MegaTFLT.csproj", "{44678226-03D6-4D99-940D-8ADB19E5557A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,18 +50,6 @@ Global
 		{609820CA-5574-47E7-A695-168BF49167A1}.Release|x64.Build.0 = Release|Any CPU
 		{609820CA-5574-47E7-A695-168BF49167A1}.Release|x86.ActiveCfg = Release|Any CPU
 		{609820CA-5574-47E7-A695-168BF49167A1}.Release|x86.Build.0 = Release|Any CPU
-		{FE0EC06A-7A77-432C-840D-89A5F3837345}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FE0EC06A-7A77-432C-840D-89A5F3837345}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FE0EC06A-7A77-432C-840D-89A5F3837345}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{FE0EC06A-7A77-432C-840D-89A5F3837345}.Debug|x64.Build.0 = Debug|Any CPU
-		{FE0EC06A-7A77-432C-840D-89A5F3837345}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{FE0EC06A-7A77-432C-840D-89A5F3837345}.Debug|x86.Build.0 = Debug|Any CPU
-		{FE0EC06A-7A77-432C-840D-89A5F3837345}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FE0EC06A-7A77-432C-840D-89A5F3837345}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FE0EC06A-7A77-432C-840D-89A5F3837345}.Release|x64.ActiveCfg = Release|Any CPU
-		{FE0EC06A-7A77-432C-840D-89A5F3837345}.Release|x64.Build.0 = Release|Any CPU
-		{FE0EC06A-7A77-432C-840D-89A5F3837345}.Release|x86.ActiveCfg = Release|Any CPU
-		{FE0EC06A-7A77-432C-840D-89A5F3837345}.Release|x86.Build.0 = Release|Any CPU
 		{06156288-DABB-4801-9007-11883B6FCCC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{06156288-DABB-4801-9007-11883B6FCCC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06156288-DABB-4801-9007-11883B6FCCC4}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -74,6 +62,18 @@ Global
 		{06156288-DABB-4801-9007-11883B6FCCC4}.Release|x64.Build.0 = Debug|Any CPU
 		{06156288-DABB-4801-9007-11883B6FCCC4}.Release|x86.ActiveCfg = Debug|Any CPU
 		{06156288-DABB-4801-9007-11883B6FCCC4}.Release|x86.Build.0 = Debug|Any CPU
+		{44678226-03D6-4D99-940D-8ADB19E5557A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44678226-03D6-4D99-940D-8ADB19E5557A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44678226-03D6-4D99-940D-8ADB19E5557A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{44678226-03D6-4D99-940D-8ADB19E5557A}.Debug|x64.Build.0 = Debug|Any CPU
+		{44678226-03D6-4D99-940D-8ADB19E5557A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{44678226-03D6-4D99-940D-8ADB19E5557A}.Debug|x86.Build.0 = Debug|Any CPU
+		{44678226-03D6-4D99-940D-8ADB19E5557A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44678226-03D6-4D99-940D-8ADB19E5557A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44678226-03D6-4D99-940D-8ADB19E5557A}.Release|x64.ActiveCfg = Release|Any CPU
+		{44678226-03D6-4D99-940D-8ADB19E5557A}.Release|x64.Build.0 = Release|Any CPU
+		{44678226-03D6-4D99-940D-8ADB19E5557A}.Release|x86.ActiveCfg = Release|Any CPU
+		{44678226-03D6-4D99-940D-8ADB19E5557A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

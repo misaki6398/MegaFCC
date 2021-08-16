@@ -161,7 +161,7 @@ namespace MegaTFLT.Services.EdqServices
             
             if (tfAlertsModels.Count() > 0)
             {
-                TfCasesModel tfCasesModel = new TfCasesModel(MxPaser.oneMsg.id);
+                TfCasesModel tfCasesModel = new TfCasesModel(MxPaser.oneMsg);
                 tfCasesModel.CaseStatus = "New Case";
                 tfCasesModel.CaseStatusCode = 0;
                 tfAlertsModels.ForEach(c =>
