@@ -9,8 +9,8 @@ namespace MegaTFLT.Utilitys
 {
     public static class MxPaser
     {
-        // Todo-----not to use static  
-        public static TfMsgModel oneMsg;
+        // Todo-----not to use static  , critical section 愛你
+        public static TfMsgModel TfMsgModel;
         // Todo-----
 
         public static Dictionary<string, List<MxInputTagModel>> ReadFromFile(string strPath)
@@ -30,11 +30,11 @@ namespace MegaTFLT.Utilitys
             string strValue = "";
 
             // ----Peocess Message----
-            oneMsg = new TfMsgModel(strMx);
-            oneMsg.SwallowId = oneMsg.CreateDatetime.ToString("yyyyMMddHHmmssffffff", DateTimeFormatInfo.InvariantInfo) + "I0";
-            Console.WriteLine($"MsgGuid:{oneMsg.id}");
-            Console.WriteLine($"CreateDatetime:{oneMsg.CreateDatetime}");
-            Console.WriteLine($"SwallowId:{oneMsg.SwallowId}");
+            TfMsgModel = new TfMsgModel(strMx);
+            TfMsgModel.SwallowId = TfMsgModel.CreateDatetime.ToString("yyyyMMddHHmmssffffff", DateTimeFormatInfo.InvariantInfo) + "I0";
+            Console.WriteLine($"MsgGuid:{TfMsgModel.id}");
+            Console.WriteLine($"CreateDatetime:{TfMsgModel.CreateDatetime}");
+            Console.WriteLine($"SwallowId:{TfMsgModel.SwallowId}");
             bool isFindFrom = false;
             bool isFindTo = false;
             bool isFindInstdAmt = false;
@@ -47,11 +47,11 @@ namespace MegaTFLT.Utilitys
                     strElement = reader.Name;
 
                     // ----Peocess Message----
-                    if (!isFindFrom && oneMsg.FromId == null && "Fr" == strElement)
+                    if (!isFindFrom && TfMsgModel.FromId == null && "Fr" == strElement)
                         isFindFrom = true;
-                    else if (!isFindTo && oneMsg.ToId == null && "To" == strElement)
+                    else if (!isFindTo && TfMsgModel.ToId == null && "To" == strElement)
                         isFindTo = true;
-                    else if (!isFindInstdAmt && (oneMsg.Amount == null || oneMsg.Currency == null) && "InstdAmt" == strElement)
+                    else if (!isFindInstdAmt && (TfMsgModel.Amount == null || TfMsgModel.Currency == null) && "InstdAmt" == strElement)
                         isFindInstdAmt = true;
                     // ----Peocess Message----
 
@@ -63,8 +63,8 @@ namespace MegaTFLT.Utilitys
                             Console.WriteLine($"{strElement}:[{i}][{reader.Name}]:{reader.Value}");
 
                             // ----Peocess Message----
-                            if (isFindInstdAmt && oneMsg.Currency == null && "InstdAmt" == strElement && "Ccy" == reader.Name)
-                                oneMsg.Currency = reader.Value;
+                            if (isFindInstdAmt && TfMsgModel.Currency == null && "InstdAmt" == strElement && "Ccy" == reader.Name)
+                                TfMsgModel.Currency = reader.Value;
                             // ----Peocess Message----
 
                         }
@@ -80,37 +80,37 @@ namespace MegaTFLT.Utilitys
                     switch (strElement)
                     {
                         case "BizMsgIdr":
-                            if (oneMsg.BusinessMessageIdentifier == null)
-                                oneMsg.BusinessMessageIdentifier = strValue;
+                            if (TfMsgModel.BusinessMessageIdentifier == null)
+                                TfMsgModel.BusinessMessageIdentifier = strValue;
                             break;
                         case "MsgDefIdr":
-                            if (oneMsg.MessageDefinitionIdentifier == null)
-                                oneMsg.MessageDefinitionIdentifier = strValue;
+                            if (TfMsgModel.MessageDefinitionIdentifier == null)
+                                TfMsgModel.MessageDefinitionIdentifier = strValue;
                             break;
                         case "BizSvc":
-                            if (oneMsg.BusinessService == null)
-                                oneMsg.BusinessService = strValue;
+                            if (TfMsgModel.BusinessService == null)
+                                TfMsgModel.BusinessService = strValue;
                             break;
                         case "CreDt":
-                            if (oneMsg.OriginalCreateDate == null)
-                                oneMsg.OriginalCreateDate = reader.ReadContentAsDateTime();
+                            if (TfMsgModel.OriginalCreateDate == null)
+                                TfMsgModel.OriginalCreateDate = reader.ReadContentAsDateTime();
                             break;
                         case "BICFI":
-                            if (isFindFrom && oneMsg.FromId == null && "BICFI" == strElement)
+                            if (isFindFrom && TfMsgModel.FromId == null && "BICFI" == strElement)
                             {
-                                oneMsg.FromId = strValue;
+                                TfMsgModel.FromId = strValue;
                                 isFindFrom = false;
                             }
-                            else if (isFindTo && oneMsg.ToId == null && "BICFI" == strElement)
+                            else if (isFindTo && TfMsgModel.ToId == null && "BICFI" == strElement)
                             {
-                                oneMsg.ToId = strValue;
+                                TfMsgModel.ToId = strValue;
                                 isFindTo = false;
                             }
                             break;
                         case "InstdAmt":
-                            if (isFindInstdAmt && oneMsg.Amount == null)
+                            if (isFindInstdAmt && TfMsgModel.Amount == null)
                             {
-                                oneMsg.Amount = reader.ReadContentAsFloat();
+                                TfMsgModel.Amount = reader.ReadContentAsFloat();
                                 isFindInstdAmt = false;
                             }
                             break;

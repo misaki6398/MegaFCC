@@ -158,10 +158,10 @@ namespace MegaTFLT.Services.EdqServices
             tfAlertsModels.AddRange(_mapper.Map<List<GoodsResponseModel>, List<TfAlertsModel>>(goodsResponseModels));
 
 
-            
+
             if (tfAlertsModels.Count() > 0)
             {
-                TfCasesModel tfCasesModel = new TfCasesModel(MxPaser.oneMsg);
+                TfCasesModel tfCasesModel = new TfCasesModel(MxPaser.TfMsgModel);
                 tfCasesModel.CaseStatus = "New Case";
                 tfCasesModel.CaseStatusCode = 0;
                 tfAlertsModels.ForEach(c =>
@@ -173,7 +173,7 @@ namespace MegaTFLT.Services.EdqServices
 
                 try
                 {
-                    await _unitOfWork.TfMessagesRepository.InsertAsync(MxPaser.oneMsg);
+                    await _unitOfWork.TfMessagesRepository.InsertAsync(MxPaser.TfMsgModel);
                     await _unitOfWork.TfCasesRepository.InsertAsync(tfCasesModel);
                     await _unitOfWork.TfAlertsRepository.InsertAsync(tfAlertsModels);
                 }
@@ -193,6 +193,12 @@ namespace MegaTFLT.Services.EdqServices
 
             }
 
+
+        }
+
+        private void test<TRequestModel>()
+        {
+            List<TRequestModel> requestModels = new List<TRequestModel>();
 
         }
     }
