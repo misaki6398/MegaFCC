@@ -55,7 +55,7 @@ namespace MegaTFLT.Models.MegaEcm.Repositorys
 
         }
 
-        public async Task<int> InsertAsync(TfMsgModel models)
+        public async Task<int> InsertAsync(TfMessageModel models)
         {
             try
             {

@@ -3,10 +3,10 @@ using MegaTFLT.Utilitys;
 
 namespace MegaTFLT.Models.MegaEcm.Models
 {
-    public class TfMsgModel
+    public class TfMessageModel
     {
         // Constractor
-        public TfMsgModel(string rawMessage) => this.RawMessage = rawMessage;
+        public TfMessageModel(string rawMessage) => this.RawMessage = rawMessage;
         public byte[] id { get; set; } = GuidUtility.ToRaw16(Guid.NewGuid());
         //----From Original Message---
         public string RawMessage { get; set; }

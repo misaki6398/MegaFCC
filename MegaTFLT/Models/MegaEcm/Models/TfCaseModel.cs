@@ -6,8 +6,8 @@ namespace MegaTFLT.Models.MegaEcm.Models
     public class TfCasesModel
     {
         public TfCasesModel(byte[] messageId) => MessageId = messageId;
-        public TfCasesModel(TfMsgModel tfMsgModel)
-        {
+        public TfCasesModel(TfMessageModel tfMsgModel)
+        {            
             this.MessageId = tfMsgModel.id;
             this.MxType = tfMsgModel.MessageDefinitionIdentifier;
             this.SwallowId = tfMsgModel.SwallowId;

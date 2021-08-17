@@ -10,7 +10,7 @@ namespace MegaTFLT.Utilitys
     public static class MxPaser
     {
         // Todo-----not to use static  , critical section 愛你, 不要用匈牙利命名法XD
-        public static TfMsgModel TfMsgModel;
+        public static TfMessageModel TfMessageModel;
         // Todo-----
 
         public static Dictionary<string, List<MxInputTagModel>> ReadFromFile(string strPath)
@@ -30,11 +30,11 @@ namespace MegaTFLT.Utilitys
             string strValue = "";
 
             // ----Peocess Message----
-            TfMsgModel = new TfMsgModel(strMx);
-            TfMsgModel.SwallowId = TfMsgModel.CreateDatetime.ToString("yyyyMMddHHmmssffffff", DateTimeFormatInfo.InvariantInfo) + "I0";
-            Console.WriteLine($"MsgGuid:{TfMsgModel.id}");
-            Console.WriteLine($"CreateDatetime:{TfMsgModel.CreateDatetime}");
-            Console.WriteLine($"SwallowId:{TfMsgModel.SwallowId}");
+            TfMessageModel = new TfMessageModel(strMx);
+            TfMessageModel.SwallowId = TfMessageModel.CreateDatetime.ToString("yyyyMMddHHmmssffffff", DateTimeFormatInfo.InvariantInfo) + "I0";
+            Console.WriteLine($"MsgGuid:{TfMessageModel.id}");
+            Console.WriteLine($"CreateDatetime:{TfMessageModel.CreateDatetime}");
+            Console.WriteLine($"SwallowId:{TfMessageModel.SwallowId}");
             bool isFindFrom = false;
             bool isFindTo = false;
             bool isFindInstdAmt = false;
@@ -47,11 +47,11 @@ namespace MegaTFLT.Utilitys
                     strElement = reader.Name;
 
                     // ----Peocess Message----
-                    if (!isFindFrom && TfMsgModel.FromId == null && "Fr" == strElement)
+                    if (!isFindFrom && TfMessageModel.FromId == null && "Fr" == strElement)
                         isFindFrom = true;
-                    else if (!isFindTo && TfMsgModel.ToId == null && "To" == strElement)
+                    else if (!isFindTo && TfMessageModel.ToId == null && "To" == strElement)
                         isFindTo = true;
-                    else if (!isFindInstdAmt && (TfMsgModel.Amount == null || TfMsgModel.Currency == null) && "InstdAmt" == strElement)
+                    else if (!isFindInstdAmt && (TfMessageModel.Amount == null || TfMessageModel.Currency == null) && "InstdAmt" == strElement)
                         isFindInstdAmt = true;
                     // ----Peocess Message----
 
@@ -63,8 +63,8 @@ namespace MegaTFLT.Utilitys
                             Console.WriteLine($"{strElement}:[{i}][{reader.Name}]:{reader.Value}");
 
                             // ----Peocess Message----
-                            if (isFindInstdAmt && TfMsgModel.Currency == null && "InstdAmt" == strElement && "Ccy" == reader.Name)
-                                TfMsgModel.Currency = reader.Value;
+                            if (isFindInstdAmt && TfMessageModel.Currency == null && "InstdAmt" == strElement && "Ccy" == reader.Name)
+                                TfMessageModel.Currency = reader.Value;
                             // ----Peocess Message----
 
                         }
@@ -80,37 +80,37 @@ namespace MegaTFLT.Utilitys
                     switch (strElement)
                     {
                         case "BizMsgIdr":
-                            if (TfMsgModel.BusinessMessageIdentifier == null)
-                                TfMsgModel.BusinessMessageIdentifier = strValue;
+                            if (TfMessageModel.BusinessMessageIdentifier == null)
+                                TfMessageModel.BusinessMessageIdentifier = strValue;
                             break;
                         case "MsgDefIdr":
-                            if (TfMsgModel.MessageDefinitionIdentifier == null)
-                                TfMsgModel.MessageDefinitionIdentifier = strValue;
+                            if (TfMessageModel.MessageDefinitionIdentifier == null)
+                                TfMessageModel.MessageDefinitionIdentifier = strValue;
                             break;
                         case "BizSvc":
-                            if (TfMsgModel.BusinessService == null)
-                                TfMsgModel.BusinessService = strValue;
+                            if (TfMessageModel.BusinessService == null)
+                                TfMessageModel.BusinessService = strValue;
                             break;
                         case "CreDt":
-                            if (TfMsgModel.OriginalCreateDate == null)
-                                TfMsgModel.OriginalCreateDate = reader.ReadContentAsDateTime();
+                            if (TfMessageModel.OriginalCreateDate == null)
+                                TfMessageModel.OriginalCreateDate = reader.ReadContentAsDateTime();
                             break;
                         case "BICFI":
-                            if (isFindFrom && TfMsgModel.FromId == null && "BICFI" == strElement)
+                            if (isFindFrom && TfMessageModel.FromId == null && "BICFI" == strElement)
                             {
-                                TfMsgModel.FromId = strValue;
+                                TfMessageModel.FromId = strValue;
                                 isFindFrom = false;
                             }
-                            else if (isFindTo && TfMsgModel.ToId == null && "BICFI" == strElement)
+                            else if (isFindTo && TfMessageModel.ToId == null && "BICFI" == strElement)
                             {
-                                TfMsgModel.ToId = strValue;
+                                TfMessageModel.ToId = strValue;
                                 isFindTo = false;
                             }
                             break;
                         case "InstdAmt":
-                            if (isFindInstdAmt && TfMsgModel.Amount == null)
+                            if (isFindInstdAmt && TfMessageModel.Amount == null)
                             {
-                                TfMsgModel.Amount = reader.ReadContentAsFloat();
+                                TfMessageModel.Amount = reader.ReadContentAsFloat();
                                 isFindInstdAmt = false;
                             }
                             break;

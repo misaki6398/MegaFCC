@@ -35,7 +35,7 @@ namespace MegaTFLT
             {
                 if (tfAlertsModels.Count() > 0)
                 {
-                    TfCasesModel tfCasesModel = new TfCasesModel(MxPaser.TfMsgModel);
+                    TfCasesModel tfCasesModel = new TfCasesModel(MxPaser.TfMessageModel);
                     tfCasesModel.CaseStatus = "New Case";
                     tfCasesModel.CaseStatusCode = 0;
                     tfAlertsModels.ForEach(c =>
@@ -47,7 +47,7 @@ namespace MegaTFLT
 
                     try
                     {
-                        await _unitOfWork.TfMessagesRepository.InsertAsync(MxPaser.TfMsgModel);
+                        await _unitOfWork.TfMessagesRepository.InsertAsync(MxPaser.TfMessageModel);
                         await _unitOfWork.TfCasesRepository.InsertAsync(tfCasesModel);
                         await _unitOfWork.TfAlertsRepository.InsertAsync(tfAlertsModels);
                     }

@@ -17,7 +17,7 @@ namespace MegaTFLT.Utilitys
 
         public static IConfiguration Configuration = builder.Build();
         public static EdqConfigModel EdqConfigModel = Configuration.GetSection("EdqConfig").Get<EdqConfigModel>();
-        public static string MegaEcmConnectionString = Configuration.GetSection("ConnectionStrings").GetValue<string>("MegaEcm");
+        public static string MegaEcmConnectionString = Configuration.GetSection("ConnectionStrings").GetValue<string>("MegaEcm");        
         public static Dictionary<string, TfScreenConfigModel> ScreenConfigs;
 
         static ConfigUtility()
