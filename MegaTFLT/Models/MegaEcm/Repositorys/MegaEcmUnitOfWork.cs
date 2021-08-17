@@ -15,7 +15,7 @@ namespace MegaTFLT.Models.MegaEcm.Repositorys
         private TfMessagesRepository _tfMessagesRepository;
         private TfCasesRepository _tfCasesRepository;
         private TfAlertsRepository _tfAlertsRepository;
-        private bool _disposed;
+        private bool _disposed = false;
 
         public MegaEcmUnitOfWork()
         {
@@ -81,6 +81,9 @@ namespace MegaTFLT.Models.MegaEcm.Repositorys
         private void resetRepositories()
         {
             _screenConfigRepository = null;
+            _tfMessagesRepository = null;
+            _tfAlertsRepository = null;
+            _tfCasesRepository = null;
         }
 
         public void Dispose()

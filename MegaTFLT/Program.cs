@@ -6,6 +6,9 @@ using MegaTFLT.Utilitys;
 using MegaTFLT.Models.MegaEcm.Models;
 using System;
 using System.Text;
+using MegaTFLT.Models.MegaEcm.Repositorys;
+using System.Linq;
+using Oracle.ManagedDataAccess.Client;
 
 namespace MegaTFLT
 {
@@ -24,17 +27,47 @@ namespace MegaTFLT
             };
             */
             Dictionary<string, List<MxInputTagModel>> mxMessages = null;//MxPaser.ReadFromFile(@"sample.xml");
-            mxMessages = MxPaser.ReadFromFile(@"./MegaTFLT/sample_pacs.008.xml");
+            mxMessages = MxPaser.ReadFromFile(@"./sample_pacs.008.xml");
 
             EdqService edqService = new EdqService();
+            List<TfAlertsModel> tfAlertsModels = await edqService.ProcessScreeningAsync(mxMessages);
+            using (MegaEcmUnitOfWork _unitOfWork = new MegaEcmUnitOfWork())
+            {
+                if (tfAlertsModels.Count() > 0)
+                {
+                    TfCasesModel tfCasesModel = new TfCasesModel(MxPaser.TfMsgModel);
+                    tfCasesModel.CaseStatus = "New Case";
+                    tfCasesModel.CaseStatusCode = 0;
+                    tfAlertsModels.ForEach(c =>
+                    {
+                        c.AlertStatus = "New Case";
+                        c.AlertStatusCode = 0;
+                        c.CaseId = tfCasesModel.Id;
+                    });
 
-            await edqService.ProcessScreeningAsync(mxMessages);
-
-           
-
+                    try
+                    {
+                        await _unitOfWork.TfMessagesRepository.InsertAsync(MxPaser.TfMsgModel);
+                        await _unitOfWork.TfCasesRepository.InsertAsync(tfCasesModel);
+                        await _unitOfWork.TfAlertsRepository.InsertAsync(tfAlertsModels);
+                    }
+                    catch (OracleException ex)
+                    {
+                        _unitOfWork.Rollback();
+                        Console.WriteLine(ex.Message, ex.ToString());
+                    }
+                    catch (Exception)
+                    {
+                        _unitOfWork.Rollback();
+                    }
+                    finally
+                    {
+                        _unitOfWork.Commit();
+                    }
+                }
+            }
 
 
         }
-
     }
 }

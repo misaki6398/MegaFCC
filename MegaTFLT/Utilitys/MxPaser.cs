@@ -9,7 +9,7 @@ namespace MegaTFLT.Utilitys
 {
     public static class MxPaser
     {
-        // Todo-----not to use static  , critical section 愛你
+        // Todo-----not to use static  , critical section 愛你, 不要用匈牙利命名法XD
         public static TfMsgModel TfMsgModel;
         // Todo-----
 
