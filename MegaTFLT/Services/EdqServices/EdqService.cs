@@ -46,7 +46,7 @@ namespace MegaTFLT.Services.EdqServices
 
             var tfAlertsModels = new List<TfAlertsModel>();
             tfAlertsModels.AddRange(_mapper.Map<List<NameAddressResponseModel>, List<TfAlertsModel>>(edqResponseModel.NameAddressResponseModels));
-            tfAlertsModels.AddRange(_mapper.Map<List<CountryCityResponseModel>, List<TfAlertsModel>>(edqResponseModel.CountryCitryResponseModels));
+            tfAlertsModels.AddRange(_mapper.Map<List<CountryCityResponseModel>, List<TfAlertsModel>>(edqResponseModel.CountryCityResponseModels));
             tfAlertsModels.AddRange(_mapper.Map<List<GoodsResponseModel>, List<TfAlertsModel>>(edqResponseModel.GoodsResponseModels));
             tfAlertsModels.AddRange(_mapper.Map<List<NarrativeResponseModel>, List<TfAlertsModel>>(edqResponseModel.NarrativeResponseModels));
             tfAlertsModels.AddRange(_mapper.Map<List<PortResponseModel>, List<TfAlertsModel>>(edqResponseModel.PortResponseModels));
@@ -73,7 +73,7 @@ namespace MegaTFLT.Services.EdqServices
                 {
                     mxMessages[intersectKey].ForEach(mxInputTag =>
                     {
-                        edqRequestModel.CountryCitryRequestModels.Add(_mapper.Map<MxInputTagModel, CountryCityRequestModel>(mxInputTag));
+                        edqRequestModel.CountryCityRequestModels.Add(_mapper.Map<MxInputTagModel, CountryCityRequestModel>(mxInputTag));
                     });
                 }
 

@@ -5,7 +5,7 @@ namespace MegaTFLT.Models.Edq.Models
     public class EdqResponseModel
     {
         private List<NameAddressResponseModel> nameAddressResponseModels;
-        private List<CountryCityResponseModel> countryCitryResponseModels;
+        private List<CountryCityResponseModel> countryCityResponseModels;
         private List<BicResponseModel> bicResponseModels;
         private List<NarrativeResponseModel> narrativeResponseModels;
         private List<PortResponseModel> portResponseModels;
@@ -15,10 +15,10 @@ namespace MegaTFLT.Models.Edq.Models
             get { return nameAddressResponseModels ?? (nameAddressResponseModels = new List<NameAddressResponseModel>()); }
             set { nameAddressResponseModels = value; }
         }
-        public List<CountryCityResponseModel> CountryCitryResponseModels
+        public List<CountryCityResponseModel> CountryCityResponseModels
         {
-            get { return countryCitryResponseModels ?? (countryCitryResponseModels = new List<CountryCityResponseModel>()); }
-            set { countryCitryResponseModels = value; }
+            get { return countryCityResponseModels ?? (countryCityResponseModels = new List<CountryCityResponseModel>()); }
+            set { countryCityResponseModels = value; }
         }
         public List<BicResponseModel> BicResponseModels
         {

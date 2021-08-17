@@ -5,7 +5,7 @@ namespace MegaTFLT.Models.Edq.Models
     public class EdqRequestModel
     {
         private List<NameAddressRequestModel> nameAddressRequestModels;
-        private List<CountryCityRequestModel> countryCitryRequestModels;
+        private List<CountryCityRequestModel> countryCityRequestModels;
         private List<BicRequestModel> bicRequestModels;
         private List<NarrativeRequestModel> narrativeRequestModels;
         private List<PortRequestModel> portRequestModels;
@@ -15,10 +15,10 @@ namespace MegaTFLT.Models.Edq.Models
             get { return nameAddressRequestModels ?? (nameAddressRequestModels = new List<NameAddressRequestModel>()); }
             set { nameAddressRequestModels = value; }
         }
-        public List<CountryCityRequestModel> CountryCitryRequestModels
+        public List<CountryCityRequestModel> CountryCityRequestModels
         {
-            get { return countryCitryRequestModels ?? (countryCitryRequestModels = new List<CountryCityRequestModel>()); }
-            set { countryCitryRequestModels = value; }
+            get { return countryCityRequestModels ?? (countryCityRequestModels = new List<CountryCityRequestModel>()); }
+            set { countryCityRequestModels = value; }
         }
         public List<BicRequestModel> BicRequestModels
         {

@@ -33,10 +33,10 @@ namespace MegaTFLT.Services.EdqServices
                             edqResponseModel.NameAddressResponseModels = await service.PostAsync<List<NameAddressRequestModel>, List<NameAddressResponseModel>>(_nameAddressUrl, edqRequestModel.NameAddressRequestModels);
                         }
                         break;
-                    case "CountryCitryRequestModels":
-                        if (edqRequestModel.CountryCitryRequestModels.Count() > 0)
+                    case "CountryCityRequestModels":
+                        if (edqRequestModel.CountryCityRequestModels.Count() > 0)
                         {
-                            edqResponseModel.CountryCitryResponseModels = await service.PostAsync<List<CountryCityRequestModel>, List<CountryCityResponseModel>>(_countryCityUrl, edqRequestModel.CountryCitryRequestModels);
+                            edqResponseModel.CountryCityResponseModels = await service.PostAsync<List<CountryCityRequestModel>, List<CountryCityResponseModel>>(_countryCityUrl, edqRequestModel.CountryCityRequestModels);
                         }
                         break;
                     case "BicRequestModels":
