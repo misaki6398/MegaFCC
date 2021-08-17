@@ -26,16 +26,16 @@ namespace MegaTFLT
                 {"TheTestCode", new List<string>{"Oh My God"}}
             };
             */
-            Dictionary<string, List<MxInputTagModel>> mxMessages = null;//MxPaser.ReadFromFile(@"sample.xml");
-            mxMessages = MxPaser.ReadFromFile(@"./sample_pacs.008.xml");
+            MxPaser MxPaser1 = new MxPaser();
+            MxPaser1.ReadFromFile(@"./sample_pacs.008.xml");
 
             EdqService edqService = new EdqService();
-            List<TfAlertsModel> tfAlertsModels = await edqService.ProcessScreeningAsync(mxMessages);
+            List<TfAlertsModel> tfAlertsModels = await edqService.ProcessScreeningAsync(MxPaser1.mxMessages);
             using (MegaEcmUnitOfWork _unitOfWork = new MegaEcmUnitOfWork())
             {
                 if (tfAlertsModels.Count() > 0)
                 {
-                    TfCasesModel tfCasesModel = new TfCasesModel(MxPaser.TfMessageModel);
+                    TfCasesModel tfCasesModel = new TfCasesModel(MxPaser1.TfMessageModel);
                     tfCasesModel.CaseStatus = "New Case";
                     tfCasesModel.CaseStatusCode = 0;
                     tfAlertsModels.ForEach(c =>
@@ -47,7 +47,7 @@ namespace MegaTFLT
 
                     try
                     {
-                        await _unitOfWork.TfMessagesRepository.InsertAsync(MxPaser.TfMessageModel);
+                        await _unitOfWork.TfMessagesRepository.InsertAsync(MxPaser1.TfMessageModel);
                         await _unitOfWork.TfCasesRepository.InsertAsync(tfCasesModel);
                         await _unitOfWork.TfAlertsRepository.InsertAsync(tfAlertsModels);
                     }

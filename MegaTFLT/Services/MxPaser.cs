@@ -7,30 +7,48 @@ using MegaTFLT.Models.MegaEcm.Models;
 
 namespace MegaTFLT.Utilitys
 {
-    public static class MxPaser
+    public class MxPaser
     {
-        // Todo-----not to use static  , critical section 愛你, 不要用匈牙利命名法XD
-        public static TfMessageModel TfMessageModel;
-        // Todo-----
+        public TfMessageModel TfMessageModel { get; private set; }
+        public Dictionary<string, List<MxInputTagModel>> mxMessages { get; private set; }
 
-        public static Dictionary<string, List<MxInputTagModel>> ReadFromFile(string strPath)
+        public bool ReadFromFile(string filePath)
         {
-            string strMx = File.ReadAllText(strPath);
-            //Console.WriteLine($"{strMx}");
+            bool isSuccess = false;
             Console.WriteLine("-------------------------");
-            Console.WriteLine(value: $"ReadFromFile:{strPath}");
+            Console.WriteLine(value: $"ReadFromFile:{filePath}");
             Console.WriteLine("-------------------------");
-            return MxPaser.ReadFromText(strMx);
+            try
+            {
+                string mxText = File.ReadAllText(filePath);
+                //Console.WriteLine($"{mxText}");
+                isSuccess = this.ReadFromText(mxText);
+            }
+            catch (DirectoryNotFoundException ex)
+            {
+                Console.WriteLine("DirectoryNotFoundException");
+                Console.WriteLine(ex.Message, ex.ToString());
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message, ex.ToString());
+            }
+            finally
+            {
+
+            }
+            return isSuccess;
         }
-        public static Dictionary<string, List<MxInputTagModel>> ReadFromText(string strMx)
+        public bool ReadFromText(string mxText)
         {
-            XmlReader reader = XmlReader.Create(new StringReader(strMx));
-            Dictionary<string, List<MxInputTagModel>> mxMessages = new Dictionary<string, List<MxInputTagModel>>();
-            string strElement = "";
-            string strValue = "";
+            bool isSuccess = false;
+            XmlReader reader = XmlReader.Create(new StringReader(mxText));
+            mxMessages = new Dictionary<string, List<MxInputTagModel>>();
+            string ElementText = "";
+            string ValueText = "";
 
             // ----Peocess Message----
-            TfMessageModel = new TfMessageModel(strMx);
+            TfMessageModel = new TfMessageModel(mxText);
             TfMessageModel.SwallowId = TfMessageModel.CreateDatetime.ToString("yyyyMMddHHmmssffffff", DateTimeFormatInfo.InvariantInfo) + "I0";
             Console.WriteLine($"MessageGuid:{TfMessageModel.id}");
             Console.WriteLine($"CreateDatetime:{TfMessageModel.CreateDatetime}");
@@ -44,14 +62,14 @@ namespace MegaTFLT.Utilitys
             {
                 if (reader.NodeType == XmlNodeType.Element)
                 {
-                    strElement = reader.Name;
+                    ElementText = reader.Name;
 
                     // ----Peocess Message----
-                    if (!isFindFrom && TfMessageModel.FromId == null && "Fr" == strElement)
+                    if (!isFindFrom && TfMessageModel.FromId == null && "Fr" == ElementText)
                         isFindFrom = true;
-                    else if (!isFindTo && TfMessageModel.ToId == null && "To" == strElement)
+                    else if (!isFindTo && TfMessageModel.ToId == null && "To" == ElementText)
                         isFindTo = true;
-                    else if (!isFindInstdAmt && (TfMessageModel.Amount == null || TfMessageModel.Currency == null) && "InstdAmt" == strElement)
+                    else if (!isFindInstdAmt && (TfMessageModel.Amount == null || TfMessageModel.Currency == null) && "InstdAmt" == ElementText)
                         isFindInstdAmt = true;
                     // ----Peocess Message----
 
@@ -60,10 +78,10 @@ namespace MegaTFLT.Utilitys
                         for (int i = 0; i < reader.AttributeCount; i++)
                         {
                             reader.MoveToAttribute(i);
-                            Console.WriteLine($"{strElement}:[{i}][{reader.Name}]:{reader.Value}");
+                            Console.WriteLine($"{ElementText}:[{i}][{reader.Name}]:{reader.Value}");
 
                             // ----Peocess Message----
-                            if (isFindInstdAmt && TfMessageModel.Currency == null && "InstdAmt" == strElement && "Ccy" == reader.Name)
+                            if (isFindInstdAmt && TfMessageModel.Currency == null && "InstdAmt" == ElementText && "Ccy" == reader.Name)
                                 TfMessageModel.Currency = reader.Value;
                             // ----Peocess Message----
 
@@ -73,37 +91,37 @@ namespace MegaTFLT.Utilitys
                 }
                 else if (reader.NodeType == XmlNodeType.Text && (reader.HasValue))
                 {
-                    strValue = reader.Value;
-                    Console.WriteLine($"{strElement}:{strValue}");
+                    ValueText = reader.Value;
+                    Console.WriteLine($"{ElementText}:{ValueText}");
 
                     // ----Peocess Message----
-                    switch (strElement)
+                    switch (ElementText)
                     {
                         case "BizMsgIdr":
                             if (TfMessageModel.BusinessMessageIdentifier == null)
-                                TfMessageModel.BusinessMessageIdentifier = strValue;
+                                TfMessageModel.BusinessMessageIdentifier = ValueText;
                             break;
                         case "MsgDefIdr":
                             if (TfMessageModel.MessageDefinitionIdentifier == null)
-                                TfMessageModel.MessageDefinitionIdentifier = strValue;
+                                TfMessageModel.MessageDefinitionIdentifier = ValueText;
                             break;
                         case "BizSvc":
                             if (TfMessageModel.BusinessService == null)
-                                TfMessageModel.BusinessService = strValue;
+                                TfMessageModel.BusinessService = ValueText;
                             break;
                         case "CreDt":
                             if (TfMessageModel.OriginalCreateDate == null)
                                 TfMessageModel.OriginalCreateDate = reader.ReadContentAsDateTime();
                             break;
                         case "BICFI":
-                            if (isFindFrom && TfMessageModel.FromId == null && "BICFI" == strElement)
+                            if (isFindFrom && TfMessageModel.FromId == null && "BICFI" == ElementText)
                             {
-                                TfMessageModel.FromId = strValue;
+                                TfMessageModel.FromId = ValueText;
                                 isFindFrom = false;
                             }
-                            else if (isFindTo && TfMessageModel.ToId == null && "BICFI" == strElement)
+                            else if (isFindTo && TfMessageModel.ToId == null && "BICFI" == ElementText)
                             {
-                                TfMessageModel.ToId = strValue;
+                                TfMessageModel.ToId = ValueText;
                                 isFindTo = false;
                             }
                             break;
@@ -121,24 +139,25 @@ namespace MegaTFLT.Utilitys
 
                     // ----Peocess Screening----
                     List<MxInputTagModel> lstMxInputTag = null;
-                    if (mxMessages.ContainsKey(strElement))
+                    if (mxMessages.ContainsKey(ElementText))
                     {
-                        lstMxInputTag = mxMessages[strElement];
+                        lstMxInputTag = mxMessages[ElementText];
                     }
                     else
                     {
                         lstMxInputTag = new List<MxInputTagModel>();
-                        mxMessages.Add(strElement, lstMxInputTag);
+                        mxMessages.Add(ElementText, lstMxInputTag);
                     }
                     MxInputTagModel tempMxInputTagModel = new MxInputTagModel();
-                    tempMxInputTagModel.Input = strValue;
-                    tempMxInputTagModel.TagName = strElement;
+                    tempMxInputTagModel.Input = ValueText;
+                    tempMxInputTagModel.TagName = ElementText;
                     lstMxInputTag.Add(tempMxInputTagModel);
                     // ----Peocess Screening----
                 }
             }
             //Console.WriteLine($"{mxMessages}");
-            return mxMessages;
+            isSuccess = true;
+            return isSuccess;
         }
     }
 }
