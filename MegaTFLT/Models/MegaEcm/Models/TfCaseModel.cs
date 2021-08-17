@@ -6,16 +6,16 @@ namespace MegaTFLT.Models.MegaEcm.Models
     public class TfCasesModel
     {
         public TfCasesModel(byte[] messageId) => MessageId = messageId;
-        public TfCasesModel(TfMessageModel tfMsgModel)
+        public TfCasesModel(TfMessageModel tfMessageModel)
         {            
-            this.MessageId = tfMsgModel.id;
-            this.MxType = tfMsgModel.MessageDefinitionIdentifier;
-            this.SwallowId = tfMsgModel.SwallowId;
-            this.MsgId = tfMsgModel.MessageDefinitionIdentifier;
-            this.MsgCurrency = tfMsgModel.Currency;
-            this.MsgAmount = tfMsgModel.Amount;
-            this.MsgBranchNO = tfMsgModel.BranchNO;
-            this.MsgOriginalCreateDate = tfMsgModel.OriginalCreateDate;
+            this.MessageId = tfMessageModel.id;
+            this.MxType = tfMessageModel.MessageDefinitionIdentifier;
+            this.SwallowId = tfMessageModel.SwallowId;
+            this.MsgId = tfMessageModel.MessageDefinitionIdentifier;
+            this.MsgCurrency = tfMessageModel.Currency;
+            this.MsgAmount = tfMessageModel.Amount;
+            this.MsgBranchNO = tfMessageModel.BranchNO;
+            this.MsgOriginalCreateDate = tfMessageModel.OriginalCreateDate;
         }
         public byte[] Id { get; set; } = GuidUtility.ToRaw16(Guid.NewGuid());
         public byte[] MessageId { get; set; }
