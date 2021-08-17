@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MegaEcmBackEnd.Controllers.TransactionFilter.Resources;
 using MegaEcmBackEnd.Models.MegaEcm.Repositorys;
-using MegaEcmBackEnd.Utilitys;
+using CommonMegaAp11.Utilitys;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;

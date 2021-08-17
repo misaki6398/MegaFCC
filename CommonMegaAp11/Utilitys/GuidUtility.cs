@@ -1,10 +1,10 @@
 using System;
 
-namespace MegaEcmBackEnd.Utilitys
+namespace CommonMegaAp11.Utilitys
 {
     public static class GuidUtility
     {
-        private static Guid ConvertToOracle(this Guid guid)
+        private static Guid Convert(this Guid guid)
         {
             var newBytes = new byte[16];
             var oldBytes = guid.ToByteArray();
@@ -26,13 +26,14 @@ namespace MegaEcmBackEnd.Utilitys
 
         public static byte[] ToRaw16(this Guid guid)
         {
-            return guid.ConvertToOracle().ToByteArray();
+            return guid.Convert().ToByteArray();
         }
 
         public static Guid FromRaw16(byte[] raw)
         {
-            return new Guid(raw).ConvertToOracle();
+            return new Guid(raw).Convert();
         }
 
+       
     }
 }

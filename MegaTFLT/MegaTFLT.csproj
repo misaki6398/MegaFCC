@@ -27,4 +27,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonMegaAp11\CommonMegaAp11.csproj" />
+  </ItemGroup>
 </Project>

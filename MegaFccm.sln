@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.6.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MegaEcmBackEnd", "MegaEcmBackEnd\MegaEcmBackEnd.csproj", "{609820CA-5574-47E7-A695-168BF49167A1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7918DC9D-3FE7-4D2B-B835-5C29430B5281} = {7918DC9D-3FE7-4D2B-B835-5C29430B5281}
+	EndProjectSection
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "MegaEcmFrontEnd", "MegaEcmFrontEnd\", "{06156288-DABB-4801-9007-11883B6FCCC4}"
 	ProjectSection(WebsiteProperties) = preProject
@@ -27,6 +30,11 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "MegaEcmFrontEnd", "MegaEcmF
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MegaTFLT", "MegaTFLT\MegaTFLT.csproj", "{44678226-03D6-4D99-940D-8ADB19E5557A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7918DC9D-3FE7-4D2B-B835-5C29430B5281} = {7918DC9D-3FE7-4D2B-B835-5C29430B5281}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonMegaAp11", "CommonMegaAp11\CommonMegaAp11.csproj", "{7918DC9D-3FE7-4D2B-B835-5C29430B5281}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -74,6 +82,18 @@ Global
 		{44678226-03D6-4D99-940D-8ADB19E5557A}.Release|x64.Build.0 = Release|Any CPU
 		{44678226-03D6-4D99-940D-8ADB19E5557A}.Release|x86.ActiveCfg = Release|Any CPU
 		{44678226-03D6-4D99-940D-8ADB19E5557A}.Release|x86.Build.0 = Release|Any CPU
+		{7918DC9D-3FE7-4D2B-B835-5C29430B5281}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7918DC9D-3FE7-4D2B-B835-5C29430B5281}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7918DC9D-3FE7-4D2B-B835-5C29430B5281}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7918DC9D-3FE7-4D2B-B835-5C29430B5281}.Debug|x64.Build.0 = Debug|Any CPU
+		{7918DC9D-3FE7-4D2B-B835-5C29430B5281}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7918DC9D-3FE7-4D2B-B835-5C29430B5281}.Debug|x86.Build.0 = Debug|Any CPU
+		{7918DC9D-3FE7-4D2B-B835-5C29430B5281}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7918DC9D-3FE7-4D2B-B835-5C29430B5281}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7918DC9D-3FE7-4D2B-B835-5C29430B5281}.Release|x64.ActiveCfg = Release|Any CPU
+		{7918DC9D-3FE7-4D2B-B835-5C29430B5281}.Release|x64.Build.0 = Release|Any CPU
+		{7918DC9D-3FE7-4D2B-B835-5C29430B5281}.Release|x86.ActiveCfg = Release|Any CPU
+		{7918DC9D-3FE7-4D2B-B835-5C29430B5281}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

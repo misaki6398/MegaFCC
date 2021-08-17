@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using MegaEcmBackEnd.Models.MegaEcm.Repositorys;
-using MegaEcmBackEnd.Utilitys;
+using CommonMegaAp11.Utilitys;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;

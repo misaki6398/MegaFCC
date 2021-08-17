@@ -9,4 +9,7 @@
         <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
         <PackageReference Include="dapper" Version="2.0.90" />
     </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\CommonMegaAp11\CommonMegaAp11.csproj" />
+    </ItemGroup>
 </Project>
