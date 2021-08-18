@@ -9,6 +9,9 @@ namespace MegaEcmBackEnd.Controllers.TransactionFilter.Resources
         public string MatchedName { get; set; }
         public string MatchedListSubKey { get; set; }
         public string Rule { get; set; }
+        public string ListSubTypeId { get; set; }
+        
+        
         // public string TagName { get; set; }
         // public bool ValidFlag { get; set; }
         // public string CreateUser { get; set; }

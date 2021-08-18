@@ -11,5 +11,6 @@ namespace MegaTFLT.Utilitys
 
         public static IConfiguration Configuration = builder.Build ();
         public static string MegaEcmConnectionString = Configuration.GetSection("ConnectionStrings").GetValue<string>("MegaEcm");
+        public static string FccmAtomicConnectionString = Configuration.GetSection("ConnectionStrings").GetValue<string>("FccmAtomic");
     }
 }

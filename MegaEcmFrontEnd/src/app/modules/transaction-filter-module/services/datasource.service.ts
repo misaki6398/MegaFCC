@@ -32,4 +32,7 @@ export class DatasourceService {
   doGetHitColumn(caseId: string): Observable<any> {
     return this.http.get(`${this.url}/api/TfAlerts/HitColumn/${caseId}`, this.options);
   }
+  doGetListDetail(listSubTypeId: string): Observable<any> {
+    return this.http.get(`${this.url}/api/TfAlerts/ListDetail/${listSubTypeId}`, this.options);
+  }
 }

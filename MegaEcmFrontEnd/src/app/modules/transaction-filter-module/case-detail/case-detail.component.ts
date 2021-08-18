@@ -29,6 +29,7 @@ export class CaseDetailComponent implements OnInit {
   caseid: string;
   hitColumns;
   distinctColumns;
+  listDetail: any;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -54,7 +55,7 @@ export class CaseDetailComponent implements OnInit {
       const distinctColumns: Array<any> = [];
       for (const response of responses) {
         if (!distinctColumns.map(e => e.tagName).includes(response.tagName)
-        && !distinctColumns.map(e => e.matchData).includes(response.matchData)) {
+          && !distinctColumns.map(e => e.matchData).includes(response.matchData)) {
           distinctColumns.push({
             tagName: response.tagName,
             matchData: response.matchData
@@ -74,6 +75,15 @@ export class CaseDetailComponent implements OnInit {
     if (this.tableDataSource.paginator) {
       this.tableDataSource.paginator.firstPage();
     }
+  }
+
+  getListDetail(listSubTypeId: string): void {
+    this.listDetail = [];
+    this.datasourceService.doGetListDetail(listSubTypeId).subscribe((responses: any) => {
+      this.listDetail = responses;
+
+      console.log(this.listDetail);
+    });
   }
 
 }

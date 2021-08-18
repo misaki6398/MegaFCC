@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MegaEcmBackEnd.Models.FccmAtomic.Repositorys;
 using MegaEcmBackEnd.Models.MegaEcm.Repositorys;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -43,6 +44,7 @@ namespace MegaEcmBackEnd
 
 
             services.AddTransient<MegaEcmUnitOfWork> ();
+            services.AddTransient<FccmAtomicUnitOfWork> ();
 
         }
 

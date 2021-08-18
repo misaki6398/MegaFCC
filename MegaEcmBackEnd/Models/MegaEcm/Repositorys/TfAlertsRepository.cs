@@ -20,7 +20,8 @@ namespace MegaEcmBackEnd.Models.MegaEcm.Repositorys
                 when MatchType = 'Country' then CountryName
                 end MatchedName,
                 MatchedListSubKey,
-                Rule
+                Rule,
+                ListSubTypeId
             from TF_ALERTS
             where 
                 ValidFlag = 1
