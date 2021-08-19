@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+THE MESSAGE WILL WORK “AS IS” IN THE READINESS PORTAL. IT IS ESSENTIAL THAT USERS REMOVE THE ENVELOPE AND REPLACE IT WITH THEIR OWN TRANSPORT HEADER (FOR EXAMPLE FOR ALLIANCE ACCESS YOU WOULD USE THE XML V2 HEADERS).
+=========================================================================================================================================================================================
+SWIFT © 2020. All rights reserved. 
+This publication contains SWIFT or third-party confidential information. Do not disclose this publication outside your organisation without SWIFT’s prior written consent.
+The use of this document is governed by the legal notices appearing at the end of this document. By using this document, you will be deemed to have accepted those legal notices.
+
+=========================================================================================================================================================================================
+Use Case p.8.1.1 pacs.008 FI to FI Customer Credit Transfer - Flow #1
+========================================================================================================================
+Change Log
+2020-10-16 - Original version 
+=============================
+-->
+<env:Envelope xmlns:env="urn:swift:xsd:envelope">
+<AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.02" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Fr>
+		<FIId>
+			<FinInstnId>
+				<BICFI>CHASGB2LXXX</BICFI>
+			</FinInstnId>
+		</FIId>
+	</Fr>
+	<To>
+		<FIId>
+			<FinInstnId>
+				<BICFI>CHASUS33XXX</BICFI>
+			</FinInstnId>
+		</FIId>
+	</To>
+	<BizMsgIdr>ILoveYou200</BizMsgIdr>
+	<MsgDefIdr>pacs.008.001.08</MsgDefIdr>
+	<BizSvc>swift.cbprplus.01</BizSvc>
+	<CreDt>2021-08-19T12:43:41.960+00:00</CreDt>
+</AppHdr>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pacs.008.001.08" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<FIToFICstmrCdtTrf>
+		<GrpHdr>
+			<MsgId>ILoveYou200</MsgId>
+			<CreDtTm>2021-08-19T00:00:00+00:00</CreDtTm>
+			<NbOfTxs>1</NbOfTxs>
+			<SttlmInf>
+				<SttlmMtd>INDA</SttlmMtd>
+			</SttlmInf>
+		</GrpHdr>
+		<CdtTrfTxInf>
+			<PmtId>
+				<InstrId>ExecuteAsync</InstrId>
+				<EndToEndId>KK04044506271305</EndToEndId>
+				<UETR>174c245f-2682-4291-ad67-2a41e530cd27</UETR>
+			</PmtId>
+			<IntrBkSttlmAmt Ccy="USD">300000</IntrBkSttlmAmt>
+			<IntrBkSttlmDt>2021-08-19</IntrBkSttlmDt>
+			<InstdAmt Ccy="USD">300000</InstdAmt>
+			<ChrgBr>SHAR</ChrgBr>
+			<InstgAgt>
+				<FinInstnId>
+					<BICFI>CHASGB2LXXX</BICFI>
+				</FinInstnId>
+			</InstgAgt>
+			<InstdAgt>
+				<FinInstnId>
+					<BICFI>CHASUS33XXX</BICFI>
+				</FinInstnId>
+			</InstdAgt>
+			<IntrmyAgt1>
+				<FinInstnId>
+					<BICFI>FTSBUS33XXX</BICFI>
+				</FinInstnId>
+			</IntrmyAgt1>
+			<Dbtr>
+				<Nm>キム ジョンシク</Nm>
+				<Nm>김정식</Nm>
+				<Nm>アーガー ジャーン アラーザイ</Nm>
+				<Nm>白 世 风</Nm>
+				<Nm>Леся Лаптева</Nm>
+				<Nm>عبد الحی عظیم عبد القادر</Nm>
+				<Nm>AL MEGRAHI AL SENUSSI</Nm>
+				<!-- <Nm>RAMON QUINTERO</Nm>
+				<Nm>MYROSLAV RUDENKO</Nm>
+				<Nm>ALEKSANDRU CARAMAN</Nm>
+				<Nm>MUTHANNA HARITH SULAYMAN AL DARI AL ZOBAI</Nm>
+				<Nm>KHAMIS GHADDAFI</Nm>
+				<Nm>HISHAM MOHAMMAD MAMDOUH AL SHA AR</Nm>
+				<Nm>JAWDAT ALAHMED</Nm>
+				<Nm>MAHMOUD IBRAHEEM SAID</Nm>
+				<Nm>ALEXSANDR VIKTOROVYC IANOUKOVYTCH</Nm>
+				<Nm>ABDERRAHEEM MANAN</Nm>
+				<Nm>AGHA JAN ALAZAI</Nm>
+				<Nm>YORO OULD DAH</Nm>
+				<Nm>ABDERRAHMANE OULD EL AMAR</Nm>
+				<Nm>NESTOR MONCADA</Nm>
+				<Nm>ZOULHILMA SHALISH</Nm>
+				<Nm>SAYYED GHAYASUDIN</Nm>
+				<Nm>ALEXEI YURIEVICH KRIVORUCHKO</Nm>
+				<Nm>YONG SUN JANG</Nm>
+				<Nm>ALEJANDRINA SALAZAR DE GUZMAN</Nm>
+				<Nm>ALFONSO BARRERA RIOS</Nm>
+				<Nm>JELENA NIKOLAJEVNA DMUCHAJLO</Nm>
+				<Nm>LUIS ANTONIO HERNANDEZ ZEA</Nm>
+				<Nm>NOEL HEATH ZAMBA</Nm>
+				<Nm>JOAQUIN EL CHAPO GUZMAN</Nm>
+				<Nm>MUSA DADIS CAMARA</Nm>
+				<Nm>AL MEGRAHI AL SENUSSI</Nm>
+				<Nm>SE BONG PAEK</Nm>
+				<Nm>LESYA LAPTEVA</Nm>
+				<Nm>AL MUTASIM BILLAH MUAMMER KADDAFI</Nm>
+				<Nm>ALILABAKI KYAGULANYI</Nm>
+				<Nm>MOHAMMED JAVAD ASARI JAHROMI</Nm>
+				<Nm>VLADIMIR YURIEVICH VYSOTSKY</Nm>
+				<Nm>SOR TERESA GOMEZ ALVAREZ</Nm>
+				<Nm>MALAK NOORZAI</Nm>
+				<Nm>JOCK RIAK</Nm>
+				<Nm>ANATOLII SERHIYOVYCH KOVALIOV</Nm>
+				<Nm>SAIFULRAB SALIM HEESHI</Nm>
+				<Nm>SERGEY EVGENEVICH NARYSHKIN</Nm>
+				<Nm>KAMAL AWAD</Nm>
+				<Nm>ABDUL HAI HAZEM ABDUL QADER</Nm>
+				<Nm>ANDRII OLEXANDROVYCH KLISHAS</Nm>
+				<Nm>TAI TSAI HSEIN</Nm>
+				<Nm>AHMAD REZA RADAN</Nm>
+				<Nm>DEMETRIO ROMERO ZEVADA</Nm>
+				<Nm>MADHAT MURSI AL SAYYID UMAR</Nm>
+				<Nm>BIN LADEN USAMAH BIN MUHAMMAD</Nm>
+				<Nm>KAMAL HAMRAOUI BEN MAOELDI KAMEL AL HAMRAOUI BENN MOULDI</Nm>
+				<Nm>LIDIIA ALEXANDROVNA BASOVA</Nm>
+				<Nm>EDGAR ALBERTO SARRIA</Nm>
+				<Nm>SHEIKH AHMED SALIM SWEDEN</Nm>
+				<Nm>KHALID ABDALLA AL MARFADY</Nm>
+				<Nm>SAYYID MOHAMMAD HOSSEYNI</Nm>
+				<Nm>MANSUR BORGHE I</Nm>
+				<Nm>PARVIS FATTAH</Nm>
+				<Nm>AHMAD HUSSEIN KHUDAYYIR AL SAMARRAI</Nm>
+				<Nm>ABD ALRAHEEM MANAN</Nm>
+				<Nm>MUHAMMAD NASIF KHAYR BAYK</Nm>
+				<Nm>MOHAMMAD MAEN ZEIN AL ABIDEN JAZBA</Nm>
+				<Nm>JUAN MANUEL INZUNZA</Nm>
+				<Nm>KYONG OK KIM</Nm>
+				<Nm>OLECSANDR VIKTOROVYC IANUKOVYCH</Nm>
+				<Nm>MUHAMMAD JAMAL ABD AL RAHIM AHMAD AL KASHIF</Nm>
+				<Nm>ABBAS ALI KADKHODAEI</Nm>
+				<Nm>ALIREZA AVAEI</Nm>
+				<Nm>ABU UBAYDAH KHAYR HAFIZ</Nm>
+				<Nm>HUSSAM QATRANJI</Nm>
+				<Nm>DMITRIY IUREVICH GORA</Nm>
+				<Nm>MOHAMMAD HASSAN AKHUND</Nm>
+				<Nm>AHMAD WATBAN IBRAHIM HASAN AL TIKRITI</Nm>
+				<Nm>MOHAMMAD MAHER YUSIF MOHAMMAD BADER</Nm>
+				<Nm>PETRO ANATOLIYOVYCH ZYMA</Nm>
+				<Nm>YANKUBA BADJI</Nm>
+				<Nm>FRANCOIS OKUNJI</Nm>
+				<Nm>MOHAMMAD REZA ASHTIANI</Nm>
+				<Nm>VICTOR MANUEL BELTRAN</Nm>
+				<Nm>ABBASALI KADKHODA I ALI REZA</Nm>
+				<Nm>MOURAD TRABELSI</Nm>
+				<Nm>MEHRDADA AKHLAGHI KETABACHI</Nm>
+				<Nm>LEONARDO DIAS MENDONA</Nm>
+				<Nm>MUHAMMED MAZEN ALI YOUSIF</Nm>
+				<Nm>ABDUL PATTA ABU BAKAR</Nm>
+				<Nm>DEYSI YAMILE MOLANO</Nm>
+				<Nm>ALEKSANDR GRIGORJEWITSCH LUKASCHENKO</Nm>
+				<Nm>BELAOUAR KHALED ABOU EL ABASS</Nm>
+				<Nm>HAROUN GUEYE</Nm>
+				<Nm>ABEL ROBLES</Nm>
+				<Nm>ZOHER FADLOUN</Nm>
+				<Nm>ALMA DELIA LIRA SOTELO</Nm>
+				<Nm>MUHAMMAD IBRAHIM AL SHAAR</Nm>
+				<Nm>CARLOS ARIEL CONCEPCION</Nm>
+				<Nm>SHAYKH AL FATIH</Nm>
+				<Nm>KHALID ARADA</Nm>
+				<Nm>ABDULLA SAMAD FAROQUI</Nm>
+				<Nm>SILVIA ROMINA CARLON</Nm>
+				<Nm>NURJAMAN RIDUAN ISOMUDDIN</Nm>
+				<Nm>GUO PING CHEN</Nm>
+				<Nm>OLEXANDER VASYLYOVYCH SHUBIN</Nm>
+				<Nm>ZOGHBAI MERAI ABDUL FATTAH</Nm>
+				<Nm>AHMAD JAN AKHONDZADAH</Nm>
+				<Nm>FEREIDOUN ABBASI DAVANI</Nm>
+				<Nm>ANDREY OLEGOVICH SHIPITCIN</Nm>
+				<Nm>HERMAGORAS GONZALEZ POLANCO</Nm>
+				<Nm>WAEL HUSSEINI</Nm>
+				<Nm>NIKOLAY KARPENKOV</Nm>
+				<Nm>MOHAMMAD ESHAQ AKHUNZADA</Nm>
+				<Nm>JANAN AGHA</Nm>
+				<Nm>ABSOLOM SIKHOSANA</Nm>
+				<Nm>EDNA MADZONGWE</Nm>
+				<Nm>AHMED NUR JUMALE</Nm>
+				<Nm>SAIF ALESLAM MUAMMER AL GHADAFI</Nm>
+				<Nm>CHUN SONG RI</Nm>
+				<Nm>HECTOR FABIO CANOBAS</Nm>
+				<Nm>ADAM KHAN ACHEKZAI</Nm>
+				<Nm>OCTAVIO RINCON</Nm>
+				<Nm>ASSAD HASSAN BARAKAT</Nm>
+				<Nm>EBRAHIM RAIS AL SADAT RAISI</Nm>
+				<Nm>BASSAM MIRHAJ AL HASSAN</Nm>
+				<Nm>AREFULLAH AREF</Nm>
+				<Nm>ADAN HERNANDEZ</Nm>
+				<Nm>NAYIF AL RUJUB</Nm>
+				<Nm>MEHDI GHASEMZADEH</Nm>
+				<Nm>MIROSLAV YUREYEVICH POHORIELOV</Nm>
+				<Nm>EVGENII VIKTOROVICH BUSHMIN</Nm>
+				<Nm>MARVIN GEOVANNY MONTERROSA LARIOS</Nm>
+				<Nm>BLANCA ARMIDA AGUIRRE SANCHEZ</Nm>
+				<Nm>ALEKSANDRA VIKTOROVNA GAUS</Nm>
+				<Nm>VICTOR FRANCISCO BELTRAN GARCIA</Nm>
+				<Nm>MUHAMMAD ALI ALHUWAYJ</Nm>
+				<Nm>YAHYAA AL SAYID IBRAHEEM MUHAMMAD MUSAA</Nm>
+				<Nm>YADANAR MOE MYINT</Nm>
+				<Nm>KYU CHANG CHU</Nm>
+				<Nm>YOUNG CHUL KIM</Nm>
+				<Nm>MAHMUD BAGHERI KAZEMABAD</Nm>
+				<Nm>RAFAEL CAGO</Nm>
+				<Nm>ABOUD ROGO MOHAMMED</Nm>
+				<Nm>MOHAMMAD SAMIR HADDAD</Nm>
+				<Nm>AHMAD REZA RADAN</Nm>
+				<Nm>ANYAT UR RAHMAN</Nm>
+				<Nm>HOSSAM AHMED MOHAMMED AL KATERJI</Nm>
+				<Nm>MOHAMMED AL OTAIBI</Nm>
+				<Nm>GINO DUSAN PADROS DEGREGORI</Nm>
+				<Nm>KIM CHIN SO K</Nm>
+				<Nm>MUSTAH ELMABRUK</Nm>
+				<Nm>SANDRA MILENA HERNANDEZ ARBOLEDA</Nm>
+				<Nm>JOSE ANTONIO SOTO</Nm>
+				<Nm>ALI SADDAM HUSSEIN TIKRITI</Nm>
+				<Nm>DIEGO ALBERTO MUNOZ AGUDELO</Nm>
+				<Nm>AHMAD AL QADRI</Nm>
+				<Nm>NGWENA MNANGAGWA</Nm>
+				<Nm>MIN BYONG CHOL</Nm>
+				<Nm>MAJEED CHAUDHRY ABDUL</Nm>
+				<Nm>OLEG YEVGENYEVICH BUGROV</Nm>
+				<Nm>AHMAD NAJIB</Nm>
+				<Nm>OLEKSII CHALYI</Nm>
+				<Nm>BILAL ALI MUHAMMAD AL WAFI</Nm>
+				<Nm>ALEKSANDR VIKTOROVICH JANUKOVYC</Nm>
+				<Nm>MAHMOOD SULTAN BASHIR UD DIN</Nm>
+				<Nm>BILAL BIN MARWAN</Nm>
+				<Nm>MUHAMMAD BAHRUM NAIM ANGGIH TAMTOMO</Nm>
+				<Nm>AMADO GUERRERO</Nm>
+				<Nm>NAWFAL AL HUSAYN</Nm>
+				<Nm>ABD AL WAHAB AL HUMIQANI</Nm>
+				<Nm>MUHAMET XHEMAJLI</Nm>
+				<Nm>LYDYIA ERMOSHYNA</Nm>
+				<Nm>IMAD MUWAFFAQ AZAB</Nm>
+				<Nm>SIRAJ HAQQANI KHALIFA</Nm>
+				<Nm>LUZ DEL ROCIO GARCIA</Nm>
+				<Nm>AHMED ALI ABDULLAH SALEH</Nm>
+				<Nm>SOBDI ABD AL AZIZ MOHAMED EL GOHARY ABU SINNA</Nm>
+				<Nm>MAXIM MIKHOVICH</Nm>
+				<Nm>QASIM YAHYA MAHDI ABD AL RIMI</Nm>
+				<Nm>MAKHMOUD AL KHATEEB</Nm>
+				<Nm>SYED JABER SAFDARI</Nm>
+				<Nm>QARI MUHAMMAD YAQOOB SHEIKH</Nm>
+				<Nm>JIANGPING ZHANG</Nm>
+				<Nm>NATALJA VLADIMIROVNA PETKEVITJ</Nm>
+				<Nm>MARIA DEICY VILLEGAS ARIAS</Nm>
+				<Nm>SAYYID SALAH AL MUSAWI</Nm>
+				<Nm>MUHAMMAD AJAJ NASIR</Nm>
+				<Nm>JAIRO ALFONSON BULLA</Nm>
+				<Nm>JOSE LUIS RODARTE GRIJALVA</Nm>
+				<Nm>GULBUDIN HEKMETYAR</Nm>
+				<Nm>MYROSLAV POGORELOV</Nm>
+				<Nm>ABU MUQATIL AL TUNISI</Nm>
+				<Nm>AL SALEEM</Nm>
+				<Nm>PAT OREJUELA DE GIL</Nm>
+				<Nm>WALMARO ANTONIO GUTIERREZ MERCADO</Nm>
+				<Nm>ULADSIMIR ULADSIMIRAWITSCH NAVUMAU</Nm>
+				<Nm>ERIC RUHORIMBERE</Nm>
+				<Nm>HUSSAM KATERJI</Nm>
+				<Nm>SADEQ AMOLI LARIJANI</Nm>
+				<Nm>HASSAN TURKI</Nm> -->
+				<PstlAdr>
+					<StrtNm>CENTURION PKWY</StrtNm>
+					<PstCd>32034</PstCd>
+					<TwnNm>JACKSONVILLE</TwnNm>
+					<TwnLctnNm>IRAN</TwnLctnNm>
+					<Ctry>IR</Ctry>
+				</PstlAdr>
+			</Dbtr>
+			<DbtrAgt>
+				<FinInstnId>
+					<BICFI>NICOCH21</BICFI>
+				</FinInstnId>
+			</DbtrAgt>
+			<CdtrAgt>
+				<FinInstnId>
+					<BICFI>UGEBGE22602</BICFI>
+				</FinInstnId>
+			</CdtrAgt>
+			<Cdtr>
+				<Nm>Jong Un Kim</Nm>
+				<PstlAdr>
+					<StrtNm>OMVAL 300</StrtNm>
+					<PstCd>1096</PstCd>
+					<TwnNm>AMSTERDAM</TwnNm>
+					<Ctry>NL</Ctry>
+				</PstlAdr>
+			</Cdtr>
+			<CdtrAcct>
+				<Id>
+					<Othr>
+						<Id>NL02ABNA0123456789</Id>
+					</Othr>
+				</Id>
+			</CdtrAcct>
+			<RmtInf>
+				<Ustrd>INVOICE A245,5637/04,991/05</Ustrd>
+			</RmtInf>
+		</CdtTrfTxInf>
+	</FIToFICstmrCdtTrf>
+</Document>
+</env:Envelope>

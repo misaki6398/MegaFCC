@@ -9,7 +9,7 @@ using Oracle.ManagedDataAccess.Client;
 
 namespace MegaTFLT.Models.MegaEcm.Repositorys
 {
-    public class TfCasesRepository : BaseRepository
+    public class TfCasesRepository : BaseRepository<TfCasesModel>
     {
         private readonly string _insertSql = @"
             INSERT INTO tf_cases (

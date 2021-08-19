@@ -1,6 +1,6 @@
 namespace MegaTFLT.Models.MegaEcm.Models
 {
-    public class MxInputTagModel
+    public class ScreeningInputTagModel
     {
 
         public string Input { get; set; }

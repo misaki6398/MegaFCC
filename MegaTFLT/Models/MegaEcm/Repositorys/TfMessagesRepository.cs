@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
 using Dapper;
+using Dapper.Oracle;
 using MegaTFLT.MegaEcm.Models;
 using MegaTFLT.Models.MegaEcm.Models;
 using Oracle.ManagedDataAccess.Client;
+using CommonMegaAp11.Utilitys;
 
 namespace MegaTFLT.Models.MegaEcm.Repositorys
 {
-    public class TfMessagesRepository : BaseRepository
+    public class TfMessagesRepository : BaseRepository<TfMessageModel>
     {
         private readonly string _insertSql = @"
           INSERT INTO tf_messages (
@@ -32,7 +34,7 @@ namespace MegaTFLT.Models.MegaEcm.Repositorys
                 UpdateDatetime
             ) VALUES (
                 :id,
-                :RawMessage,
+                :RawMessageClob,
                 :MessageDefinitionIdentifier,
                 :BusinessMessageIdentifier,
                 :BusinessService,
@@ -54,6 +56,14 @@ namespace MegaTFLT.Models.MegaEcm.Repositorys
         {
             this.InsertSql = _insertSql;
         }
-        //public async Task<int> InsetAsync(TfMessageModel model) => await base.InsertAsync(model, _insertSql);
+        public override async Task<int> InsertAsync(TfMessageModel model)
+        {
+           model.RawMessageClob = OracleDBUtility.ConvertToClob(model.RawMessage, (Oracle.ManagedDataAccess.Client.OracleConnection)this.Connection);
+           var parameter = new OracleDynamicParameters();    
+           parameter.Add("RawMessageClob", model.RawMessageClob);
+
+
+            return await base.InsertAsync(model, _insertSql);
+        }
     }
 }

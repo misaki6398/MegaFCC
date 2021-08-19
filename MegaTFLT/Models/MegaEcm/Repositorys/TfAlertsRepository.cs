@@ -9,7 +9,7 @@ using Oracle.ManagedDataAccess.Client;
 
 namespace MegaTFLT.Models.MegaEcm.Repositorys
 {
-    public class TfAlertsRepository : BaseRepository
+    public class TfAlertsRepository : BaseRepository<TfAlertsModel>
     {
         private readonly string _insertSql = @"
           INSERT INTO tf_alerts (

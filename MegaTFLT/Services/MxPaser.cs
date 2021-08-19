@@ -7,43 +7,13 @@ using MegaTFLT.Models.MegaEcm.Models;
 
 namespace MegaTFLT.Utilitys
 {
-    public class MxPaser
+    public class MxPaser : BaseMessagePaser
     {
-        public TfMessageModel TfMessageModel { get; private set; }
-        public Dictionary<string, List<MxInputTagModel>> mxMessages { get; private set; }
-
-        public bool ReadFromFile(string filePath)
-        {
-            bool isSuccess = false;
-            Console.WriteLine("-------------------------");
-            Console.WriteLine(value: $"ReadFromFile:{filePath}");
-            Console.WriteLine("-------------------------");
-            try
-            {
-                string mxText = File.ReadAllText(filePath);
-                //Console.WriteLine($"{mxText}");
-                isSuccess = this.ReadFromText(mxText);
-            }
-            catch (DirectoryNotFoundException ex)
-            {
-                Console.WriteLine("DirectoryNotFoundException");
-                Console.WriteLine(ex.Message, ex.ToString());
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message, ex.ToString());
-            }
-            finally
-            {
-
-            }
-            return isSuccess;
-        }
-        public bool ReadFromText(string mxText)
+        public override bool ReadFromText(string mxText)
         {
             bool isSuccess = false;
             XmlReader reader = XmlReader.Create(new StringReader(mxText));
-            mxMessages = new Dictionary<string, List<MxInputTagModel>>();
+            mxMessages = new Dictionary<string, List<ScreeningInputTagModel>>();
             string ElementText = "";
             string ValueText = "";
 
@@ -138,17 +108,17 @@ namespace MegaTFLT.Utilitys
                     // ----Peocess Message----
 
                     // ----Peocess Screening----
-                    List<MxInputTagModel> lstMxInputTag = null;
+                    List<ScreeningInputTagModel> lstMxInputTag = null;
                     if (mxMessages.ContainsKey(ElementText))
                     {
                         lstMxInputTag = mxMessages[ElementText];
                     }
                     else
                     {
-                        lstMxInputTag = new List<MxInputTagModel>();
+                        lstMxInputTag = new List<ScreeningInputTagModel>();
                         mxMessages.Add(ElementText, lstMxInputTag);
                     }
-                    MxInputTagModel tempMxInputTagModel = new MxInputTagModel();
+                    ScreeningInputTagModel tempMxInputTagModel = new ScreeningInputTagModel();
                     tempMxInputTagModel.Input = ValueText;
                     tempMxInputTagModel.TagName = ElementText;
                     lstMxInputTag.Add(tempMxInputTagModel);

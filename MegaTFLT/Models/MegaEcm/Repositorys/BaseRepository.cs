@@ -8,7 +8,7 @@ using Oracle.ManagedDataAccess.Client;
 
 namespace MegaTFLT.Models.MegaEcm.Repositorys
 {
-    public abstract class BaseRepository
+    public abstract class BaseRepository<T>
     {
         protected IDbTransaction Transaction { get; private set; }
         protected IDbConnection Connection { get { return Transaction.Connection; } }
@@ -19,15 +19,15 @@ namespace MegaTFLT.Models.MegaEcm.Repositorys
         }
 
         protected string InsertSql { get; set; }
-        public virtual async Task<int> InsertAsync<T>(T model)
+        public virtual async Task<int> InsertAsync(T model)
         {
             return await InsertAsync(model, InsertSql);
         }
-        public virtual async Task<int> InsertAsync<T>(List<T> models)
+        public virtual async Task<int> InsertAsync(List<T> models)
         {
             return await InsertAsync(models, InsertSql);
         }
-        public virtual async Task<int> InsertAsync<T>(T model, string sql)
+        protected virtual async Task<int> InsertAsync(T model, string sql)
         {
             try
             {
@@ -42,7 +42,7 @@ namespace MegaTFLT.Models.MegaEcm.Repositorys
                 throw;
             }
         }
-        public virtual async Task<int> InsertAsync<T>(List<T> models, string sql)
+        protected virtual async Task<int> InsertAsync(List<T> models, string sql)
         {
             try
             {

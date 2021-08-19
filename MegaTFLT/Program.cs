@@ -28,6 +28,7 @@ namespace MegaTFLT
             */
             MxPaser MxPaser1 = new MxPaser();
             MxPaser1.ReadFromFile(@"./sample_pacs.008.xml");
+            //MxPaser1.ReadFromFile(@"./sample_ILoveYou200.xml");
 
             EdqService edqService = new EdqService();
             List<TfAlertsModel> tfAlertsModels = await edqService.ProcessScreeningAsync(MxPaser1.mxMessages);
