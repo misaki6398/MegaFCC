@@ -35,4 +35,8 @@ export class DatasourceService {
   doGetListDetail(listSubTypeId: string): Observable<any> {
     return this.http.get(`${this.url}/api/TfAlerts/ListDetail/${listSubTypeId}`, this.options);
   }
+
+  doGetTfCasesRawdata(caseId: string): Observable<any> {
+    return this.http.get(`${this.url}/api/TfCases/RawData/${caseId}`, this.options);
+  }
 }

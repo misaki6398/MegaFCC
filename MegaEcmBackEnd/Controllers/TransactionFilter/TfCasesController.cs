@@ -33,5 +33,12 @@ namespace MegaEcmBackEnd.Controllers.TransactionFilter
             var result = await _megaEcmUnitOfWork.TfCasesRepository.QueryCaseAsync(GuidUtility.ToRaw16(guid));
             return Ok(result);
         }
+
+        [HttpGet("RawData/{guid}")]
+        public async Task<IActionResult> GetRawdataById(Guid guid)
+        {
+            var result = await _megaEcmUnitOfWork.TfCasesRepository.QueryRawdataAsync(GuidUtility.ToRaw16(guid));
+            return Ok(result);
+        }
     }
 }

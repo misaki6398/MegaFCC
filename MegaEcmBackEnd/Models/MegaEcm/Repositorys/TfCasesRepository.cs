@@ -26,6 +26,16 @@ namespace MegaEcmBackEnd.Models.MegaEcm.Repositorys
             where tf_messages.validflag = 1 
             and tf_cases.validflag = 1
         ";
+        private readonly string _readRawDataSql = @"
+            select 
+                RAWMESSAGE
+            from tf_cases 
+            join tf_messages on tf_cases.messageid = tf_messages.Id
+            where 
+                tf_cases.Id = :CaseId
+            and tf_messages.validflag = 1 
+            and tf_cases.validflag = 1
+        ";
 
 
         public TfCasesRepository(IDbTransaction transaction) : base(transaction)
@@ -54,6 +64,23 @@ namespace MegaEcmBackEnd.Models.MegaEcm.Repositorys
             try
             {
                 return await Connection.QueryAsync<TfCasesResource>(sql, new{CaseId = caseId}, Transaction);
+            }
+            catch (OracleException)
+            {
+                throw;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public async Task<IEnumerable<string>> QueryRawdataAsync(byte[] caseId)
+        {
+            string sql = $"{_readCaseSql} and tf_cases.Id = :caseId";
+            try
+            {
+                return await Connection.QueryAsync<string>(_readRawDataSql, new{CaseId = caseId}, Transaction);
             }
             catch (OracleException)
             {

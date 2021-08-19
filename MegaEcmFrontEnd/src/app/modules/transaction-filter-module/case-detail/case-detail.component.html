@@ -1,44 +1,38 @@
-<!--
-<div class="overflow-auto">
-
-  <pre lang="xml">{{xmlString | xml}}</pre>
-</div> -->
+<h1>Transation Filter - Case Detail</h1>
+<button mat-raised-button (click)="openDialog()">Rawdata</button>
+<hr>
 <div class="row">
-  <h1>Transation Filter - Case Detail</h1>
 
 
-  <div class="col-xl-10 col-sm-12 h-70vh overflow-auto">
-
-    <!-- <mat-form-field class="filter-input">
-      <mat-label>Type to filter the column...</mat-label>
-      <input matInput (keyup)="applyFilter($event)" #input placeholder="You can filter below columns">
-    </mat-form-field> -->
-
+  <div class="col-xl-9 col-sm-12">
+    <div class="table-container">
     <table mat-table [dataSource]="tableDataSource" multiTemplateDataRows matSort class="mat-elevation-z8">
 
       <ng-container matColumnDef="{{column}}" *ngFor="let column of displayedColumns">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> {{column}} </th>
-        <td mat-cell *matCellDef="let element">
+        <td mat-cell *matCellDef="let element" >
           {{element[column]}}
       </ng-container>
 
       <ng-container matColumnDef="expandedDetail">
         <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
           <div class="element-detail row" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-            <!-- <mat-spinner *ngIf="listDetail.length === 0"></mat-spinner> -->
-            <!-- <mat-spinner *ngIf="listDetail.length === 0"></mat-spinner> -->
-            <div class="row">
-              <div class="element-description overflow-auto h-50vh col-10">
-                <table class="table table-dark">
+            <div class="container" *ngIf="listDetail.length === 0">
+              <mat-progress-bar mode="buffer"></mat-progress-bar>
+            </div>
+            <div class="row" *ngIf="listDetail.length !== 0">
+              <div class="element-description overflow-auto h-50vh col-xl-9 col-lg-12">
+                <table class="table table-dark table-striped table-bordered">
+                <!-- <table> -->
                   <tbody>
                     <tr *ngFor="let detail of listDetail">
                       <th scope="row">{{detail.key}}</th>
-                      <td class="next-line">{{detail.value}}</td>
+                      <td [innerHtml]="detail.value"></td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-              <div class="element-select col-2">
+              <div class="element-select col-xl-3 col-lg-12">
                 <mat-form-field appearance="fill">
                   <mat-label>State</mat-label>
                   <mat-select>
@@ -49,16 +43,15 @@
 
               </div>
             </div>
-
           </div>
         </td>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let element; columns: displayedColumns;" class="element-row"
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let element; columns: displayedColumns;let i = dataIndex" class="element-row" id="target{{i}}" #target
         [class.example-expanded-row]="expandedElement === element"
-        (click)="expandedElement = expandedElement === element ? null : element"
-        (click)="getListDetail(element.listSubTypeId)">
+        (click)="expandedElement = expandedElement === element ? null : element; getListDetail(expandedElement, target)">
+
       </tr>
       <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
 
@@ -68,45 +61,25 @@
 
 
     </table>
-    <mat-paginator [pageSizeOptions]="[5, 15, 100]" showFirstLastButtons></mat-paginator>
-    <hr>
-    <div class="row">
-      <div class="col-xl-8 col-sm-6"></div>
-      <div class="col-xl-2 col-sm-3">
-        <button mat-raised-button color="accent">Recomman Release</button>
-      </div>
-      <div class="col-xl-2 col-sm-3">
-        <button mat-raised-button color="warn">Recomman Block</button>
-      </div>
     </div>
-
-
-  </div>
-  <div class="col-xl-2 col-sm-12 h-70vh overflow-auto">
-    <table class="table table-dark">
-      <tbody>
-        <tr>
-          <th scope="row" colspan="2">Hit Colunms</th>
-        </tr>
-        <tr *ngFor="let column of distinctColumns">
-          <th scope="row">{{column.tagName}}</th>
-          <td>{{column.matchData}}</td>
-        </tr>
-      </tbody>
-    </table>
-    <!-- <mat-tab-group>
-      <mat-tab label="Raw Data">
-        <pre lang="xml">{{xmlString | xml}}</pre>
-      </mat-tab>
-      <mat-tab label="Message">
-        Content 2
-      </mat-tab>
-    </mat-tab-group> -->
+    <mat-paginator [pageSizeOptions]="[10, 50, 100]" showFirstLastButtons></mat-paginator>
   </div>
 
-
-  <div class="col-12 h-30vh overflow-auto">
+  <div class="col-xl-3 col-md-12 h-70vh overflow-auto">
     <mat-tab-group>
+      <mat-tab label="Hit Columns">
+        <table class="table table-dark blue">
+          <tbody>
+            <!-- <tr>
+              <th scope="row" colspan="2">Hit Colunms</th>
+            </tr> -->
+            <tr *ngFor="let column of distinctColumns">
+              <th scope="row" [ngClass]="{highlight: column.highlight}">{{column.tagName}}</th>
+              <td [ngClass]="{highlight: column.highlight}">{{column.matchData}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </mat-tab>
       <mat-tab label="Audit">
         Audit
       </mat-tab>
@@ -114,6 +87,16 @@
         Attachment
       </mat-tab>
     </mat-tab-group>
+
+  </div>
+</div>
+
+<hr>
+
+
+  <div class="flex-end">
+    <button mat-raised-button color="accent" class="">Recomman Release</button>
+    <button mat-raised-button color="warn">Recomman Block</button>
   </div>
 
-</div>
+

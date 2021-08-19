@@ -17,12 +17,16 @@ import { MatSelectModule } from '@angular/material/select';
 import { DatasourceService } from './services/datasource.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDialogModule } from '@angular/material/dialog';
+import { RawdataComponent } from './rawdata/rawdata.component';
+
 
 @NgModule({
   declarations: [
     CaseManagementComponent,
     CaseDetailComponent,
-    XmlPipe
+    XmlPipe,
+    RawdataComponent
   ],
   imports: [
     CommonModule,
@@ -38,7 +42,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatTabsModule,
     MatSelectModule,
     HttpClientModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatDialogModule
   ],
   providers: [DatasourceService],
   exports: [

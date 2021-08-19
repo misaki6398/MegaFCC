@@ -15,13 +15,19 @@ namespace MegaEcmBackEnd.Models.MegaEcm.Repositorys
                 MatchedListRecordId,
                 MatchType,
                 Case 
-                when MatchType = 'Individual' then MATCHEDINDIVIDUALNAME 
-                when MatchType = 'Entity' then MATCHEDENTITYNAME 
-                when MatchType = 'Country' then CountryName
+                when MATCHEDINDIVIDUALNAME is not null then MATCHEDINDIVIDUALNAME 
+                when MATCHEDENTITYNAME is not null then MATCHEDENTITYNAME 
+                when CountryName is not null then CountryName 
+                when MATCHEDINDIVIDUALNAME is not null then MATCHEDINDIVIDUALNAME 
+                when DETAILSOFPORT is not null then DETAILSOFPORT 
+                when DETAILSOFBIC is not null then DETAILSOFBIC 
+                when DETAILSOFGOODS is not null then DETAILSOFGOODS 
+               
                 end MatchedName,
                 MatchedListSubKey,
                 Rule,
-                ListSubTypeId
+                ListSubTypeId,
+                TagName
             from TF_ALERTS
             where 
                 ValidFlag = 1
@@ -32,7 +38,7 @@ namespace MegaEcmBackEnd.Models.MegaEcm.Repositorys
         private readonly string _readHitColumnSql = @"
             select 
                 distinct
-                MatchedListRecordId,
+                ListSubTypeId,
                 Input as MatchData,
                 TagName
             from TF_ALERTS

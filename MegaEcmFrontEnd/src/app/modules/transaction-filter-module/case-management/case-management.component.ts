@@ -4,21 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-
-
-export interface CaseList {
-  messageDefinitionIdentifier: string;
-  swallowId: string;
-  businessMessageIdentifier: string;
-  currency: string;
-  amount: number;
-  brachNo: string;
-  caseStatus: string;
-  assignBy: string;
-  createDateTime: string;
-  caseId: string;
-}
-
+import { CaseList } from '../classes/case-list';
 
 @Component({
   selector: 'app-case-management',

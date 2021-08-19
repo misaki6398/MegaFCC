@@ -59,4 +59,31 @@ hr {
   border-top: 1px solid #777f86;
 }
 
+::-webkit-scrollbar {
+  width: 5px;
+  height: 8px;
+  margin: 0;
+  padding: 0;
+}
 
+
+::-webkit-scrollbar-track {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  margin: 5px 0 5px 0;
+}
+
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  background: rgb(146, 145, 145);
+
+}
+
+.highlight {
+  color: yellow;
+}
+
+.highlight-raw {
+  color: yellow;
+}
