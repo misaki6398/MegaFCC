@@ -36,6 +36,7 @@ namespace MegaTFLT
                 if (tfAlertsModels.Count() > 0)
                 {
                     TfCasesModel tfCasesModel = new TfCasesModel(MxPaser1.TfMessageModel);
+                    List<TfAlertListDetailModel> tfAlertListDetailModels = new List<TfAlertListDetailModel>();
                     tfCasesModel.CaseStatus = "New Case";
                     tfCasesModel.CaseStatusCode = 0;
                     tfAlertsModels.ForEach(c =>
@@ -43,6 +44,8 @@ namespace MegaTFLT
                         c.AlertStatus = "New Case";
                         c.AlertStatusCode = 0;
                         c.CaseId = tfCasesModel.Id;
+                        TfAlertListDetailModel tfAlertListDetailModel = new TfAlertListDetailModel(c.id, c.ListSubTypeID);
+                        tfAlertListDetailModels.Add(tfAlertListDetailModel);
                     });
 
                     try
@@ -50,6 +53,7 @@ namespace MegaTFLT
                         await _unitOfWork.TfMessagesRepository.InsertAsync(MxPaser1.TfMessageModel);
                         await _unitOfWork.TfCasesRepository.InsertAsync(tfCasesModel);
                         await _unitOfWork.TfAlertsRepository.InsertAsync(tfAlertsModels);
+                        await _unitOfWork.TfAlertListDetailRepository.InsertAsync(tfAlertListDetailModels);
                     }
                     catch (OracleException ex)
                     {
