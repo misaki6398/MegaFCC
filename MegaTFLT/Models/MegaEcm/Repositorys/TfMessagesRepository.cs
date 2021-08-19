@@ -52,23 +52,8 @@ namespace MegaTFLT.Models.MegaEcm.Repositorys
            ";
         public TfMessagesRepository(IDbTransaction transaction) : base(transaction)
         {
-
+            this.InsertSql = _insertSql;
         }
-
-        public async Task<int> InsertAsync(TfMessageModel models)
-        {
-            try
-            {
-                return await Connection.ExecuteAsync(_insertSql, models, Transaction);
-            }
-            catch (OracleException)
-            {
-                throw;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
+        //public async Task<int> InsetAsync(TfMessageModel model) => await base.InsertAsync(model, _insertSql);
     }
 }

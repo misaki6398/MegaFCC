@@ -37,25 +37,8 @@ namespace MegaTFLT.Models.MegaEcm.Repositorys
 
         public TfAlertListDetailRepository(IDbTransaction transaction) : base(transaction)
         {
-
+            this.InsertSql = _insertSql;
         }
-
-        public string InsertSql => _insertSql;
-
-        public async Task<int> InsertAsync(List<TfAlertListDetailModel> models)
-        {
-            try
-            {
-                return await Connection.ExecuteAsync(InsertSql, models, Transaction);
-            }
-            catch (OracleException)
-            {
-                throw;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
+        //public async Task<int> InsertAsync(List<TfAlertListDetailModel> models) => await base.InsertAsync(models, _insertSql);
     }
 }

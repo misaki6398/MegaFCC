@@ -54,23 +54,8 @@ namespace MegaTFLT.Models.MegaEcm.Repositorys
            ";
         public TfCasesRepository(IDbTransaction transaction) : base(transaction)
         {
-
+            this.InsertSql = _insertSql;
         }
-
-        public async Task<int> InsertAsync(TfCasesModel models)
-        {
-            try
-            {
-                return await Connection.ExecuteAsync(_insertSql, models, Transaction);
-            }
-            catch (OracleException)
-            {
-                throw;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
+        //public async Task<int> InsetAsync(TfCasesModel model) => await base.InsertAsync(model, _insertSql);
     }
 }
