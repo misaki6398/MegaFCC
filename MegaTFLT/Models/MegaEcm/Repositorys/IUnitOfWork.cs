@@ -11,7 +11,6 @@ namespace  MegaTFLT.Models.MegaEcm.Repositorys
         TfMessagesRepository TfMessagesRepository { get; }
         TfCasesRepository TfCasesRepository { get; }
         TfAlertsRepository TfAlertsRepository { get; }
-        TfAlertListDetailRepository TfAlertListDetailRepository { get; }
         void Commit();
     }
 }

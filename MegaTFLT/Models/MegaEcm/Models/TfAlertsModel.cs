@@ -98,6 +98,7 @@ namespace MegaTFLT.Models.MegaEcm.Models
 
         // Common
         public string ListSubTypeID { get; set; }
+        public string ListRecord { get; set; }
         public string IdentifierTagName { get; set; }
         public string IdentifierValue { get; set; }
         public string ExpressionCode { get; set; }

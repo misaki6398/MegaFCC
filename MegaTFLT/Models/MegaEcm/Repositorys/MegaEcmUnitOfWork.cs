@@ -15,7 +15,6 @@ namespace MegaTFLT.Models.MegaEcm.Repositorys
         private TfMessagesRepository _tfMessagesRepository;
         private TfCasesRepository _tfCasesRepository;
         private TfAlertsRepository _tfAlertsRepository;
-        private TfAlertListDetailRepository _tfAlertListDetailRepository;
         private bool _disposed = false;
 
         public MegaEcmUnitOfWork()
@@ -40,10 +39,6 @@ namespace MegaTFLT.Models.MegaEcm.Repositorys
         public TfAlertsRepository TfAlertsRepository
         {
             get { return _tfAlertsRepository ?? (_tfAlertsRepository = new TfAlertsRepository(_transaction)); }
-        }
-        public TfAlertListDetailRepository TfAlertListDetailRepository
-        {
-            get { return _tfAlertListDetailRepository ?? (_tfAlertListDetailRepository = new TfAlertListDetailRepository(_transaction)); }
         }
         
         public void Commit()
@@ -88,7 +83,6 @@ namespace MegaTFLT.Models.MegaEcm.Repositorys
             _screenConfigRepository = null;
             _tfMessagesRepository = null;
             _tfAlertsRepository = null;
-            _tfAlertListDetailRepository = null;
             _tfCasesRepository = null;
         }
 
