@@ -13,21 +13,28 @@ namespace MegaTFLT.Models.MegaEcm.Repositorys
     public class TfAlertListDetailRepository : BaseRepository
     {
         private readonly string _insertSql = $@"
-            INSERT INTO tf_alert_list_detail (
-                alertid,
-                listsubtypeid,
-                listrecord
-            ) 
+            INSERT INTO
+                tf_alert_list_detail (
+                    alertid,
+                    listsubtypeid,
+                    listrecord
+                )
             values(
-                :AlertId,
-                :ListSubTypeId,
-                SELECT
-                 C_LIST_REC FROM SIT_Atomic.FSI_RT_LIST_DATA
-                 WHERE V_LIST_SUB_TYPE_ID = '5a866618e66ac7'                 
-            )
+                    :AlertId,
+                    :ListSubTypeId,
+                    (
+                        SELECT
+                            C_LIST_REC
+                        FROM
+                            { ConfigUtility.FccmAtomicSchema }.FSI_RT_LIST_DATA
+                        WHERE
+                            V_LIST_SUB_TYPE_ID = :ListSubTypeId 
+                        FETCH FIRST ROW ONLY
+                    )
+                )
            ";
 
-        
+
         public TfAlertListDetailRepository(IDbTransaction transaction) : base(transaction)
         {
 
