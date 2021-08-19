@@ -1,66 +1,67 @@
 <h1>Transation Filter - Case Detail</h1>
-<button mat-raised-button (click)="openDialog()">Rawdata</button>
+<div class="flex-start">
+  <button mat-stroked-button color="accent" (click)="back()"><i class="fas fa-reply-all"></i> Back</button>
+  <button mat-stroked-button (click)="openDialog()"><i class="fas fa-sticky-note"></i> Rawdata</button>
+</div>
 <hr>
 <div class="row">
-
-
   <div class="col-xl-9 col-sm-12">
     <div class="table-container">
-    <table mat-table [dataSource]="tableDataSource" multiTemplateDataRows matSort class="mat-elevation-z8">
+      <table mat-table [dataSource]="tableDataSource" multiTemplateDataRows matSort class="mat-elevation-z8">
 
-      <ng-container matColumnDef="{{column}}" *ngFor="let column of displayedColumns">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{column}} </th>
-        <td mat-cell *matCellDef="let element" >
-          {{element[column]}}
-      </ng-container>
+        <ng-container matColumnDef="{{column}}" *ngFor="let column of displayedColumns">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{column}} </th>
+          <td mat-cell *matCellDef="let element">
+            {{element[column]}}
+        </ng-container>
 
-      <ng-container matColumnDef="expandedDetail">
-        <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
-          <div class="element-detail row" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-            <div class="container" *ngIf="listDetail.length === 0">
-              <mat-progress-bar mode="buffer"></mat-progress-bar>
-            </div>
-            <div class="row" *ngIf="listDetail.length !== 0">
-              <div class="element-description overflow-auto h-50vh col-xl-9 col-lg-12">
-                <table class="table table-dark table-striped table-bordered">
-                <!-- <table> -->
-                  <tbody>
-                    <tr *ngFor="let detail of listDetail">
-                      <th scope="row">{{detail.key}}</th>
-                      <td [innerHtml]="detail.value"></td>
-                    </tr>
-                  </tbody>
-                </table>
+        <ng-container matColumnDef="expandedDetail">
+          <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+            <div class="element-detail row" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+              <div class="container" *ngIf="listDetail.length === 0">
+                <mat-progress-bar mode="buffer"></mat-progress-bar>
               </div>
-              <div class="element-select col-xl-3 col-lg-12">
-                <mat-form-field appearance="fill">
-                  <mat-label>State</mat-label>
-                  <mat-select>
-                    <mat-option>None</mat-option>
-                    <mat-option *ngFor="let state of states" [value]="state">{{state}}</mat-option>
-                  </mat-select>
-                </mat-form-field>
+              <div class="row" *ngIf="listDetail.length !== 0">
+                <div class="element-description overflow-auto h-50vh col-xl-9 col-lg-12">
+                  <table class="table table-dark table-striped table-bordered">
+                    <!-- <table> -->
+                    <tbody>
+                      <tr *ngFor="let detail of listDetail">
+                        <th scope="row">{{detail.key}}</th>
+                        <td [innerHtml]="detail.value"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="element-select col-xl-3 col-lg-12">
+                  <mat-form-field appearance="fill">
+                    <mat-label>State</mat-label>
+                    <mat-select>
+                      <mat-option>None</mat-option>
+                      <mat-option *ngFor="let state of states" [value]="state">{{state}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
 
+                </div>
               </div>
             </div>
-          </div>
-        </td>
-      </ng-container>
+          </td>
+        </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-      <tr mat-row *matRowDef="let element; columns: displayedColumns;let i = dataIndex" class="element-row" id="target{{i}}" #target
-        [class.example-expanded-row]="expandedElement === element"
-        (click)="expandedElement = expandedElement === element ? null : element; getListDetail(expandedElement, target)">
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let element; columns: displayedColumns;let i = dataIndex" class="element-row"
+          [class.example-expanded-row]="expandedElement === element"
+          (click)="expandedElement = expandedElement === element ? null : element; getListDetail(expandedElement, target)">
 
-      </tr>
-      <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
+        </tr>
+        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
 
-      <tr class="mat-row" *matNoDataRow>
-        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-      </tr>
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
 
 
-    </table>
+      </table>
     </div>
     <mat-paginator [pageSizeOptions]="[10, 50, 100]" showFirstLastButtons></mat-paginator>
   </div>
@@ -94,9 +95,8 @@
 <hr>
 
 
-  <div class="flex-end">
-    <button mat-raised-button color="accent" class="">Recomman Release</button>
-    <button mat-raised-button color="warn">Recomman Block</button>
-  </div>
-
-
+<div class="flex-end">
+  <button mat-raised-button color="primary"><i class="fas fa-paperclip"></i> Attach File</button>
+  <button mat-raised-button color="accent"><i class="fas fa-forward"></i> Recomman Release</button>
+  <button mat-raised-button color="warn"><i class="fas fa-stop"></i> Recomman Block</button>
+</div>

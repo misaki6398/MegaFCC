@@ -6,7 +6,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlertList } from '../classes/alert-list';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -27,7 +27,7 @@ export class CaseDetailComponent implements OnInit {
   displayedColumns: string[] = ['matchedListRecordId', 'matchedName', 'matchType', 'rule', 'matchedListSubKey'];
   states: string[] = ['True Match', 'False Match'];
   tableDataSource: MatTableDataSource<AlertList>;
-  alterts: any = [];
+  alterts: Array<AlertList> = [];
   caseId: string;
   hitColumns: Array<HitColumns>;
   selectedColumn;
@@ -36,7 +36,12 @@ export class CaseDetailComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(private activatedRoute: ActivatedRoute, private datasourceService: DatasourceService, public dialog: MatDialog) {
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    public dialog: MatDialog,
+    private router: Router,
+    private datasourceService: DatasourceService
+  ) {
     this.caseId = this.activatedRoute.snapshot.paramMap.get('id');
   }
 
@@ -51,6 +56,7 @@ export class CaseDetailComponent implements OnInit {
       this.tableDataSource = new MatTableDataSource(this.alterts);
       this.tableDataSource.paginator = this.paginator;
       this.tableDataSource.sort = this.sort;
+      console.log(this.alterts);
     });
 
     this.datasourceService.doGetHitColumn(this.caseId).subscribe((responses: any) => {
@@ -81,8 +87,6 @@ export class CaseDetailComponent implements OnInit {
   }
 
   getListDetail(expandedElement, target: HTMLElement): void {
-    // target.scrollIntoView({behavior: 'smooth'});
-    console.log(target);
     this.listDetail = [];
 
     this.distinctColumns.forEach((column: any) => {
@@ -120,6 +124,10 @@ export class CaseDetailComponent implements OnInit {
     const dialogRef = this.dialog.open(RawdataComponent, {
       data: { caseId: this.caseId, hitColums: this.distinctColumns }
     });
+  }
+
+  back(): void {
+    this.router.navigate(['TransationFilter/CaseManagement']);
   }
 
 }

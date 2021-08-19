@@ -12,8 +12,8 @@
   max-height: 50vh;
 }
 
-.mat-tab-group {
-  // margin-bottom: 40px;
+.h-70vh {
+  max-height: 70vh;
 }
 
 .filter-input {
@@ -31,8 +31,6 @@ table {
     background-color: yellow;
   }
 }
-
-
 
 
 ::ng-deep .mat-focused .mat-form-field-label {
@@ -85,5 +83,10 @@ tr.element-row:not(.example-expanded-row):active {
   }
 }
 
-
-
+.flex-start {
+  display: flex;
+  justify-content: flex-start;
+  >button {
+    margin: 0 2px;
+  }
+}
