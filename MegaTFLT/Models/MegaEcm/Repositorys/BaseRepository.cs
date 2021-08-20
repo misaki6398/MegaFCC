@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
 using Dapper;
-
+using Dapper.Oracle;
 using Oracle.ManagedDataAccess.Client;
 
 namespace MegaTFLT.Models.MegaEcm.Repositorys
@@ -26,6 +26,36 @@ namespace MegaTFLT.Models.MegaEcm.Repositorys
         public virtual async Task<int> InsertAsync(List<T> models)
         {
             return await InsertAsync(models, InsertSql);
+        }
+        public virtual async Task<int> InsertAsync(OracleDynamicParameters parameters)
+        {
+            try
+            {
+                return await Connection.ExecuteAsync(InsertSql, parameters, Transaction);
+            }
+            catch (OracleException)
+            {
+                throw;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public virtual async Task<int> InsertAsync(List<OracleDynamicParameters> parametersList)
+        {
+            try
+            {
+                return await Connection.ExecuteAsync(InsertSql, parametersList, Transaction);
+            }
+            catch (OracleException)
+            {
+                throw;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
         protected virtual async Task<int> InsertAsync(T model, string sql)
         {

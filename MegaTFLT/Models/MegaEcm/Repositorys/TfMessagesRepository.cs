@@ -57,32 +57,18 @@ namespace MegaTFLT.Models.MegaEcm.Repositorys
         {
             this.InsertSql = _insertSql;
         }
-        public override async Task<int> InsertAsync(TfMessageModel model)
+        public override async Task<int> InsertAsync(TfMessageModel tfMessageModel)
         {
-            model.RawMessageClob = OracleDBUtility.ConvertToClob(model.RawMessage, (Oracle.ManagedDataAccess.Client.OracleConnection)this.Connection);
+            tfMessageModel.RawMessageClob = OracleDBUtility.ConvertToClob(tfMessageModel.RawMessage, (Oracle.ManagedDataAccess.Client.OracleConnection)this.Connection);
             var parameter = new OracleDynamicParameters();
             // Get the type and PropertyInfo.
-            Type t = Type.GetType("MegaTFLT.Models.MegaEcm.Models.TfMessageModel");
+            Type t = tfMessageModel.GetType();
             PropertyInfo[] propInfos = t.GetProperties();
             foreach (PropertyInfo propInfo in propInfos)
             {
-                Console.WriteLine(propInfo.Name);
-                parameter.Add(propInfo.Name, propInfo.GetGetMethod().Invoke(model, null));
+                parameter.Add(propInfo.Name, propInfo.GetGetMethod().Invoke(tfMessageModel, null));
             }
-
-            try
-            {
-                return await Connection.ExecuteAsync(this.InsertSql, parameter, Transaction);
-            }
-            catch (OracleException)
-            {
-                throw;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-
+            return await base.InsertAsync(parameter);
         }
     }
 }
