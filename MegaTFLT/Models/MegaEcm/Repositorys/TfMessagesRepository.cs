@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Reflection;
 using System.Threading.Tasks;
 using Dapper;
 using Dapper.Oracle;
@@ -60,28 +61,14 @@ namespace MegaTFLT.Models.MegaEcm.Repositorys
         {
             model.RawMessageClob = OracleDBUtility.ConvertToClob(model.RawMessage, (Oracle.ManagedDataAccess.Client.OracleConnection)this.Connection);
             var parameter = new OracleDynamicParameters();
-
-            //byte[] newvalue = System.Text.Encoding.Unicode.GetBytes(model.RawMessage);
-            //var clob = new OracleClob((Oracle.ManagedDataAccess.Client.OracleConnection)this.Connection);
-            //clob.Write(newvalue, 0, newvalue.Length);
-
-            parameter.Add("id", model.id);
-            parameter.Add("RawMessageClob", model.RawMessageClob);
-            parameter.Add("MessageDefinitionIdentifier", model.MessageDefinitionIdentifier);
-            parameter.Add("BusinessMessageIdentifier", model.BusinessMessageIdentifier);
-            parameter.Add("BusinessService", model.BusinessService);
-            parameter.Add("OriginalCreateDate", model.OriginalCreateDate);
-            parameter.Add("FromId", model.FromId);
-            parameter.Add("ToId", model.ToId);
-            parameter.Add("Currency", model.Currency);
-            parameter.Add("Amount", model.Amount);
-            parameter.Add("SwallowId", model.SwallowId);
-            parameter.Add("BranchNO", model.BranchNO);
-            parameter.Add("ValidFlag", model.ValidFlag);
-            parameter.Add("CreateUser", model.CreateUser);
-            parameter.Add("CreateDatetime", model.CreateDatetime);
-            parameter.Add("UpdateUser", model.UpdateUser);
-            parameter.Add("UpdateDatetime", model.UpdateDatetime);
+            // Get the type and PropertyInfo.
+            Type t = Type.GetType("MegaTFLT.Models.MegaEcm.Models.TfMessageModel");
+            PropertyInfo[] propInfos = t.GetProperties();
+            foreach (PropertyInfo propInfo in propInfos)
+            {
+                Console.WriteLine(propInfo.Name);
+                parameter.Add(propInfo.Name, propInfo.GetGetMethod().Invoke(model, null));
+            }
 
             try
             {
