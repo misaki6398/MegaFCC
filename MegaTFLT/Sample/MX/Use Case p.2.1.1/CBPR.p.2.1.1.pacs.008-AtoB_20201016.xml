@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+THE MESSAGE WILL WORK “AS IS” IN THE READINESS PORTAL. IT IS ESSENTIAL THAT USERS REMOVE THE ENVELOPE AND REPLACE IT WITH THEIR OWN TRANSPORT HEADER (FOR EXAMPLE FOR ALLIANCE ACCESS YOU WOULD USE THE XML V2 HEADERS).
+=========================================================================================================================================================================================
+Legal Disclaimer:
+SWIFT © 2020. All rights reserved. 
+This publication contains SWIFT or third-party confidential information. Do not disclose this publication outside your organisation without SWIFT’s prior written consent.
+The use of this document is governed by the legal notices appearing at the end of this document. By using this document, you will be deemed to have accepted those legal notices.
+
+=========================================================================================================================================================================================
+High Level Payment Status Information (pacs.002) of multiple Payment Transaction Status updates - Flow #2
+========================================================================================================================
+Change Log
+2020-10-16 - Original version 
+=============================
+-->
+<env:Envelope xmlns:env="urn:swift:xsd:envelope">
+<AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.02">
+	<Fr>
+		<FIId>
+			<FinInstnId>
+				<BICFI>BKAUATWW</BICFI>
+			</FinInstnId>
+		</FIId>
+	</Fr>
+	<To>
+		<FIId>
+			<FinInstnId>
+				<BICFI>CHASUS33</BICFI>
+			</FinInstnId>
+		</FIId>
+	</To>
+	<BizMsgIdr>BKAU2333211</BizMsgIdr>
+	<MsgDefIdr>pacs.008.001.08</MsgDefIdr>
+	<BizSvc>swift.cbprplus.01</BizSvc>
+	<CreDt>2020-08-17T11:00:11+02:00</CreDt>
+</AppHdr>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pacs.008.001.08">
+	<FIToFICstmrCdtTrf>
+		<GrpHdr>
+			<MsgId>BKAU2333211</MsgId>
+			<CreDtTm>2020-08-17T11:00:11+02:00</CreDtTm>
+			<NbOfTxs>1</NbOfTxs>
+			<SttlmInf>
+				<SttlmMtd>INDA</SttlmMtd>
+			</SttlmInf>
+		</GrpHdr>
+		<CdtTrfTxInf>
+			<PmtId>
+				<InstrId>BKAU2333211</InstrId>
+				<EndToEndId>E2E20200817123</EndToEndId>
+				<UETR>6a0d2b00-31bd-4f03-8eea-72ae5642e6df</UETR>
+			</PmtId>
+			<IntrBkSttlmAmt Ccy="USD">11401.50</IntrBkSttlmAmt>
+			<IntrBkSttlmDt>2020-07-28</IntrBkSttlmDt>
+			<InstdAmt Ccy="USD">11421.50</InstdAmt>
+			<ChrgBr>CRED</ChrgBr>
+			<ChrgsInf>
+				<Amt Ccy="USD">20</Amt>
+				<Agt>
+					<FinInstnId>
+						<BICFI>CHASUS33</BICFI>
+					</FinInstnId>
+				</Agt>
+			</ChrgsInf>
+			<InstgAgt>
+				<FinInstnId>
+					<BICFI>BKAUATWW</BICFI>
+				</FinInstnId>
+			</InstgAgt>
+			<InstdAgt>
+				<FinInstnId>
+					<BICFI>CHASUS33</BICFI>
+				</FinInstnId>
+			</InstdAgt>
+			<IntrmyAgt1>
+				<FinInstnId>
+					<BICFI>FTSBUS33</BICFI>
+				</FinInstnId>
+			</IntrmyAgt1>
+			<Dbtr>
+				<Nm>CARS4U Inc.</Nm>
+				<PstlAdr>
+					<StrtNm>Alsergrund, 13</StrtNm>
+					<TwnNm>Vienna</TwnNm>
+					<Ctry>AT</Ctry>
+				</PstlAdr>
+			</Dbtr>
+			<DbtrAcct>
+				<Id>
+					<Othr>
+						<Id>942267890</Id>
+					</Othr>
+				</Id>
+			</DbtrAcct>
+			<DbtrAgt>
+				<FinInstnId>
+					<BICFI>BKAUATWW</BICFI>
+				</FinInstnId>
+			</DbtrAgt>
+			<CdtrAgt>
+				<FinInstnId>
+					<BICFI>ABNANL2A</BICFI>
+				</FinInstnId>
+			</CdtrAgt>
+			<Cdtr>
+				<Nm>Vencer</Nm>
+				<PstlAdr>
+					<StrtNm>BLOEMENGRACHT 15</StrtNm>
+					<PstCd>1015</PstCd>
+					<TwnNm>Amsterdam</TwnNm>
+					<Ctry>NL</Ctry>
+				</PstlAdr>
+			</Cdtr>
+			<CdtrAcct>
+				<Id>
+					<Othr>
+						<Id>723491524</Id>
+					</Othr>
+				</Id>
+			</CdtrAcct>
+			<RmtInf>
+				<Ustrd>INVOICE 2121</Ustrd>
+			</RmtInf>
+		</CdtTrfTxInf>
+	</FIToFICstmrCdtTrf>
+</Document>
+</env:Envelope>

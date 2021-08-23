@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+THE MESSAGE WILL WORK “AS IS” IN THE READINESS PORTAL. IT IS ESSENTIAL THAT USERS REMOVE THE ENVELOPE AND REPLACE IT WITH THEIR OWN TRANSPORT HEADER (FOR EXAMPLE FOR ALLIANCE ACCESS YOU WOULD USE THE XML V2 HEADERS).
+=========================================================================================================================================================================================
+Legal Disclaimer:
+SWIFT © 2020. All rights reserved. 
+This publication contains SWIFT or third-party confidential information. Do not disclose this publication outside your organisation without SWIFT’s prior written consent.
+The use of this document is governed by the legal notices appearing at the end of this document. By using this document, you will be deemed to have accepted those legal notices.
+
+=========================================================================================================================================================================================
+High Level Payment Status Information (pacs.002) of multiple Payment Transaction Status updates #3
+========================================================================================================================
+Change Log
+2020-10-16 - Original version 
+=============================
+-->
+<env:Envelope xmlns:env="urn:swift:xsd:envelope">
+<AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.02">
+	<Fr>
+		<FIId>
+			<FinInstnId>
+				<BICFI>CHASUS33</BICFI>
+			</FinInstnId>
+		</FIId>
+	</Fr>
+	<To>
+		<FIId>
+			<FinInstnId>
+				<BICFI>BKAUATWW</BICFI>
+			</FinInstnId>
+		</FIId>
+	</To>
+	<BizMsgIdr>CHAS332434/24388</BizMsgIdr>
+	<MsgDefIdr>pacs.002.001.10</MsgDefIdr>
+	<BizSvc>swift.cbprplus.01</BizSvc>
+	<CreDt>2020-08-17T18:00:11-05:00</CreDt>
+</AppHdr>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pacs.002.001.10">
+	<FIToFIPmtStsRpt>
+		<GrpHdr>
+			<MsgId>CHAS332434/24388</MsgId>
+			<CreDtTm>2020-08-17T18:00:11-05:00</CreDtTm>
+		</GrpHdr>
+		<TxInfAndSts>
+			<OrgnlGrpInf>
+				<OrgnlMsgId>BKAU2333211</OrgnlMsgId>
+				<OrgnlMsgNmId>pacs.008.001.08</OrgnlMsgNmId>
+			</OrgnlGrpInf>
+			<OrgnlInstrId>BKAU2333211</OrgnlInstrId>
+			<OrgnlEndToEndId>E2E20200817123</OrgnlEndToEndId>
+			<OrgnlUETR>6a0d2b00-31bd-4f03-8eea-72ae5642e6df</OrgnlUETR>
+			<TxSts>ACSP</TxSts>
+			<InstgAgt>
+				<FinInstnId>
+					<BICFI>CHASUS33</BICFI>
+				</FinInstnId>
+			</InstgAgt>
+			<InstdAgt>
+				<FinInstnId>
+					<BICFI>BKAUATWW</BICFI>
+				</FinInstnId>
+			</InstdAgt>
+		</TxInfAndSts>
+	</FIToFIPmtStsRpt>
+</Document>
+</env:Envelope>

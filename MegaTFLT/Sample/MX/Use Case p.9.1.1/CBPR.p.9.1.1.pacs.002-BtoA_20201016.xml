@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+THE MESSAGE WILL WORK “AS IS” IN THE READINESS PORTAL. IT IS ESSENTIAL THAT USERS REMOVE THE ENVELOPE AND REPLACE IT WITH THEIR OWN TRANSPORT HEADER (FOR EXAMPLE FOR ALLIANCE ACCESS YOU WOULD USE THE XML V2 HEADERS).
+=========================================================================================================================================================================================
+Legal Disclaimer:
+SWIFT © 2020. All rights reserved. 
+This publication contains SWIFT or third-party confidential information. Do not disclose this publication outside your organisation without SWIFT’s prior written consent.
+The use of this document is governed by the legal notices appearing at the end of this document. By using this document, you will be deemed to have accepted those legal notices.
+
+=========================================================================================================================================================================================
+Use Case p.9.1.1 pacs.002 with code ACSC 
+========================================================================================================================
+Change Log
+2020-10-16 - Original version 
+=============================
+-->
+<env:Envelope xmlns:env="urn:swift:xsd:envelope">
+<AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.02">
+	<Fr>
+		<FIId>
+			<FinInstnId>
+				<BICFI>ABNANL2AXXX</BICFI>
+			</FinInstnId>
+		</FIId>
+	</Fr>
+	<To>
+		<FIId>
+			<FinInstnId>
+				<BICFI>ROYCCAT2</BICFI>
+			</FinInstnId>
+		</FIId>
+	</To>
+	<BizMsgIdr>ABNARES1234</BizMsgIdr>
+	<MsgDefIdr>pacs.002.001.10</MsgDefIdr>
+	<BizSvc>swift.cbprplus.01</BizSvc>
+	<CreDt>2020-06-25T13:43:41.960+02:00</CreDt>
+</AppHdr>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pacs.002.001.10">
+	<FIToFIPmtStsRpt>
+		<GrpHdr>
+			<MsgId>ABNARES1234</MsgId>
+			<CreDtTm>2020-06-25T13:43:41.960+02:00</CreDtTm>
+		</GrpHdr>
+		<TxInfAndSts>
+			<OrgnlGrpInf>
+				<OrgnlMsgId>ABCD/123/6789012</OrgnlMsgId>
+				<OrgnlMsgNmId>pacs.009.001.08</OrgnlMsgNmId>
+			</OrgnlGrpInf>
+			<OrgnlInstrId>ABCD/123/6789012</OrgnlInstrId>
+			<OrgnlEndToEndId>E2E-123456</OrgnlEndToEndId>
+			<OrgnlUETR>e7d02a48-f152-4d2d-874c-bd686415f307</OrgnlUETR>
+			<TxSts>ACSC</TxSts>
+			<InstgAgt>
+				<FinInstnId>
+					<BICFI>ABNANL2AXXX</BICFI>
+				</FinInstnId>
+			</InstgAgt>
+			<InstdAgt>
+				<FinInstnId>
+					<BICFI>ROYCCAT2</BICFI>
+				</FinInstnId>
+			</InstdAgt>
+		</TxInfAndSts>
+	</FIToFIPmtStsRpt>
+</Document>
+</env:Envelope>

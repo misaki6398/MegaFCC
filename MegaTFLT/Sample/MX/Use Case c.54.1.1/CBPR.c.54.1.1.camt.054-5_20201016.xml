@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+THE MESSAGE WILL WORK “AS IS” IN THE READINESS PORTAL. IT IS ESSENTIAL THAT USERS REMOVE THE ENVELOPE AND REPLACE IT WITH THEIR OWN TRANSPORT HEADER (FOR EXAMPLE FOR ALLIANCE ACCESS YOU WOULD USE THE XML V2 HEADERS).
+=========================================================================================================================================================================================
+Legal Disclaimer:
+SWIFT © 2020. All rights reserved. 
+This publication contains SWIFT or third-party confidential information. Do not disclose this publication outside your organisation without SWIFT's prior written consent.
+The use of this document is governed by the legal notices appearing at the end of this document. By using this document, you will be deemed to have accepted those legal notices.
+
+=========================================================================================================================================================================================
+Use Case c.54.1.1 Customer Debit/Credit Notification (camt.054) of a Customer Credit Transfer (pacs.008) - Flow#5 (camt.054)
+========================================================================================================================
+Change Log
+2020-10-16 - Original version 
+=============================
+-->
+<env:Envelope xmlns:env="urn:swift:xsd:envelope">
+<AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.02">
+	<Fr>
+		<FIId>
+			<FinInstnId>
+				<BICFI>ABNANL2A</BICFI>
+			</FinInstnId>
+		</FIId>
+	</Fr>
+	<To>
+		<FIId>
+			<FinInstnId>
+				<BICFI>LPLNNL2AXXX</BICFI>
+			</FinInstnId>
+		</FIId>
+	</To>
+	<BizMsgIdr>ABNA20200908-554</BizMsgIdr>
+	<MsgDefIdr>camt.054.001.08</MsgDefIdr>
+	<BizSvc>swift.cbprplus.01</BizSvc>
+	<CreDt>2020-09-08T13:30:00+02:00</CreDt>
+</AppHdr>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:camt.054.001.08">
+	<BkToCstmrDbtCdtNtfctn>
+		<GrpHdr>
+			<MsgId>ABNA20200908-554</MsgId>
+			<CreDtTm>2020-09-08T13:30:00+02:00</CreDtTm>
+		</GrpHdr>
+		<Ntfctn>
+			<Id>StmtId/20200908/123</Id>
+			<Acct>
+				<Id>
+					<Othr>
+						<Id>794115296</Id>
+					</Othr>
+				</Id>
+			</Acct>
+			<Ntry>
+				<NtryRef>001</NtryRef>
+				<Amt Ccy="EUR">299975</Amt>
+				<CdtDbtInd>CRDT</CdtDbtInd>
+				<Sts>
+					<Cd>BOOK</Cd>
+				</Sts>
+				<BkTxCd>
+					<Domn>
+						<Cd>PMNT</Cd>
+						<Fmly>
+							<Cd>ICDT</Cd>
+							<SubFmlyCd>XBCT</SubFmlyCd>
+						</Fmly>
+					</Domn>
+				</BkTxCd>
+				<NtryDtls>
+					<TxDtls>
+						<Refs>
+							<InstrId>FTSB202009081101</InstrId>
+							<EndToEndId>E2E04044506271305</EndToEndId>
+							<UETR>174c245f-2682-4291-ad67-2a41e530cd27</UETR>
+						</Refs>
+						<Amt Ccy="EUR">299975</Amt>
+						<RltdPties>
+							<Dbtr>
+								<Pty>
+									<Nm>VB Verbund</Nm>
+										<PstlAdr>
+											<StrtNm>Str.34</StrtNm>
+											<PstCd>1140</PstCd>
+											<TwnNm>Heinrich Collin</TwnNm>
+											<TwnLctnNm>Vienna</TwnLctnNm>
+											<Ctry>AT</Ctry>
+										</PstlAdr>
+								</Pty>
+							</Dbtr>
+						</RltdPties>
+						<RltdAgts>
+							<DbtrAgt>
+								<FinInstnId>
+									<BICFI>BKAUATWW</BICFI>
+								</FinInstnId>
+							</DbtrAgt>
+						</RltdAgts>
+						<RltdDts>
+							<TxDtTm>2020-09-08T13:30:00+02:00</TxDtTm>
+						</RltdDts>
+					</TxDtls>
+				</NtryDtls>
+			</Ntry>
+		</Ntfctn>
+	</BkToCstmrDbtCdtNtfctn>
+</Document>
+</env:Envelope>

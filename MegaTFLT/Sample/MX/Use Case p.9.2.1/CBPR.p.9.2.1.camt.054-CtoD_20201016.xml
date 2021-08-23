@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+THE MESSAGE WILL WORK “AS IS” IN THE READINESS PORTAL. IT IS ESSENTIAL THAT USERS REMOVE THE ENVELOPE AND REPLACE IT WITH THEIR OWN TRANSPORT HEADER (FOR EXAMPLE FOR ALLIANCE ACCESS YOU WOULD USE THE XML V2 HEADERS).
+=========================================================================================================================================================================================
+Legal Disclaimer:
+SWIFT © 2020. All rights reserved. 
+This publication contains SWIFT or third-party confidential information. Do not disclose this publication outside your organisation without SWIFT’s prior written consent.
+The use of this document is governed by the legal notices appearing at the end of this document. By using this document, you will be deemed to have accepted those legal notices.
+
+=========================================================================================================================================================================================
+Use Case p.9.2.1 High Level Customer Credit Transfer (pacs.008) settled using the cover method (pacs.009 COV) - Flow#5 (camt.054)
+========================================================================================================================
+Change Log
+2020-10-16 - Original version 
+=============================
+-->
+<env:Envelope xmlns:env="urn:swift:xsd:envelope">
+<AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.02">  
+	<Fr>
+		<FIId>
+			<FinInstnId>
+				<BICFI>BOTKJPJT</BICFI>
+			</FinInstnId>
+		</FIId>
+	</Fr>
+	<To>
+		<FIId>
+			<FinInstnId>
+				<BICFI>MHCBJPJT</BICFI>
+			</FinInstnId>
+		</FIId>
+	</To>
+	<BizMsgIdr>BOTK202007281215554</BizMsgIdr>
+	<MsgDefIdr>camt.054.001.08</MsgDefIdr>
+	<BizSvc>swift.cbprplus.01</BizSvc>
+	<CreDt>2020-07-28T13:02:22+09:00</CreDt>
+</AppHdr>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:camt.054.001.08">
+	<BkToCstmrDbtCdtNtfctn>
+		<GrpHdr>
+			<MsgId>BOTK202007281215554</MsgId>
+			<CreDtTm>2020-07-28T13:02:22+09:00</CreDtTm>
+		</GrpHdr>
+		<Ntfctn>
+			<Id>StmtId/20200728/123</Id>
+			<Acct>
+				<Id>
+					<Othr>
+						<Id>265385644663</Id>
+					</Othr>
+				</Id>
+			</Acct>
+			<Ntry>
+				<NtryRef>001</NtryRef>
+				<Amt Ccy="JPY">123456</Amt>
+				<CdtDbtInd>CRDT</CdtDbtInd>
+				<Sts>
+					<Cd>BOOK</Cd>
+				</Sts>
+				<BkTxCd>
+					<Domn>
+						<Cd>PMNT</Cd>
+						<Fmly>
+							<Cd>ICDT</Cd>
+							<SubFmlyCd>XBCT</SubFmlyCd>
+						</Fmly>
+					</Domn>
+				</BkTxCd>
+				<NtryDtls>
+					<TxDtls>
+						<Refs>
+							<InstrId>HSBC2007281111</InstrId>
+							<EndToEndId>UBIN20200728/22</EndToEndId>
+							<UETR>8a562c67-ca16-48ba-b074-65581be6f001</UETR>
+						</Refs>
+						<Amt Ccy="JPY">123456</Amt>
+						<RltdPties>
+							<Dbtr>
+								<Pty>
+									<Nm>Universal Tech</Nm>
+									<PstlAdr>
+										<StrtNm>60/901,Best Colony</StrtNm>
+										<PstCd>400104</PstCd>
+										<TwnNm>Mumbai</TwnNm>
+										<TwnLctnNm>Goregaon,West</TwnLctnNm>
+										<Ctry>IN</Ctry>
+									</PstlAdr>
+								</Pty>
+							</Dbtr>
+						</RltdPties>
+						<RltdAgts>
+							<DbtrAgt>
+								<FinInstnId>
+									<BICFI>UBININBB</BICFI>
+								</FinInstnId>
+							</DbtrAgt>
+							<IntrmyAgt1>
+								<FinInstnId>
+									<BICFI>HSBCJPJT</BICFI>
+								</FinInstnId>
+							</IntrmyAgt1>
+						</RltdAgts>
+						<RltdDts>
+							<TxDtTm>2020-07-28T12:00:00+09:00</TxDtTm>
+						</RltdDts>
+					</TxDtls>
+				</NtryDtls>
+			</Ntry>
+		</Ntfctn>
+	</BkToCstmrDbtCdtNtfctn>
+</Document>
+</env:Envelope>

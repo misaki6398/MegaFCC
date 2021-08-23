@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+THE MESSAGE WILL WORK “AS IS” IN THE READINESS PORTAL. IT IS ESSENTIAL THAT USERS REMOVE THE ENVELOPE AND REPLACE IT WITH THEIR OWN TRANSPORT HEADER (FOR EXAMPLE FOR ALLIANCE ACCESS YOU WOULD USE THE XML V2 HEADERS).
+=========================================================================================================================================================================================
+Legal Disclaimer:
+SWIFT © 2020. All rights reserved. 
+This publication contains SWIFT or third-party confidential information. Do not disclose this publication outside your organisation without SWIFT’s prior written consent.
+The use of this document is governed by the legal notices appearing at the end of this document. By using this document, you will be deemed to have accepted those legal notices.
+ 
+=========================================================================================================================================================================================
+Use Case p.9.2.2 High Level FI Customer Credit Transfer (pacs.008) settled using the cover method (pacs.009 COV) over a Payment Market Infrastructure - Flow #3
+========================================================================================================================
+Change Log
+2020-10-16 - Original version 
+=============================
+-->
+<env:Envelope xmlns:env="urn:swift:xsd:envelope">
+<AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.02">
+	<Fr>
+		<FIId>
+			<FinInstnId>
+				<BICFI>HSBCJPJT</BICFI>
+			</FinInstnId>
+		</FIId>
+	</Fr>
+	<To>
+		<FIId>
+			<FinInstnId>
+				<BICFI>BOTKJPJT</BICFI>
+			</FinInstnId>
+		</FIId>
+	</To>
+	<BizMsgIdr>HSBC2007281111</BizMsgIdr>
+	<MsgDefIdr>pacs.009.001.08</MsgDefIdr>
+	<BizSvc>swift.cbprplus.cov.01</BizSvc>
+	<CreDt>2020-07-28T12:00:00+09:00</CreDt>
+</AppHdr>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pacs.009.001.08">
+	<FICdtTrf>
+		<GrpHdr>
+			<MsgId>HSBC2007281111</MsgId>
+			<CreDtTm>2020-07-28T12:00:00+09:00</CreDtTm>
+			<NbOfTxs>1</NbOfTxs>
+			<SttlmInf>
+				<SttlmMtd>INDA</SttlmMtd>
+			</SttlmInf>
+		</GrpHdr>
+		<CdtTrfTxInf>
+			<PmtId>
+				<InstrId>HSBC2007281111</InstrId>
+				<EndToEndId>UBIN20200728/22</EndToEndId>
+				<UETR>8a562c67-ca16-48ba-b074-65581be6f001</UETR>
+			</PmtId>
+			<IntrBkSttlmAmt Ccy="JPY">173410</IntrBkSttlmAmt>
+			<IntrBkSttlmDt>2020-07-28</IntrBkSttlmDt>
+			<InstgAgt>
+				<FinInstnId>
+					<BICFI>HSBCJPJT</BICFI>
+				</FinInstnId>
+			</InstgAgt>
+			<InstdAgt>
+				<FinInstnId>
+					<BICFI>BOTKJPJT</BICFI>
+				</FinInstnId>
+			</InstdAgt>
+			<Dbtr>
+				<FinInstnId>
+					<BICFI>UBININBB</BICFI>
+				</FinInstnId>
+			</Dbtr>
+			<DbtrAgt>
+				<FinInstnId>
+					<BICFI>HSBCJPJT</BICFI>
+				</FinInstnId>
+			</DbtrAgt>
+			<Cdtr>
+				<FinInstnId>
+					<BICFI>MHCBJPJT</BICFI>
+				</FinInstnId>
+			</Cdtr>
+			<UndrlygCstmrCdtTrf>
+				<Dbtr>
+				<Nm>Universal Tech</Nm>
+				<PstlAdr>
+					<StrtNm>60/901,Best Colony</StrtNm>
+					<PstCd>400104</PstCd>
+					<TwnNm>Mumbai</TwnNm>
+					<TwnLctnNm>Goregaon,West</TwnLctnNm>
+					<Ctry>IN</Ctry>
+				</PstlAdr>
+				</Dbtr>
+				<DbtrAcct>
+				<Id>
+					<Othr>
+						<Id>UB0012997392</Id>
+					</Othr>
+				</Id>		
+				</DbtrAcct>
+				<DbtrAgt>
+					<FinInstnId>
+						<BICFI>UBININBB</BICFI>
+					</FinInstnId>
+				</DbtrAgt>
+				<CdtrAgt>
+					<FinInstnId>
+						<BICFI>MHCBJPJT</BICFI>
+					</FinInstnId>
+				</CdtrAgt>
+				<Cdtr>
+					<Nm>Akai Corporation</Nm>
+					<PstlAdr>
+					<StrtNm>8-159</StrtNm>
+					<PstCd>187-0011</PstCd>
+					<TwnNm>Tokyo</TwnNm>
+					<TwnLctnNm>Suzukicho Kodaira</TwnLctnNm>
+					<Ctry>JP</Ctry>
+					</PstlAdr>
+				</Cdtr>
+				<CdtrAcct>
+					<Id>
+					<Othr>
+						<Id>JP242492309</Id>
+					</Othr>
+					</Id>
+				</CdtrAcct>
+				<RmtInf>
+				<Ustrd>INVOICE 2121</Ustrd>
+				</RmtInf>
+				<InstdAmt Ccy="JPY">173420</InstdAmt>
+			</UndrlygCstmrCdtTrf>
+		</CdtTrfTxInf>
+	</FICdtTrf>
+</Document>
+</env:Envelope>

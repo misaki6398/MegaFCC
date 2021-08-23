@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+THE MESSAGE WILL WORK “AS IS” IN THE READINESS PORTAL. IT IS ESSENTIAL THAT USERS REMOVE THE ENVELOPE AND REPLACE IT WITH THEIR OWN TRANSPORT HEADER (FOR EXAMPLE FOR ALLIANCE ACCESS YOU WOULD USE THE XML V2 HEADERS).
+========================================================================================================================================================================================
+SWIFT © 2020. All rights reserved. 
+This publication contains SWIFT or third-party confidential information. Do not disclose this publication outside your organisation without SWIFT’s prior written consent.
+The use of this document is governed by the legal notices appearing at the end of this document. By using this document, you will be deemed to have accepted those legal notices. 											
+
+=========================================================================================================================================================================================
+Use Case c.53.5		Intermediary B [DBS] sends serial pacs.008 to Intermediary C [UOBS]
+========================================================================================================================
+Change Log
+2020-10-16 - Original version 
+=============================
+-->
+<env:Envelope xmlns:env="urn:swift:xsd:envelope">											
+	<AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.02">										
+		<Fr>									
+			<FIId>								
+				<FinInstnId>							
+					<BICFI>DBSSSGSG</BICFI>						
+				</FinInstnId>							
+			</FIId>								
+		</Fr>									
+		<To>									
+			<FIId>								
+				<FinInstnId>							
+					<BICFI>UOVBSGSG</BICFI>						
+				</FinInstnId>							
+			</FIId>								
+		</To>									
+		<BizMsgIdr>pacs8bizmsgidr02</BizMsgIdr>									
+		<MsgDefIdr>pacs.008.001.08</MsgDefIdr>									
+		<BizSvc>swift.cbprplus.01</BizSvc>									
+		<CreDt>2020-08-05T10:10:47+08:00</CreDt>									
+	</AppHdr>										
+	<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pacs.008.001.08">										
+		<FIToFICstmrCdtTrf>									
+			<GrpHdr>								
+				<MsgId>pacs8bizmsgidr02</MsgId>							
+				<CreDtTm>2020-08-05T10:10:47+08:00</CreDtTm>							
+				<NbOfTxs>1</NbOfTxs>							
+				<SttlmInf>							
+					<SttlmMtd>INDA</SttlmMtd>						
+				</SttlmInf>							
+			</GrpHdr>								
+			<CdtTrfTxInf>								
+				<PmtId>							
+					<InstrId>pacs8bizmsgidr02</InstrId>						
+					<EndToEndId>pacs008EndToEndId-111</EndToEndId>						
+					<UETR>f1636d6e-1ed0-4b56-a7be-5706eb62ba9f</UETR>						
+				</PmtId>							
+				<IntrBkSttlmAmt Ccy="SGD">500000</IntrBkSttlmAmt>							
+				<IntrBkSttlmDt>2020-08-05</IntrBkSttlmDt>							
+				<ChrgBr>DEBT</ChrgBr>							
+				<InstgAgt>							
+					<FinInstnId>						
+						<BICFI>DBSSSGSG</BICFI>					
+					</FinInstnId>						
+				</InstgAgt>							
+				<InstdAgt>							
+					<FinInstnId>						
+						<BICFI>UOVBSGSG</BICFI>					
+					</FinInstnId>						
+				</InstdAgt>							
+				<Dbtr>							
+					<Nm>Australian Submarine</Nm>						
+					<PstlAdr>						
+						<StrtNm>694 Mersey Rd</StrtNm>					
+						<TwnNm>Adelaide</TwnNm>					
+						<Ctry>AU</Ctry>					
+					</PstlAdr>						
+				</Dbtr>							
+				<DbtrAgt>							
+					<FinInstnId>						
+						<BICFI>WPACAU2S</BICFI>					
+					</FinInstnId>						
+				</DbtrAgt>							
+				<CdtrAgt>							
+					<FinInstnId>						
+						<BICFI>UOVBSGSG</BICFI>					
+					</FinInstnId>						
+				</CdtrAgt>							
+				<Cdtr>							
+					<Nm>Atlas Marine Services Pte</Nm>						
+					<PstlAdr>						
+						<StrtNm>8 Chia Ping Rd</StrtNm>					
+						<TwnNm>Singapore</TwnNm>					
+						<Ctry>SG</Ctry>					
+					</PstlAdr>						
+				</Cdtr>							
+				<CdtrAcct>							
+					<Id>						
+						<Othr>					
+							<Id>AMS852147</Id>				
+						</Othr>					
+					</Id>						
+				</CdtrAcct>							
+			</CdtTrfTxInf>								
+		</FIToFICstmrCdtTrf>									
+	</Document>										
+</env:Envelope>

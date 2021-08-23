@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+THE MESSAGE WILL WORK “AS IS” IN THE READINESS PORTAL. IT IS ESSENTIAL THAT USERS REMOVE THE ENVELOPE AND REPLACE IT WITH THEIR OWN TRANSPORT HEADER (FOR EXAMPLE FOR ALLIANCE ACCESS YOU WOULD USE THE XML V2 HEADERS).
+========================================================================================================================================================================================= 
+Legal Disclaimer:
+SWIFT © 2020. All rights reserved. 
+This publication contains SWIFT or third-party confidential information. Do not disclose this publication outside your organisation without SWIFT’s prior written consent.
+The use of this document is governed by the legal notices appearing at the end of this document. By using this document, you will be deemed to have accepted those legal notices.																				
+
+=========================================================================================================================================================================================
+Use Case p.4.3.2		"Agent C Santander return of covering funds to Agent B HBOS, together with the reason code for return.
+========================================================================================================================
+Change Log
+2020-10-16 - Original version 
+=============================
+-->
+<env:Envelope xmlns:env="urn:swift:xsd:envelope"/>											
+	<AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.02">										
+		<Fr>									
+			<FIId>								
+				<FinInstnId>							
+					<BICFI>BSCHESMM</BICFI>						
+				</FinInstnId>							
+			</FIId>								
+		</Fr>									
+		<To>									
+			<FIId>								
+				<FinInstnId>							
+					<BICFI>BOFSGB2L</BICFI>						
+				</FinInstnId>							
+			</FIId>								
+		</To>									
+		<BizMsgIdr>pacs4bizmsgidr02</BizMsgIdr>									
+		<MsgDefIdr>pacs.004.001.09</MsgDefIdr>									
+		<BizSvc>swift.cbprplus.core.01</BizSvc>									
+		<CreDt>2020-08-11T10:10:47+02:00</CreDt>									
+	</AppHdr>										
+	<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pacs.004.001.09">										
+		<PmtRtr>									
+			<GrpHdr>								
+				<MsgId>pacs4bizmsgidr02</MsgId>							
+				<CreDtTm>2020-08-11T10:10:47+02:00</CreDtTm>							
+				<NbOfTxs>1</NbOfTxs>							
+				<SttlmInf>							
+					<SttlmMtd>INGA</SttlmMtd>						
+				</SttlmInf>							
+			</GrpHdr>								
+			<TxInf>								
+				<OrgnlGrpInf>							
+					<OrgnlMsgId>pacs9bizmsgidr02</OrgnlMsgId>						
+					<OrgnlMsgNmId>pacs.009.001.08</OrgnlMsgNmId>						
+				</OrgnlGrpInf>							
+				<OrgnlInstrId>pacs9bizmsgidr02</OrgnlInstrId>							
+				<OrgnlEndToEndId>pacs008EndToEndId-001</OrgnlEndToEndId>							
+				<OrgnlUETR>8a562c67-ca16-48ba-b074-65581be6f001</OrgnlUETR>							
+				<OrgnlIntrBkSttlmAmt Ccy="EUR">35612.21</OrgnlIntrBkSttlmAmt>							
+				<OrgnlIntrBkSttlmDt>2020-08-10</OrgnlIntrBkSttlmDt>							
+				<RtrdIntrBkSttlmAmt Ccy="EUR">35612.21</RtrdIntrBkSttlmAmt>							
+				<IntrBkSttlmDt>2020-08-10</IntrBkSttlmDt>							
+				<InstgAgt>							
+					<FinInstnId>						
+						<BICFI>BSCHESMM</BICFI>					
+					</FinInstnId>						
+				</InstgAgt>							
+				<InstdAgt>							
+					<FinInstnId>						
+						<BICFI>BOFSGB2L</BICFI>					
+					</FinInstnId>						
+				</InstdAgt>							
+				<RtrChain>							
+					<Dbtr>						
+						<Agt>					
+							<FinInstnId>				
+								<BICFI>CAIXESBB</BICFI>			
+							</FinInstnId>				
+						</Agt>					
+					</Dbtr>						
+					<Cdtr>						
+						<Agt>					
+							<FinInstnId>				
+								<BICFI>CLYDGB2S</BICFI>			
+							</FinInstnId>				
+						</Agt>					
+					</Cdtr>						
+				</RtrChain>							
+				<RtrRsnInf>							
+					<Rsn>						
+						<Cd>MD06</Cd>					
+					</Rsn>						
+				</RtrRsnInf>							
+			</TxInf>								
+		</PmtRtr>									
+	</Document>										
+</Envelope>	

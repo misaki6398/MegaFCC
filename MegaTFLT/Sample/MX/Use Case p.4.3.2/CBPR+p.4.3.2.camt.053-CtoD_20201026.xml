@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+THE MESSAGE WILL WORK “AS IS” IN THE READINESS PORTAL. IT IS ESSENTIAL THAT USERS REMOVE THE ENVELOPE AND REPLACE IT WITH THEIR OWN TRANSPORT HEADER (FOR EXAMPLE FOR ALLIANCE ACCESS YOU WOULD USE THE XML V2 HEADERS).
+========================================================================================================================================================================================= 
+Legal Disclaimer:
+SWIFT © 2020. All rights reserved. 
+This publication contains SWIFT or third-party confidential information. Do not disclose this publication outside your organisation without SWIFT’s prior written consent.
+The use of this document is governed by the legal notices appearing at the end of this document. By using this document, you will be deemed to have accepted those legal notices.																				
+
+=========================================================================================================================================================================================
+Use Case p.4.3.2		Agent C Santander produces an end of day account statement report.
+========================================================================================================================
+Change Log
+2020-10-16 - Original version 
+=============================
+-->
+<env:Envelope xmlns:env="urn:swift:xsd:envelope">											
+	<AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.02">										
+		<Fr>									
+			<FIId>								
+				<FinInstnId>							
+					<BICFI>BSCHESMM</BICFI>						
+				</FinInstnId>							
+			</FIId>								
+		</Fr>									
+		<To>									
+			<FIId>								
+				<FinInstnId>							
+					<BICFI>CAIXESBB</BICFI>						
+				</FinInstnId>							
+			</FIId>								
+		</To>									
+		<BizMsgIdr>cmt53bizmsgidr01</BizMsgIdr>									
+		<MsgDefIdr>camt.053.001.08</MsgDefIdr>									
+		<BizSvc>swift.cbprplus.01</BizSvc>									
+		<CreDt>2020-08-10T18:00:47+02:00</CreDt>									
+	</AppHdr>										
+	<Document xmlns="urn:iso:std:iso:20022:tech:xsd:camt.053.001.08">										
+		<BkToCstmrStmt>									
+			<GrpHdr>								
+				<MsgId>cmt53bizmsgidr01</MsgId>							
+				<CreDtTm>2020-08-10T18:00:47+02:00</CreDtTm>							
+			</GrpHdr>								
+			<Stmt>								
+				<Id>100-01</Id>							
+				<StmtPgntn>							
+					<PgNb>1</PgNb>						
+					<LastPgInd>true</LastPgInd>						
+				</StmtPgntn>							
+				<Acct>							
+					<Id>						
+						<Othr>					
+							<Id>CAIX96332</Id>				
+						</Othr>					
+					</Id>						
+				<Ccy>EUR</Ccy>							
+				</Acct>							
+				<Bal>							
+					<Tp>						
+						<CdOrPrtry>					
+							<Cd>CLBD</Cd>				
+						</CdOrPrtry>					
+					</Tp>						
+					<Amt Ccy="EUR">4645498.54</Amt>						
+					<CdtDbtInd>CRDT</CdtDbtInd>						
+					<Dt>						
+						<Dt>2020-08-10</Dt>					
+					</Dt>						
+				</Bal>							
+				<Ntry>							
+					<Amt Ccy="EUR">35612.21</Amt>						
+					<CdtDbtInd>DBIT</CdtDbtInd>						
+					<Sts>						
+						<Cd>BOOK</Cd>					
+					</Sts>						
+					<BookgDt>						
+						<Dt>2020-08-10</Dt>					
+					</BookgDt>						
+					<ValDt>						
+						<Dt>2020-08-10</Dt>					
+					</ValDt>						
+					<BkTxCd>						
+						<Prtry>					
+							<Cd>TXCD</Cd>				
+							<Issr>ABANK</Issr>				
+						</Prtry>					
+					</BkTxCd>						
+					<NtryDtls>						
+						<TxDtls>					
+							<Refs>				
+								<InstrId>pacs9bizmsgidr02</InstrId>			
+								<EndToEndId>pacs008EndToEndId-001</EndToEndId>			
+								<UETR>8a562c67-ca16-48ba-b074-65581be6f001</UETR>			
+							</Refs>				
+							<Amt Ccy="EUR">35612.21</Amt>				
+							<CdtDbtInd>CRDT</CdtDbtInd>				
+						</TxDtls>					
+					</NtryDtls>						
+				</Ntry>							
+			</Stmt>								
+		</BkToCstmrStmt>									
+	</Document>										
+</env:Envelope>

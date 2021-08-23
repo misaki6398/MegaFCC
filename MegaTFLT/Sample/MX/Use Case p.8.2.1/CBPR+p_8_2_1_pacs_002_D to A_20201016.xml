@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+THE MESSAGE WILL WORK “AS IS” IN THE READINESS PORTAL. IT IS ESSENTIAL THAT USERS REMOVE THE ENVELOPE AND REPLACE IT WITH THEIR OWN TRANSPORT HEADER (FOR EXAMPLE FOR ALLIANCE ACCESS YOU WOULD USE THE XML V2 HEADERS).
+=========================================================================================================================================================================================
+SWIFT © 2020. All rights reserved. 
+This publication contains SWIFT or third-party confidential information. Do not disclose this publication outside your organisation without SWIFT’s prior written consent.
+The use of this document is governed by the legal notices appearing at the end of this document. By using this document, you will be deemed to have accepted those legal notices.
+
+=========================================================================================================================================================================================
+Use Case p.8.2.1 pacs.002 Flow #2a
+========================================================================================================================
+Change Log
+2020-10-16 - Original version 
+=============================
+-->
+<env:Envelope xmlns:env="urn:swift:xsd:envelope">
+<AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.02" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Fr>
+		<FIId>
+			<FinInstnId>
+				<BICFI>BKMGNL2AXXX</BICFI>
+			</FinInstnId>
+		</FIId>
+	</Fr>
+	<To>
+		<FIId>
+			<FinInstnId>
+				<BICFI>CHASGB2LXXX</BICFI>
+			</FinInstnId>
+		</FIId>
+	</To>
+	<BizMsgIdr>P02D2A200709/123</BizMsgIdr>
+	<MsgDefIdr>pacs.002.001.10</MsgDefIdr>
+	<BizSvc>swift.cbprplus.01</BizSvc>
+	<CreDt>2020-01-11T02:15:00.960+01:00</CreDt>
+</AppHdr>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pacs.002.001.10" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<FIToFIPmtStsRpt>
+		<GrpHdr>
+			<MsgId>P02D2A200709/123</MsgId>
+			<CreDtTm>2020-01-11T02:15:00.960+01:00</CreDtTm>
+		</GrpHdr>
+		<TxInfAndSts>
+			<OrgnlGrpInf>
+				<OrgnlMsgId>A2D044506271305</OrgnlMsgId>
+				<OrgnlMsgNmId>pacs.008.001.08</OrgnlMsgNmId>
+			</OrgnlGrpInf>
+			<OrgnlInstrId>A2D044506271305</OrgnlInstrId>
+			<OrgnlEndToEndId>E2E0404451305</OrgnlEndToEndId>
+			<OrgnlUETR>174c245f-2682-4291-ad67-2a41e530cd27</OrgnlUETR>
+			<TxSts>ACCC</TxSts>
+			<InstgAgt>
+				<FinInstnId>
+					<BICFI>BKMGNL2AXXX</BICFI>
+				</FinInstnId>
+			</InstgAgt>
+			<InstdAgt>
+				<FinInstnId>
+					<BICFI>CHASGB2LXXX</BICFI>
+				</FinInstnId>
+			</InstdAgt>
+		</TxInfAndSts>
+	</FIToFIPmtStsRpt>
+ </Document>
+ </env:Envelope>

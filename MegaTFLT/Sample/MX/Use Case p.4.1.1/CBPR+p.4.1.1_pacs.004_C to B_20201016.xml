@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+THE MESSAGE WILL WORK “AS IS” IN THE READINESS PORTAL. IT IS ESSENTIAL THAT USERS REMOVE THE ENVELOPE AND REPLACE IT WITH THEIR OWN TRANSPORT HEADER (FOR EXAMPLE FOR ALLIANCE ACCESS YOU WOULD USE THE XML V2 HEADERS).
+========================================================================================================================================================================================= 
+SWIFT © 2020. All rights reserved. 
+This publication contains SWIFT or third-party confidential information. Do not disclose this publication outside your organisation without SWIFT’s prior written consent.
+The use of this document is governed by the legal notices appearing at the end of this document. By using this document, you will be deemed to have accepted those legal notices.
+ 
+=========================================================================================================================================================================================
+Use Case p.4.1.1 pacs.004 Payment Return - Flow #5 C to B
+========================================================================================================================
+Change Log
+2020-10-16 - Original version 
+=============================
+-->
+<env:Envelope xmlns:env="urn:swift:xsd:envelope">				
+<AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.02">											
+		<Fr>										
+			<FIId>									
+				<FinInstnId>								
+					<BICFI>FTSBUS33XXX</BICFI>							
+				</FinInstnId>								
+			</FIId>									
+		</Fr>										
+		<To>										
+			<FIId>									
+				<FinInstnId>								
+					<BICFI>CHASUS33XXX</BICFI>							
+				</FinInstnId>								
+			</FIId>									
+		</To>										
+		<BizMsgIdr>P4C2B-005</BizMsgIdr>										
+		<MsgDefIdr>pacs.004.001.09</MsgDefIdr>										
+		<BizSvc>swift.cbprplus.01</BizSvc>										
+		<CreDt>2020-01-11T12:55:00.960-05:00</CreDt>										
+	</AppHdr>											
+	<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pacs.004.001.09">											
+		<PmtRtr>										
+			<GrpHdr>									
+				<MsgId>P4C2B-005</MsgId>								
+				<CreDtTm>2020-01-11T12:55:00-05:00</CreDtTm>								
+				<NbOfTxs>1</NbOfTxs>								
+				<SttlmInf>
+					<SttlmMtd>INDA</SttlmMtd>								
+				</SttlmInf>								
+			</GrpHdr>									
+			<TxInf>									
+				<OrgnlGrpInf>								
+					<OrgnlMsgId>B2C0506272708</OrgnlMsgId>							
+					<OrgnlMsgNmId>pacs.008.001.08</OrgnlMsgNmId>							
+				</OrgnlGrpInf>								
+				<OrgnlInstrId>B2C0506272708</OrgnlInstrId>								
+				<OrgnlEndToEndId>E2E04044506271305</OrgnlEndToEndId>								
+				<OrgnlUETR>174c245f-2682-4291-ad67-2a41e530cd27</OrgnlUETR>								
+				<OrgnlIntrBkSttlmAmt Ccy="USD">39990</OrgnlIntrBkSttlmAmt>								
+				<OrgnlIntrBkSttlmDt>2020-01-11</OrgnlIntrBkSttlmDt>								
+				<RtrdIntrBkSttlmAmt Ccy="USD">39980</RtrdIntrBkSttlmAmt>								
+				<IntrBkSttlmDt>2020-01-11</IntrBkSttlmDt>
+				<RtrdInstdAmt Ccy="USD">39990</RtrdInstdAmt>
+				<ChrgBr>SHAR</ChrgBr>
+				<ChrgsInf>
+				<Amt Ccy="USD">10</Amt>
+				<Agt>
+				<FinInstnId>
+				<BICFI>FTSBUS33XXX</BICFI>
+				</FinInstnId>
+				</Agt>
+				</ChrgsInf>
+				<InstgAgt>								
+					<FinInstnId>							
+						<BICFI>FTSBUS33XXX</BICFI>						
+					</FinInstnId>							
+				</InstgAgt>								
+				<InstdAgt>								
+					<FinInstnId>							
+						<BICFI>CHASUS33XXX</BICFI>						
+					</FinInstnId>							
+				</InstdAgt>	
+				<RtrChain>
+					<Dbtr>
+						<Pty>
+						<Nm>ATnT</Nm>
+						<PstlAdr>
+						<StrtNm>208 ARAKD ST</StrtNm>
+						<PstCd>1096</PstCd>
+						<TwnNm>DALLAS</TwnNm>
+						<TwnLctnNm>TEXAS</TwnLctnNm>
+						<Ctry>US</Ctry>
+						</PstlAdr>
+						</Pty>
+					</Dbtr>
+					<DbtrAgt>
+						<FinInstnId>
+						<BICFI>BAUTUS31XXX</BICFI>
+						</FinInstnId>
+					</DbtrAgt>
+					<CdtrAgt>
+						<FinInstnId>
+						<BICFI>CHASGB2LXXX</BICFI>
+						</FinInstnId>
+					</CdtrAgt>
+					<Cdtr>
+						<Pty>
+						<Nm>NOKIA CORPORATION</Nm>
+						<PstlAdr>
+						<StrtNm>1510 ARLINGTON BUSINESS PARK</StrtNm>
+						<PstCd>RG74SA</PstCd>
+						<TwnNm>THEALE</TwnNm>
+						<Ctry>GB</Ctry>
+						</PstlAdr>
+						</Pty>
+					</Cdtr>
+				</RtrChain>
+				<RtrRsnInf>								
+					<Rsn>							
+						<Cd>AC04</Cd>						
+					</Rsn>							
+				</RtrRsnInf>								
+			</TxInf>									
+		</PmtRtr>										
+	</Document>											
+</env:Envelope>

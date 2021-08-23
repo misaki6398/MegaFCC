@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+THE MESSAGE WILL WORK “AS IS” IN THE READINESS PORTAL. IT IS ESSENTIAL THAT USERS REMOVE THE ENVELOPE AND REPLACE IT WITH THEIR OWN TRANSPORT HEADER (FOR EXAMPLE FOR ALLIANCE ACCESS YOU WOULD USE THE XML V2 HEADERS).
+=========================================================================================================================================================================================
+Legal Disclaimer:
+SWIFT © 2020. All rights reserved. 
+This publication contains SWIFT or third-party confidential information. Do not disclose this publication outside your organisation without SWIFT’s prior written consent.
+The use of this document is governed by the legal notices appearing at the end of this document. By using this document, you will be deemed to have accepted those legal notices. 															
+
+=========================================================================================================================================================================================
+Use Case p.4.3.3		Debtor Agent Norwegian Bank sends a credit transfer to Den Norske Bank
+========================================================================================================================
+Change Log
+2020-10-16 - Original version 
+=============================
+-->
+<env:Envelope xmlns:env="urn:swift:xsd:envelope">									
+	<AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.02">								
+		<Fr>							
+			<FIId>						
+				<FinInstnId>					
+					<BICFI>NORWNOK1</BICFI>				
+				</FinInstnId>					
+			</FIId>						
+		</Fr>							
+		<To>							
+			<FIId>						
+				<FinInstnId>					
+					<BICFI>DNBANOKK</BICFI>				
+				</FinInstnId>					
+			</FIId>						
+		</To>							
+		<BizMsgIdr>pacs009msgidr001</BizMsgIdr>							
+		<MsgDefIdr>pacs.009.001.08</MsgDefIdr>							
+		<BizSvc>swift.cbprplus.cov.01</BizSvc>							
+		<CreDt>2020-08-21T10:00:47+01:00</CreDt>							
+	</AppHdr>								
+	<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pacs.009.001.08">								
+		<FICdtTrf>							
+			<GrpHdr>						
+				<MsgId>pacs009msgidr001</MsgId>					
+				<CreDtTm>2020-08-21T10:00:47+01:00</CreDtTm>					
+				<NbOfTxs>1</NbOfTxs>					
+				<SttlmInf>					
+					<SttlmMtd>INDA</SttlmMtd>				
+				</SttlmInf>					
+			</GrpHdr>						
+			<CdtTrfTxInf>						
+				<PmtId>					
+					<InstrId>pacs009msgidr001</InstrId>				
+					<EndToEndId>pacs008EndToEndId-001</EndToEndId>				
+					<UETR>17b8104f-1b42-4c8a-89aa-ca8e3d19d52d</UETR>				
+				</PmtId>					
+				<IntrBkSttlmAmt Ccy="JPY">362518787</IntrBkSttlmAmt>					
+				<IntrBkSttlmDt>2020-08-21</IntrBkSttlmDt>					
+				<InstgAgt>					
+					<FinInstnId>				
+						<BICFI>NORWNOK1</BICFI>			
+					</FinInstnId>				
+				</InstgAgt>					
+				<InstdAgt>					
+					<FinInstnId>				
+						<BICFI>DNBANOKK</BICFI>			
+					</FinInstnId>				
+				</InstdAgt>					
+				<Dbtr>					
+					<FinInstnId>				
+						<BICFI>NORWNOK1</BICFI>			
+					</FinInstnId>				
+				</Dbtr>					
+				<CdtrAgt>					
+					<FinInstnId>				
+						<BICFI>HSBCJPJT</BICFI>			
+					</FinInstnId>				
+				</CdtrAgt>					
+				<Cdtr>					
+					<FinInstnId>				
+						<BICFI>LTCBJPJTHED</BICFI>			
+					</FinInstnId>				
+				</Cdtr>					
+				<UndrlygCstmrCdtTrf>					
+					<Dbtr>				
+						<Nm>Norway Funds</Nm>			
+						<PstlAdr>			
+							<StrtNm>Bankplassen 2</StrtNm>		
+							<TwnNm>Oslo</TwnNm>		
+							<Ctry>NO</Ctry>		
+						</PstlAdr>			
+						</Dbtr>			
+					<DbtrAgt>				
+						<FinInstnId>			
+							<BICFI>NORWNOK1</BICFI>		
+						</FinInstnId>			
+					</DbtrAgt>				
+					<CdtrAgt>				
+						<FinInstnId>			
+							<BICFI>LTCBJPJTHED</BICFI>		
+						</FinInstnId>			
+					</CdtrAgt>				
+					<Cdtr>				
+						<Nm>Osaka Investments</Nm>			
+						<PstlAdr>			
+							<StrtNm>3-6-12 Honmachi</StrtNm>		
+							<TwnNm>Osaka</TwnNm>		
+							<Ctry>JP</Ctry>		
+						</PstlAdr>			
+					</Cdtr>				
+					<CdtrAcct>				
+						<Id>			
+							<Othr>		
+								<Id>OSINV96332</Id>	
+							</Othr>		
+						</Id>			
+					</CdtrAcct>				
+				</UndrlygCstmrCdtTrf>					
+			</CdtTrfTxInf>						
+		</FICdtTrf>							
+	</Document>								
+</env:Envelope>

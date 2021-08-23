@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>											
+<!-- 	SWIFT © 2020. All rights reserved. 										
+THE MESSAGE WILL WORK “AS IS” IN THE READINESS PORTAL. IT IS ESSENTIAL THAT USERS REMOVE THE ENVELOPE AND REPLACE IT WITH THEIR OWN TRANSPORT HEADER (FOR EXAMPLE FOR ALLIANCE ACCESS YOU WOULD USE THE XML V2 HEADERS).											
+=========================================================================================================================================================================================											
+Legal Disclaimer:											
+=================											
+SWIFT © 2020. All rights reserved. 											
+This publication contains SWIFT or third-party confidential information. Do not disclose this publication outside your organisation without SWIFT’s prior written consent.											
+The use of this document is governed by the legal notices appearing at the end of this document. By using this document, you will be deemed to have accepted those legal notices.											
+'=================================================================================================================================================================================											
+Use Case c.57.1		Creditor X RAB Asset Management as  Account Owner sends a Notification to Receive to Agent C KBC Bank as Account Servicer.									
+=========================================================================================================================================================											
+Change Log											
+2020-12-02 - Original version 											
+=============================											
+-->											
+<Envelope xmlns="urn:swift:xsd:envelope" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:swift:xsd:envelope ../../../../Schemas/Translator_envelope.xsd">											
+	<AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.02">										
+		<Fr>									
+			<FIId>								
+				<FinInstnId>							
+					<BICFI>RABOBE22</BICFI>						
+				</FinInstnId>							
+			</FIId>								
+		</Fr>									
+		<To>									
+			<FIId>								
+				<FinInstnId>							
+					<BICFI>KREDBEBB</BICFI>						
+				</FinInstnId>							
+			</FIId>								
+		</To>									
+		<BizMsgIdr>camt57bizmsgidr1</BizMsgIdr>									
+		<MsgDefIdr>camt.057.001.06</MsgDefIdr>									
+		<BizSvc>swift.cbprplus.core.01</BizSvc>									
+		<CreDt>2020-11-30T09:00:00+01:00</CreDt>									
+	</AppHdr>										
+	<Document xmlns="urn:iso:std:iso:20022:tech:xsd:camt.057.001.06">										
+		<NtfctnToRcv>									
+			<GrpHdr>								
+				<MsgId>camt57bizmsgidr1</MsgId>							
+				<CreDtTm>2020-11-30T09:00:00+01:00</CreDtTm>							
+			</GrpHdr>								
+			<Ntfctn>								
+				<Id>NTFCTNID10001 </Id>							
+				<Acct>							
+					<Id>						
+						<Othr>					
+							<Id>RAB02564185-365</Id>				
+						</Othr>					
+					</Id>						
+				</Acct>							
+				<AcctOwnr>							
+					<Agt>						
+						<FinInstnId>					
+							<BICFI>RABOBE22</BICFI>				
+						</FinInstnId>					
+					</Agt>						
+				</AcctOwnr>							
+				<AcctSvcr>							
+					<FinInstnId>						
+						<BICFI>KREDBEBB</BICFI>					
+					</FinInstnId>						
+				</AcctSvcr>							
+				<TtlAmt Ccy="EUR">2000000</TtlAmt>							
+				<XpctdValDt>2020-12-01</XpctdValDt>							
+				<Dbtr>							
+					<Pty>						
+						<Nm>ABC Ltd</Nm>					
+						<PstlAdr>					
+							<StrtNm>10 Broad Street</StrtNm>				
+							<TwnNm>London</TwnNm>				
+							<Ctry>GB</Ctry>				
+						</PstlAdr>					
+					</Pty>						
+				</Dbtr>							
+				<DbtrAgt>							
+					<FinInstnId>						
+						<BICFI>BARCGB22</BICFI>					
+					</FinInstnId>						
+				</DbtrAgt>							
+				<IntrmyAgt>							
+					<FinInstnId>						
+						<BICFI>CBPXBE99</BICFI>					
+					</FinInstnId>						
+				</IntrmyAgt>							
+				<Itm>							
+					<Id>NTFCTNITEM01 </Id>						
+					<UETR>761d46fb-3734-4953-a160-afa9d8101212</UETR>						
+					<Amt Ccy="EUR">2000000</Amt>						
+				</Itm>							
+			</Ntfctn>								
+		</NtfctnToRcv>									
+	</Document>										
+</Envelope>											

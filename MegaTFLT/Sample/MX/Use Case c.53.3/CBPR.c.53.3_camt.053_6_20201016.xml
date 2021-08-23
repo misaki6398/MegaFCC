@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+THE MESSAGE WILL WORK “AS IS” IN THE READINESS PORTAL. IT IS ESSENTIAL THAT USERS REMOVE THE ENVELOPE AND REPLACE IT WITH THEIR OWN TRANSPORT HEADER (FOR EXAMPLE FOR ALLIANCE ACCESS YOU WOULD USE THE XML V2 HEADERS).
+=========================================================================================================================================================================================
+Legal Disclaimer:
+SWIFT � 2020. All rights reserved. 
+This publication contains SWIFT or third-party confidential information. Do not disclose this publication outside your organisation without SWIFT�s prior written consent.
+The use of this document is governed by the legal notices appearing at the end of this document. By using this document, you will be deemed to have accepted those legal notices.
+
+=========================================================================================================================================================================================
+Use Case c.53.3 Bank to Customer Statement resends a previously sent statement/s to the Account Owner - Flow #6
+========================================================================================================================
+Change Log
+2020-10-16 - Original version 
+=============================
+-->
+<env:Envelope xmlns:env="urn:swift:xsd:envelope">
+<AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.02">
+	<Fr>
+		<FIId>
+			<FinInstnId>
+				<BICFI>ABNANL2AXXX</BICFI>
+			</FinInstnId>
+		</FIId>
+	</Fr>
+	<To>
+		<FIId>
+			<FinInstnId>
+				<BICFI>LPLNNL2AXXX</BICFI>
+			</FinInstnId>
+		</FIId>
+	</To>
+	<BizMsgIdr>ABNA202009081223</BizMsgIdr> 
+	<MsgDefIdr>camt.053.001.08</MsgDefIdr>
+	<BizSvc>swift.cbprplus.01</BizSvc>
+	<CreDt>2020-09-08T18:00:00+02:00</CreDt>
+</AppHdr>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:camt.053.001.08">
+	<BkToCstmrStmt>
+		<GrpHdr>
+			<MsgId>ABNA202009081223</MsgId>
+			<CreDtTm>2020-09-08T18:00:00+02:00</CreDtTm>
+			<AddtlInf>/EODY/</AddtlInf>
+		</GrpHdr>
+		<Stmt>
+			<Id>20200908</Id>
+			<ElctrncSeqNb>2020090801</ElctrncSeqNb>
+			<Acct>
+				<Id>
+					<Othr>
+						<Id>794115296</Id>
+					</Othr>
+				</Id>
+				<Ccy>EUR</Ccy>
+			</Acct>
+			<Bal>
+				<Tp>
+					<CdOrPrtry>
+						<Cd>CLAV</Cd>
+					</CdOrPrtry>
+				</Tp>
+				<Amt Ccy="EUR">423426</Amt>
+				<CdtDbtInd>CRDT</CdtDbtInd>
+				<Dt>
+					<Dt>2020-01-11</Dt>
+				</Dt>
+			</Bal>
+			<Ntry>
+				<NtryRef>0001</NtryRef>
+				<Amt Ccy="EUR">299975</Amt>
+				<CdtDbtInd>CRDT</CdtDbtInd>
+				<Sts>
+					<Cd>BOOK</Cd>
+				</Sts>
+				<BookgDt>
+					<Dt>2020-09-08</Dt>
+				</BookgDt>
+				<ValDt>
+					<Dt>2020-09-08</Dt>
+				</ValDt>
+				<AcctSvcrRef>ABCD01</AcctSvcrRef>
+				<BkTxCd>
+					<Domn>
+						<Cd>PMNT</Cd>
+						<Fmly>
+							<Cd>ICDT</Cd>
+							<SubFmlyCd>XBCT</SubFmlyCd>
+						</Fmly>
+					</Domn>
+				</BkTxCd>
+				<NtryDtls>
+					<TxDtls>
+						<Refs>
+							<AcctSvcrRef>ABCD01</AcctSvcrRef>
+							<EndToEndId>E2E04044506271305</EndToEndId>
+							<UETR>174c245f-2682-4291-ad67-2a41e530cd27</UETR>
+						</Refs>
+						<Amt Ccy="EUR">299975</Amt>
+						<CdtDbtInd>CRDT</CdtDbtInd>
+						<RltdPties>
+							<Dbtr>
+								<Pty>
+								<Nm>Fexco Merchant Services</Nm>
+								<PstlAdr>
+									<StrtNm>Str.34</StrtNm>
+									<PstCd>1140</PstCd>
+									<TwnNm>Heinrich Collin</TwnNm>
+									<TwnLctnNm>Vienna</TwnLctnNm>
+									<Ctry>AT</Ctry>
+								</PstlAdr>
+								</Pty>
+							</Dbtr>
+							<Cdtr>
+								<Pty>
+									<Nm>Leaseplan Corp N.V.</Nm>
+									<PstlAdr>
+										<StrtNm>OMVAL 300</StrtNm>
+										<PstCd>1096</PstCd>
+										<TwnNm>AMSTERDAM</TwnNm>
+										<Ctry>NL</Ctry>
+									</PstlAdr>
+								</Pty>
+							</Cdtr>
+						</RltdPties>
+						<RltdAgts>
+							<DbtrAgt>
+								<FinInstnId>
+									<BICFI>BKAUATWW</BICFI>
+								</FinInstnId>
+							</DbtrAgt>
+							<CdtrAgt>
+								<FinInstnId>
+									<BICFI>ABNANL2A</BICFI>
+								</FinInstnId>
+							</CdtrAgt>
+						</RltdAgts>
+						<RmtInf>
+							<Ustrd>INVOICE A245</Ustrd>
+						</RmtInf>
+					</TxDtls>
+				</NtryDtls>
+			</Ntry>
+		</Stmt>
+	</BkToCstmrStmt>
+</Document>
+</env:Envelope>

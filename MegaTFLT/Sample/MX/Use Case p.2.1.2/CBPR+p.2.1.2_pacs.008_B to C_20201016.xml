@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+THE MESSAGE WILL WORK “AS IS” IN THE READINESS PORTAL. IT IS ESSENTIAL THAT USERS REMOVE THE ENVELOPE AND REPLACE IT WITH THEIR OWN TRANSPORT HEADER (FOR EXAMPLE FOR ALLIANCE ACCESS YOU WOULD USE THE XML V2 HEADERS).
+=========================================================================================================================================================================================
+SWIFT © 2020. All rights reserved. 
+This publication contains SWIFT or third-party confidential information. Do not disclose this publication outside your organisation without SWIFT’s prior written consent.
+The use of this document is governed by the legal notices appearing at the end of this document. By using this document, you will be deemed to have accepted those legal notices.
+=========================================================================================================================================================================================
+Use Case p.2.1.2 pacs.008 FI to FI Customer Credit Transfer - Flow #3
+========================================================================================================================
+Change Log
+2020-10-16 - Original version 
+=============================
+-->
+<env:Envelope xmlns:env="urn:swift:xsd:envelope">
+<AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.02" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Fr>
+		<FIId>
+			<FinInstnId>
+				<BICFI>CHASUS33XXX</BICFI>
+			</FinInstnId>
+		</FIId>
+	</Fr>
+	<To>
+		<FIId>
+			<FinInstnId>
+				<BICFI>FTSBUS33XXX</BICFI>
+			</FinInstnId>
+		</FIId>
+	</To>
+	<BizMsgIdr>B2C0506272708</BizMsgIdr>
+	<MsgDefIdr>pacs.008.001.08</MsgDefIdr>
+	<BizSvc>swift.cbprplus.01</BizSvc>
+	<CreDt>2020-01-11T12:43:41.960-05:00</CreDt>
+</AppHdr>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pacs.008.001.08" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<FIToFICstmrCdtTrf>
+		<GrpHdr>
+			<MsgId>B2C0506272708</MsgId>
+			<CreDtTm>2020-01-11T12:43:41.960-05:00</CreDtTm>
+			<NbOfTxs>1</NbOfTxs>
+			<SttlmInf>
+				<SttlmMtd>INDA</SttlmMtd>
+			</SttlmInf>
+		</GrpHdr>
+		<CdtTrfTxInf>
+			<PmtId>
+				<InstrId>B2C0506272708</InstrId>
+				<EndToEndId>E2E04044506271305</EndToEndId>
+				<UETR>174c245f-2682-4291-ad67-2a41e530cd27</UETR>
+			</PmtId>
+			<IntrBkSttlmAmt Ccy="USD">39990</IntrBkSttlmAmt>
+			<IntrBkSttlmDt>2020-01-11</IntrBkSttlmDt>
+			<InstdAmt Ccy="USD">40000</InstdAmt>
+			<ChrgBr>SHAR</ChrgBr>
+			<ChrgsInf>
+			<Amt Ccy="USD">10</Amt>
+			<Agt>
+			<FinInstnId>
+			<BICFI>CHASUS33XXX</BICFI>
+			</FinInstnId>
+			</Agt>
+			</ChrgsInf>
+			<InstgAgt>
+				<FinInstnId>
+					<BICFI>CHASUS33XXX</BICFI>
+				</FinInstnId>
+			</InstgAgt>
+			<InstdAgt>
+				<FinInstnId>
+					<BICFI>FTSBUS33XXX</BICFI>
+				</FinInstnId>
+			</InstdAgt>
+			<Dbtr>
+				<Nm>NOKIA CORPORATION</Nm>
+				<PstlAdr>
+					<StrtNm>1510 ARLINGTON BUSINESS PARK</StrtNm>
+					<PstCd>RG74SA</PstCd>
+					<TwnNm>THEALE</TwnNm>
+					<Ctry>GB</Ctry>
+				</PstlAdr>
+			</Dbtr>
+			<DbtrAgt>
+				<FinInstnId>
+					<BICFI>CHASGB2LXXX</BICFI>
+				</FinInstnId>
+			</DbtrAgt>
+			<CdtrAgt>
+				<FinInstnId>
+					<BICFI>BAUTUS31XXX</BICFI>
+				</FinInstnId>
+			</CdtrAgt>
+			<Cdtr>
+				<Nm>ATnT</Nm>
+				<PstlAdr>
+					<StrtNm>208 ARAKD ST</StrtNm>
+					<PstCd>1096</PstCd>
+					<TwnNm>DALLAS</TwnNm>
+					<TwnLctnNm>TEXAS</TwnLctnNm>
+					<Ctry>US</Ctry>
+				</PstlAdr>
+			</Cdtr>
+			<CdtrAcct>
+				<Id>
+					<Othr>
+						<Id>794115296</Id>
+					</Othr>
+				</Id>
+			</CdtrAcct>
+			<RmtInf>
+				<Ustrd>INV2708</Ustrd>
+			</RmtInf>
+		</CdtTrfTxInf>
+	</FIToFICstmrCdtTrf>
+</Document>
+</env:Envelope>
