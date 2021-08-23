@@ -27,8 +27,31 @@ namespace MegaTFLT
             };
             */
             MxPaser MxPaser1 = new MxPaser();
-            MxPaser1.ReadFromFile(@"./sample_pacs.008.xml");
+            MxPaser1.ReadFromFile(@"./sample.xml");
+            //MxPaser1.ReadFromFile(@"./sample_NO_hit.xml");
+            //MxPaser1.ReadFromFile(@"./sample_pacs.008.xml");
             //MxPaser1.ReadFromFile(@"./sample_ILoveYou200.xml");
+
+            using (MegaEcmUnitOfWork _unitOfWork = new MegaEcmUnitOfWork())
+            {
+                try
+                {
+                    await _unitOfWork.TfMessagesRepository.InsertAsync(MxPaser1.TfMessageModel);
+                }
+                catch (OracleException ex)
+                {
+                    _unitOfWork.Rollback();
+                    Console.WriteLine(ex.Message, ex.ToString());
+                }
+                catch (Exception)
+                {
+                    _unitOfWork.Rollback();
+                }
+                finally
+                {
+                    _unitOfWork.Commit();
+                }
+            }
 
             EdqService edqService = new EdqService();
             List<TfAlertsModel> tfAlertsModels = await edqService.ProcessScreeningAsync(MxPaser1.mxMessages);
@@ -48,7 +71,6 @@ namespace MegaTFLT
 
                     try
                     {
-                        await _unitOfWork.TfMessagesRepository.InsertAsync(MxPaser1.TfMessageModel);
                         await _unitOfWork.TfCasesRepository.InsertAsync(tfCasesModel);
                         await _unitOfWork.TfAlertsRepository.InsertAsync(tfAlertsModels);
                     }
@@ -67,8 +89,6 @@ namespace MegaTFLT
                     }
                 }
             }
-
-
         }
     }
 }
