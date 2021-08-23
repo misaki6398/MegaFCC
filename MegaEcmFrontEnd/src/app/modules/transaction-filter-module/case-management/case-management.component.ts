@@ -1,5 +1,5 @@
 import { DatasourceService } from './../services/datasource.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -12,7 +12,7 @@ import { CaseList } from '../classes/case-list';
   styleUrls: ['./case-management.component.scss']
 })
 
-export class CaseManagementComponent implements OnInit {
+export class CaseManagementComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['messageDefinitionIdentifier', 'swallowId', 'businessMessageIdentifier', 'currency', 'amount', 'brachNo', 'caseStatus', 'assignBy', 'createDateTime', 'actions'];
   tableDataSource: MatTableDataSource<CaseList>;
   cases: any = [];

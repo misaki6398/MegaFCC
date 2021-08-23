@@ -6,7 +6,7 @@
   <nav id="sidebar" class="sidebar-wrapper">
     <div class="sidebar-content">
       <div class="sidebar-brand">
-        <a href="#">Mega ECM</a>
+        <a href="#" i18n>Mega ECM</a>
         <div id="close-sidebar" (click)="buttonCloseNav()">
           <i class="fas fa-times"></i>
         </div>
@@ -18,10 +18,10 @@
         <div class="user-info">
           <span class="user-name">31 Hou
           </span>
-          <span class="user-role">Garbage</span>
+          <span class="user-role" i18n>Admin</span>
           <span class="user-status">
             <i class="fa fa-circle"></i>
-            <span>Online</span>
+            <span i18n>Online</span>
           </span>
         </div>
       </div>
@@ -29,12 +29,15 @@
       <div class="sidebar-search">
         <div>
           <div class="input-group">
-            <input type="text" class="form-control search-menu" placeholder="Search...">
+            <select class="form-control sidebar-select" [value]="displayLanguage" (change)="onSelectionChange($event.target.value)">
+              <option *ngFor="let language of languageList" [value]="language.code">{{language.name}}</option>
+            </select>
+            <!-- <input type="text" class="form-control search-menu" placeholder="Search...">
             <div class="input-group-append">
               <span class="input-group-text">
                 <i class="fa fa-search" aria-hidden="true"></i>
               </span>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

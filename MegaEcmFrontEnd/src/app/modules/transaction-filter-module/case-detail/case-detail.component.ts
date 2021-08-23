@@ -2,7 +2,7 @@ import { RawdataComponent } from './../rawdata/rawdata.component';
 import { HitColumns } from './../classes/hit-columns';
 import { DatasourceService } from './../services/datasource.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -22,10 +22,10 @@ import { MatDialog } from '@angular/material/dialog';
     ]),
   ],
 })
-export class CaseDetailComponent implements OnInit {
+export class CaseDetailComponent implements OnInit, AfterViewInit {
 
   displayedColumns: string[] = ['matchedListRecordId', 'matchedName', 'matchType', 'rule', 'matchedListSubKey'];
-  states: string[] = ['True Match', 'False Match'];
+  states: string[] = [$localize`:@@TrueMatch:True Match`, $localize`:@@FalseMatch:False Match`];
   tableDataSource: MatTableDataSource<AlertList>;
   alterts: Array<AlertList> = [];
   caseId: string;

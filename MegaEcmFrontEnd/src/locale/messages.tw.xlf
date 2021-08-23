@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="3773845510933707032" datatype="html">
+        <source>Mega ECM</source>
+        <target>洗防案件管理</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5041354590769758251" datatype="html">
+        <source>Admin</source>
+        <target>管理者</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8870711330013548872" datatype="html">
+        <source>Online</source>
+        <target>線上</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="English" datatype="html">
+        <source>English</source>
+        <target>英文</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.ts</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Traditional-Chinese" datatype="html">
+        <source>Traditional-Chinese</source>
+        <target>繁體中文</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.ts</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="TransactionFilter" datatype="html">
+        <source>Transaction Filter</source>
+        <target>交易掃描</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.ts</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Dashboard" datatype="html">
+        <source>Dashboard</source>
+        <target>儀錶板</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.ts</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.ts</context>
+          <context context-type="linenumber">63</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="CaseManagement" datatype="html">
+        <source>Case Management</source>
+        <target>案件審查</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.ts</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.ts</context>
+          <context context-type="linenumber">77</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Report" datatype="html">
+        <source>Report</source>
+        <target>報表</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.ts</context>
+          <context context-type="linenumber">54</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.ts</context>
+          <context context-type="linenumber">83</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="CutomerScreening" datatype="html">
+        <source>Cutomer Screening</source>
+        <target>客戶掃描</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.ts</context>
+          <context context-type="linenumber">61</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3938286336799344423" datatype="html">
+        <source>Transation Filter - Case Detail</source>
+        <target>交易掃描 - 案件詳細</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-detail/case-detail.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Back" datatype="html">
+        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;fas fa-reply-all&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Back</source>
+        <target><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;fas fa-reply-all&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> 上一頁</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-detail/case-detail.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Rawdata" datatype="html">
+        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;fas fa-sticky-note&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Rawdata</source>
+        <target><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;fas fa-sticky-note&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> 原始資料</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-detail/case-detail.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="AttachFile" datatype="html">
+        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;fas fa-paperclip&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Attach File</source>
+        <target><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;fas fa-paperclip&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> 附加檔案</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-detail/case-detail.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ListRecordId" datatype="html">
+        <source>List Record Id</source>
+        <target>名單 Id</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-detail/case-detail.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="MatchedName" datatype="html">
+        <source>Matched Name</source>
+        <target>命中名字</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-detail/case-detail.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="MatchType" datatype="html">
+        <source>Match Type</source>
+        <target>命中名單類型</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-detail/case-detail.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Rule" datatype="html">
+        <source>Rule</source>
+        <target>命中規則</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-detail/case-detail.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ListSubKey" datatype="html">
+        <source>List Sub Key</source>
+        <target>命中名單</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-detail/case-detail.component.html</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="NoMatch" datatype="html">
+        <source>No data matching the filter &quot;<x id="INTERPOLATION" equiv-text="{{input.value}}"/>&quot;</source>
+        <target>沒有資料符合 &quot;<x id="INTERPOLATION" equiv-text="{{input.value}}"/>&quot;</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-detail/case-detail.component.html</context>
+          <context context-type="linenumber">85</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-management/case-management.component.html</context>
+          <context context-type="linenumber">66</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="HitColumns" datatype="html">
+        <source>Hit Columns</source>
+        <target>命中欄位</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-detail/case-detail.component.html</context>
+          <context context-type="linenumber">96</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Audit" datatype="html">
+        <source>Audit</source>
+        <target>案件歷史</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-detail/case-detail.component.html</context>
+          <context context-type="linenumber">109</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Attachment" datatype="html">
+        <source>Attachment</source>
+        <target>附加檔案</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-detail/case-detail.component.html</context>
+          <context context-type="linenumber">112</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="TrueMatch" datatype="html">
+        <source>True Match</source>
+        <target>確實命中</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-detail/case-detail.component.ts</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="FalseMatch" datatype="html">
+        <source>False Match</source>
+        <target>虛假命中</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-detail/case-detail.component.ts</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+       <trans-unit id="2054484984166391403" datatype="html">
+        <source>Transation Filter - Case Management</source>
+        <target>交易掃描 - 案件審查</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-management/case-management.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="TypeToFilter" datatype="html">
+        <source>Type to filter the column...</source>
+        <target>篩選資料...</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-management/case-management.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="MessageType" datatype="html">
+        <source>Message Type</source>
+        <target>電文類型</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-management/case-management.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="MessageId" datatype="html">
+        <source>Message Id</source>
+        <target>電文 Id</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-management/case-management.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Currency" datatype="html">
+        <source>Currency</source>
+        <target>幣別</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-management/case-management.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Amount" datatype="html">
+        <source>Amount</source>
+        <target>金額</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-management/case-management.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="BranchNo" datatype="html">
+        <source>Brach No.</source>
+        <target>分行別</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-management/case-management.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Status" datatype="html">
+        <source>Status</source>
+        <target>案件狀態</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-management/case-management.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="AssignBy" datatype="html">
+        <source>Assign By</source>
+        <target>分配給</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-management/case-management.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ReceiveTime" datatype="html">
+        <source>Receive Time</source>
+        <target>接收時間</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-management/case-management.component.html</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9216117865911519658" datatype="html">
+        <source>Action</source>
+        <target>動作</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-management/case-management.component.html</context>
+          <context context-type="linenumber">54</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Assign" datatype="html">
+        <source>Assign</source>
+        <target>審案</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-management/case-management.component.html</context>
+          <context context-type="linenumber">56</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

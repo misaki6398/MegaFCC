@@ -1,7 +1,8 @@
-<h1>Transation Filter - Case Detail</h1>
+<h1 i18n>Transation Filter - Case Detail</h1>
 <div class="flex-start">
-  <button mat-stroked-button color="accent" (click)="back()"><i class="fas fa-reply-all"></i> Back</button>
-  <button mat-stroked-button (click)="openDialog()"><i class="fas fa-sticky-note"></i> Rawdata</button>
+  <button mat-stroked-button color="accent" (click)="back()" i18n="@@Back"><i class="fas fa-reply-all"></i> Back</button>
+  <button mat-stroked-button (click)="openDialog()" i18n="@@Rawdata"><i class="fas fa-sticky-note"></i> Rawdata</button>
+  <button mat-stroked-button color="primary" i18n="@@AttachFile"><i class="fas fa-paperclip"></i> Attach File</button>
 </div>
 <hr>
 <div class="row">
@@ -9,10 +10,34 @@
     <div class="table-container">
       <table mat-table [dataSource]="tableDataSource" multiTemplateDataRows matSort class="mat-elevation-z8">
 
-        <ng-container matColumnDef="{{column}}" *ngFor="let column of displayedColumns">
+        <!-- <ng-container matColumnDef="{{column}}" *ngFor="let column of displayedColumns">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> {{column}} </th>
           <td mat-cell *matCellDef="let element">
             {{element[column]}}
+        </ng-container> -->
+        <ng-container matColumnDef="matchedListRecordId">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header i18n="@@ListRecordId">List Record Id</th>
+          <td mat-cell *matCellDef="let row"> {{row.matchedListRecordId}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="matchedName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header i18n="@@MatchedName">Matched Name</th>
+          <td mat-cell *matCellDef="let row"> {{row.matchedName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="matchType">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header i18n="@@MatchType">Match Type</th>
+          <td mat-cell *matCellDef="let row"> {{row.matchType}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="rule">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header i18n="@@Rule">Rule</th>
+          <td mat-cell *matCellDef="let row"> {{row.rule}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="matchedListSubKey">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header i18n="@@ListSubKey">List Sub Key</th>
+          <td mat-cell *matCellDef="let row"> {{row.matchedListSubKey}} </td>
         </ng-container>
 
         <ng-container matColumnDef="expandedDetail">
@@ -57,7 +82,7 @@
         <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
 
         <tr class="mat-row" *matNoDataRow>
-          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+          <td class="mat-cell" colspan="4" i18n="@@NoMatch">No data matching the filter "{{input.value}}"</td>
         </tr>
 
 
@@ -68,7 +93,7 @@
 
   <div class="col-xl-3 col-md-12 h-70vh overflow-auto">
     <mat-tab-group>
-      <mat-tab label="Hit Columns">
+      <mat-tab label="Hit Columns" i18n-label="@@HitColumns">
         <table class="table table-dark blue">
           <tbody>
             <!-- <tr>
@@ -81,10 +106,10 @@
           </tbody>
         </table>
       </mat-tab>
-      <mat-tab label="Audit">
+      <mat-tab label="Audit" i18n-label="@@Audit">
         Audit
       </mat-tab>
-      <mat-tab label="Attachment">
+      <mat-tab label="Attachment" i18n-label="@@Attachment">
         Attachment
       </mat-tab>
     </mat-tab-group>
@@ -96,7 +121,6 @@
 
 
 <div class="flex-end">
-  <button mat-raised-button color="primary"><i class="fas fa-paperclip"></i> Attach File</button>
   <button mat-raised-button color="accent"><i class="fas fa-forward"></i> Recomman Release</button>
   <button mat-raised-button color="warn"><i class="fas fa-stop"></i> Recomman Block</button>
 </div>
