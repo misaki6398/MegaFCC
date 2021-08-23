@@ -26,8 +26,10 @@ namespace MegaTFLT
                 {"TheTestCode", new List<string>{"Oh My God"}}
             };
             */
-            MxPaser MxPaser1 = new MxPaser();
-            MxPaser1.ReadFromFile(@"./sample.xml");
+            //MxPaser MxPaser1 = new MxPaser();
+            //MxPaser1.ReadFromFile(@"./sample.xml");
+            TxnPaser TxnPaser1 = new TxnPaser();
+            TxnPaser1.ReadFromFile(@"./Sample/TXN/OBS/73B0.rje");
             //MxPaser1.ReadFromFile(@"./sample_NO_hit.xml");
             //MxPaser1.ReadFromFile(@"./sample_pacs.008.xml");
             //MxPaser1.ReadFromFile(@"./sample_ILoveYou200.xml");
@@ -36,7 +38,7 @@ namespace MegaTFLT
             {
                 try
                 {
-                    await _unitOfWork.TfMessagesRepository.InsertAsync(MxPaser1.TfMessageModel);
+                    await _unitOfWork.TfMessagesRepository.InsertAsync(TxnPaser1.TfMessageModel);
                 }
                 catch (OracleException ex)
                 {
@@ -54,12 +56,12 @@ namespace MegaTFLT
             }
 
             EdqService edqService = new EdqService();
-            List<TfAlertsModel> tfAlertsModels = await edqService.ProcessScreeningAsync(MxPaser1.mxMessages);
+            List<TfAlertsModel> tfAlertsModels = await edqService.ProcessScreeningAsync(TxnPaser1.mxMessages);
             using (MegaEcmUnitOfWork _unitOfWork = new MegaEcmUnitOfWork())
             {
                 if (tfAlertsModels.Count() > 0)
                 {
-                    TfCasesModel tfCasesModel = new TfCasesModel(MxPaser1.TfMessageModel);
+                    TfCasesModel tfCasesModel = new TfCasesModel(TxnPaser1.TfMessageModel);
                     tfCasesModel.CaseStatus = "New Case";
                     tfCasesModel.CaseStatusCode = 0;
                     tfAlertsModels.ForEach(c =>
