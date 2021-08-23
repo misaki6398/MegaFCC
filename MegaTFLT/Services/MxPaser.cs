@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Xml;
+using System.Linq;
 using MegaTFLT.Models.MegaEcm.Models;
 
 namespace MegaTFLT.Utilitys
@@ -126,6 +127,13 @@ namespace MegaTFLT.Utilitys
                 }
             }
             //Console.WriteLine($"{mxMessages}");
+            foreach (string mxMessageKey in mxMessages.Keys)
+            {
+                List<ScreeningInputTagModel> lstMxInputTag = mxMessages[mxMessageKey];
+                IEnumerable<ScreeningInputTagModel> noduplicates = (lstMxInputTag.Distinct());
+                mxMessages[mxMessageKey] = noduplicates.ToList();
+            }
+
             isSuccess = true;
             return isSuccess;
         }
