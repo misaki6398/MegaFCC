@@ -13,6 +13,7 @@ CREATE TABLE MEGA_ECM.TF_CASES (
 	Assignee varchar2(10),
 	OWNER varchar2(10),
 	OriginalCreateDate TIMESTAMP,
+	LockFlag NUMBER(1) DEFAULT 0 NOT NULL,
 	ValidFlag NUMBER(1) DEFAULT 0 NOT NULL,
 	CreateUser varchar2(10) DEFAULT 'SYSTEM',
 	CreateDatetime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
