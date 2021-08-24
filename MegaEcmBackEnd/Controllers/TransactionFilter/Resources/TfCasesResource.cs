@@ -5,7 +5,7 @@ namespace MegaEcmBackEnd.Controllers.TransactionFilter.Resources
 {
     public class TfCasesResource
     {
-        public string MessageDefinitionIdentifier { get; set; }
+        public string MessageType { get; set; }
         public string SwallowId { get; set; }
         public string BusinessMessageIdentifier { get; set; }
         public string Currency { get; set; }

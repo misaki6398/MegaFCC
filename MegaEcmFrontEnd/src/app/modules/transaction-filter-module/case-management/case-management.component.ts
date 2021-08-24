@@ -13,7 +13,7 @@ import { CaseList } from '../classes/case-list';
 })
 
 export class CaseManagementComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['messageDefinitionIdentifier', 'swallowId', 'businessMessageIdentifier', 'currency', 'amount', 'brachNo', 'caseStatus', 'assignBy', 'createDateTime', 'actions'];
+  displayedColumns: string[] = ['messageType', 'swallowId', 'businessMessageIdentifier', 'currency', 'amount', 'brachNo', 'caseStatus', 'assignBy', 'createDateTime', 'actions'];
   tableDataSource: MatTableDataSource<CaseList>;
   cases: any = [];
   @ViewChild(MatPaginator) paginator: MatPaginator;

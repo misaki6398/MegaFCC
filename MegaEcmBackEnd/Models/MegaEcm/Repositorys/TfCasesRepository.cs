@@ -11,20 +11,20 @@ namespace MegaEcmBackEnd.Models.MegaEcm.Repositorys
     public class TfCasesRepository : BaseRepository
     {
         private readonly string _readCaseSql = @"
-                select 
-                MessageDefinitionIdentifier,
+            SELECT
+                MessageType,
                 tf_cases.SwallowId,
                 BusinessMessageIdentifier,                
                 Currency,
-                Amount,
-                BranchNo,                
+                Amount,                 
+                BranchNo,
                 CaseStatus,
-                tf_messages.CreateDateTime,
+                tf_cases.CreateDateTime,
                 tf_cases.Id as caseIdRaw
-            from tf_messages 
-            join tf_cases on tf_messages.id = tf_cases.messageid
-            where tf_messages.validflag = 1 
-            and tf_cases.validflag = 1
+            FROM tf_cases
+            JOIN tf_case_status ON tf_cases.CaseStatusCode = tf_case_status.CaseStatusCode and tf_case_status.validflag = 1
+            WHERE 
+                tf_cases.validflag = 1
         ";
         private readonly string _readRawDataSql = @"
             select 
