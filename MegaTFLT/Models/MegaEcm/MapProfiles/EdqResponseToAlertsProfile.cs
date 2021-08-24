@@ -18,6 +18,7 @@ namespace MegaTFLT.Models.MegaEcm.MapProfiles
             .ForMember(c => c.Input, x => x.MapFrom(y => y.InputString));
 
             CreateMap<GoodsResponseModel, TfAlertsModel>()
+            .ForMember(c=>c.Id, x => x.Ignore())
             .ForMember(c => c.Score, x => x.MapFrom(y => y.RiskScore))
             .ForMember(c => c.MatchedListRecordId, x => x.MapFrom(y => y.ID))
             .ForMember(c => c.MatchType, x => x.MapFrom(y => y.MatchedListType));
@@ -29,11 +30,13 @@ namespace MegaTFLT.Models.MegaEcm.MapProfiles
             .ForMember(c => c.DetailsOfBIC, x => x.MapFrom(y => y.BICCodeName));
             
             CreateMap<PortResponseModel, TfAlertsModel>()
+            .ForMember(c=>c.Id, x => x.Ignore())
             .ForMember(c => c.Score, x => x.MapFrom(y => y.RiskScore))
             .ForMember(c => c.MatchedListRecordId, x => x.MapFrom(y => y.ID))
             .ForMember(c => c.MatchType, x => x.MapFrom(y => y.MatchedListType));
 
             CreateMap<BicResponseModel, TfAlertsModel>()
+            .ForMember(c=>c.Id, x => x.Ignore())
             .ForMember(c => c.Score, x => x.MapFrom(y => y.MatchScore))
             .ForMember(c => c.MatchedListRecordId, x => x.MapFrom(y => y.ID))
             .ForMember(c => c.MatchType, x => x.MapFrom(y => y.MatchedListType))

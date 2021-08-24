@@ -8,7 +8,7 @@ namespace MegaTFLT.Models.MegaEcm.Models
         //public TfCasesModel(byte[] messageId) => MessageId = messageId;
         public TfCasesModel(TfMessageModel tfMessageModel)
         {            
-            this.MessageId = tfMessageModel.id;
+            this.MessageId = tfMessageModel.Id;
             this.MessageType = tfMessageModel.MessageType;
             this.SwallowId = tfMessageModel.SwallowId;
             this.BusinessMessageIdentifier = tfMessageModel.BusinessMessageIdentifier;

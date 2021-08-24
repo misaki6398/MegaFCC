@@ -50,7 +50,7 @@ namespace MegaTFLT.Services.EdqServices
             tfAlertsModels.AddRange(_mapper.Map<List<GoodsResponseModel>, List<TfAlertsModel>>(edqResponseModel.GoodsResponseModels));
             tfAlertsModels.AddRange(_mapper.Map<List<NarrativeResponseModel>, List<TfAlertsModel>>(edqResponseModel.NarrativeResponseModels));
             tfAlertsModels.AddRange(_mapper.Map<List<PortResponseModel>, List<TfAlertsModel>>(edqResponseModel.PortResponseModels));
-            tfAlertsModels.AddRange(_mapper.Map<List<GoodsResponseModel>, List<TfAlertsModel>>(edqResponseModel.GoodsResponseModels));
+            tfAlertsModels.AddRange(_mapper.Map<List<BicResponseModel>, List<TfAlertsModel>>(edqResponseModel.BicResponseModels));
 
             return tfAlertsModels;
         }

@@ -18,11 +18,9 @@ namespace MegaEcmBackEnd.Models.MegaEcm.Repositorys
                 when MATCHEDINDIVIDUALNAME is not null then MATCHEDINDIVIDUALNAME 
                 when MATCHEDENTITYNAME is not null then MATCHEDENTITYNAME 
                 when CountryName is not null then CountryName 
-                when MATCHEDINDIVIDUALNAME is not null then MATCHEDINDIVIDUALNAME 
                 when DETAILSOFPORT is not null then DETAILSOFPORT 
                 when DETAILSOFBIC is not null then DETAILSOFBIC 
-                when DETAILSOFGOODS is not null then DETAILSOFGOODS 
-               
+                when DETAILSOFGOODS is not null then DETAILSOFGOODS                
                 end MatchedName,
                 MatchedListSubKey,
                 Rule,

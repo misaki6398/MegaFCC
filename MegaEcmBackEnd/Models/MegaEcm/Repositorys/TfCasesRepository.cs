@@ -37,6 +37,10 @@ namespace MegaEcmBackEnd.Models.MegaEcm.Repositorys
             and tf_cases.validflag = 1
         ";
 
+        private readonly string _isCaseLockedSql = @"
+            
+        ";
+
 
         public TfCasesRepository(IDbTransaction transaction) : base(transaction)
         {

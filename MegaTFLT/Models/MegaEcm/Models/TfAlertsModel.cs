@@ -6,7 +6,7 @@ namespace MegaTFLT.Models.MegaEcm.Models
     public class TfAlertsModel
     {
 
-        public byte[] id { get; set; } = GuidUtility.ToRaw16(Guid.NewGuid());
+        public byte[] Id { get; set; } = GuidUtility.ToRaw16(Guid.NewGuid());
         public byte[] CaseId { get; set; }
         public int AlertStatusCode { get; set; }
         public string Input { get; set; }

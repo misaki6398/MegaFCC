@@ -21,7 +21,7 @@ namespace MegaTFLT.Utilitys
             // ----Peocess Message----
             TfMessageModel = new TfMessageModel(text);
             TfMessageModel.SwallowId = TfMessageModel.CreateDatetime.ToString("yyyyMMddHHmmssffffff", DateTimeFormatInfo.InvariantInfo) + "I0";
-            Console.WriteLine($"MessageGuid:{TfMessageModel.id}");
+            Console.WriteLine($"MessageGuid:{TfMessageModel.Id}");
             Console.WriteLine($"CreateDatetime:{TfMessageModel.CreateDatetime}");
             Console.WriteLine($"SwallowId:{TfMessageModel.SwallowId}");
             bool isFindFrom = false;
