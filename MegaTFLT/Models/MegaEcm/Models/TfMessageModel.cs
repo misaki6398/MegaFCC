@@ -15,7 +15,7 @@ namespace MegaTFLT.Models.MegaEcm.Models
 
         //----From Message Header---
         //<AppHdr>
-        public string MessageDefinitionIdentifier { get; set; }
+        public string MessageType { get; set; }
         //<MsgDefIdr>
         public string BusinessMessageIdentifier { get; set; }
         //<BizMsgIdr>

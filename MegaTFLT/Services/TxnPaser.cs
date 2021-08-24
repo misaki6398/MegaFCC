@@ -26,7 +26,7 @@ namespace MegaTFLT.Utilitys
 
             // ----Peocess Message----
             TfMessageModel = new TfMessageModel(text);
-            TfMessageModel.MessageDefinitionIdentifier = "Transaction";
+            TfMessageModel.MessageType = "Transaction";
             // ----Peocess Message----
             while (reader.Read())
             {
@@ -52,8 +52,8 @@ namespace MegaTFLT.Utilitys
                                 TfMessageModel.SwallowId = ValueText;
                             break;
                         case "reference_number":
-                            if (TfMessageModel.MessageDefinitionIdentifier == null)
-                                TfMessageModel.MessageDefinitionIdentifier = ValueText;
+                            if (TfMessageModel.BusinessMessageIdentifier == null)
+                                TfMessageModel.BusinessMessageIdentifier = ValueText;
                             break;
                         case "transaction_date":
                             if (TfMessageModel.OriginalCreateDate == null)

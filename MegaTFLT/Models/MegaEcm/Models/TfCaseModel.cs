@@ -9,7 +9,7 @@ namespace MegaTFLT.Models.MegaEcm.Models
         public TfCasesModel(TfMessageModel tfMessageModel)
         {            
             this.MessageId = tfMessageModel.id;
-            this.MessageDefinitionIdentifier = tfMessageModel.MessageDefinitionIdentifier;
+            this.MessageType = tfMessageModel.MessageType;
             this.SwallowId = tfMessageModel.SwallowId;
             this.BusinessMessageIdentifier = tfMessageModel.BusinessMessageIdentifier;
             this.Currency = tfMessageModel.Currency;
@@ -21,7 +21,7 @@ namespace MegaTFLT.Models.MegaEcm.Models
         public byte[] MessageId { get; private set; }
 
         // For UI
-        public string MessageDefinitionIdentifier { get; private set; }
+        public string MessageType { get; private set; }
         public string SwallowId { get; private set; }
         public string BusinessMessageIdentifier { get; private set; }
         public string Currency { get; private set; }

@@ -73,8 +73,8 @@ namespace MegaTFLT.Utilitys
                                 TfMessageModel.BusinessMessageIdentifier = ValueText;
                             break;
                         case "MsgDefIdr":
-                            if (TfMessageModel.MessageDefinitionIdentifier == null)
-                                TfMessageModel.MessageDefinitionIdentifier = ValueText;
+                            if (TfMessageModel.MessageType == null)
+                                TfMessageModel.MessageType = ValueText;
                             break;
                         case "BizSvc":
                             if (TfMessageModel.BusinessService == null)

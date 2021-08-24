@@ -15,7 +15,7 @@ namespace MegaTFLT.Models.MegaEcm.Repositorys
             INSERT INTO tf_cases (
                 id,
                 messageid,
-                messagedefinitionidentifier,
+                messagetype,
                 swallowid,
                 businessmessageidentifier,
                 currency,
@@ -33,7 +33,7 @@ namespace MegaTFLT.Models.MegaEcm.Repositorys
             ) VALUES (
                 :id,
                 :messageid,
-                :messagedefinitionidentifier,
+                :messagetype,
                 :swallowid,
                 :businessmessageidentifier,
                 :currency,

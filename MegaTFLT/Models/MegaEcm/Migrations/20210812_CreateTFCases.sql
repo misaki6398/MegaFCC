@@ -3,7 +3,7 @@ DROP TABLE MEGA_ECM.TF_CASES;
 CREATE TABLE MEGA_ECM.TF_CASES (
 	id raw(16) DEFAULT sys_guid() PRIMARY KEY,
 	MessageId raw(16),
-	MessageDefinitionIdentifier VARCHAR2(40 CHAR),
+	MessageType VARCHAR2(40 CHAR),
 	SwallowId VARCHAR2(40 CHAR),
 	BusinessMessageIdentifier VARCHAR2(40 CHAR),
 	Currency varchar2(10),
