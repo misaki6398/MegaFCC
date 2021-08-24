@@ -1,0 +1,14 @@
+DROP TABLE MEGA_ECM.TF_ALERT_STATUS;
+
+CREATE TABLE MEGA_ECM.TF_ALERT_STATUS (
+    Id raw(16) DEFAULT sys_guid() PRIMARY KEY,
+    AlertStatusCode NUMBER(3, 0),
+    AlertStatus VARCHAR2(100 CHAR),
+    ValidFlag NUMBER(1) DEFAULT 0 NOT NULL,
+    CreateUser varchar2(10) NOT NULL,
+    CreateDatetime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UpdateUser varchar2(10),
+    UpdateDatetime TIMESTAMP
+);
+CREATE INDEX MEGA_ECM.TF_ALERT_COMMENTS_AlertStatusCode_ValidFlag_INDEX ON MEGA_ECM.TF_ALERT_STATUS (AlertStatusCode ASC, ValidFlag DESC);
+commit;
