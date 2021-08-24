@@ -11,7 +11,7 @@ namespace MegaTFLT.Models.MegaEcm.Models
             this.MessageId = tfMessageModel.id;
             this.MxType = tfMessageModel.MessageDefinitionIdentifier;
             this.SwallowId = tfMessageModel.SwallowId;
-            this.MsgId = tfMessageModel.MessageDefinitionIdentifier;
+            this.MsgId = tfMessageModel.BusinessMessageIdentifier;
             this.MsgCurrency = tfMessageModel.Currency;
             this.MsgAmount = tfMessageModel.Amount;
             this.MsgBranchNO = tfMessageModel.BranchNO;
@@ -27,7 +27,6 @@ namespace MegaTFLT.Models.MegaEcm.Models
         public string MsgCurrency { get; private set; }
         public float? MsgAmount { get; private set; }
         public string MsgBranchNO { get; private set; }
-        public string CaseStatus { get; set; }
         public int CaseStatusCode { get; set; }
         public string Assignee { get; set; }
         public string Owner { get; set; }

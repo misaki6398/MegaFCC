@@ -29,7 +29,7 @@ namespace MegaTFLT
             //MxPaser MxPaser1 = new MxPaser();
             //MxPaser1.ReadFromFile(@"./sample.xml");
             TxnPaser TxnPaser1 = new TxnPaser();
-            TxnPaser1.ReadFromFile(@"./Sample/TXN/OBS/73B0.rje");
+            TxnPaser1.ReadFromFile(@"./Sample/TXN/OBS/BlueTest2.rje");
             //MxPaser1.ReadFromFile(@"./sample_NO_hit.xml");
             //MxPaser1.ReadFromFile(@"./sample_pacs.008.xml");
             //MxPaser1.ReadFromFile(@"./sample_ILoveYou200.xml");
@@ -56,17 +56,15 @@ namespace MegaTFLT
             }
 
             EdqService edqService = new EdqService();
-            List<TfAlertsModel> tfAlertsModels = await edqService.ProcessScreeningAsync(TxnPaser1.mxMessages);
+            List<TfAlertsModel> tfAlertsModels = await edqService.ProcessScreeningAsync(TxnPaser1.ScreeningInputTags);
             using (MegaEcmUnitOfWork _unitOfWork = new MegaEcmUnitOfWork())
             {
                 if (tfAlertsModels.Count() > 0)
                 {
                     TfCasesModel tfCasesModel = new TfCasesModel(TxnPaser1.TfMessageModel);
-                    tfCasesModel.CaseStatus = "New Case";
                     tfCasesModel.CaseStatusCode = 0;
                     tfAlertsModels.ForEach(c =>
                     {
-                        c.AlertStatus = "New Case";
                         c.AlertStatusCode = 0;
                         c.CaseId = tfCasesModel.Id;
                     });

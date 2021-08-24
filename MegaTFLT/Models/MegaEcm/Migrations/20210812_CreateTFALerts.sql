@@ -4,7 +4,6 @@ create table MEGA_ECM.TF_ALERTS
 ( 
 id raw(16) DEFAULT sys_guid() PRIMARY KEY,
 CaseID raw(16),
-AlertStatus VARCHAR2(100 CHAR),
 AlertStatusCode NUMBER(3,0),
 Input VARCHAR2(4000 CHAR) NOT NULL,
 Score NUMBER(3,0),

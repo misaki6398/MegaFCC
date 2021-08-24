@@ -9,7 +9,6 @@ CREATE TABLE MEGA_ECM.TF_CASES (
 	MsgCurrency varchar2(10),
 	MsgAmount NUMBER(30, 10),
 	MsgBranchNO VARCHAR2(10 CHAR),
-	CaseStatus VARCHAR2(100 CHAR),
 	CaseStatusCode NUMBER(3, 0),
 	Assignee varchar2(10),
 	OWNER varchar2(10),

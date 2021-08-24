@@ -8,7 +8,6 @@ namespace MegaTFLT.Models.MegaEcm.Models
 
         public byte[] id { get; set; } = GuidUtility.ToRaw16(Guid.NewGuid());
         public byte[] CaseId { get; set; }
-        public string AlertStatus { get; set; }
         public int AlertStatusCode { get; set; }
         public string Input { get; set; }
         // Country&city

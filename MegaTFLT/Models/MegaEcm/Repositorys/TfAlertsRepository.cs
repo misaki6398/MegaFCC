@@ -16,7 +16,6 @@ namespace MegaTFLT.Models.MegaEcm.Repositorys
           INSERT INTO tf_alerts (
                 id,
                 caseid,
-                alertstatus,
                 alertstatuscode,
                 input,
                 score,
@@ -60,7 +59,6 @@ namespace MegaTFLT.Models.MegaEcm.Repositorys
             ) VALUES (
                 :id,
                 :CaseId,
-                :AlertStatus,
                 :AlertStatusCode,
                 :Input,
                 :Score,
