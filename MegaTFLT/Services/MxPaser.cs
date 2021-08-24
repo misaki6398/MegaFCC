@@ -10,16 +10,16 @@ namespace MegaTFLT.Utilitys
 {
     public class MxPaser : BaseMessagePaser
     {
-        public override bool ReadFromText(string mxText)
+        public override bool ReadFromText(string text)
         {
             bool isSuccess = false;
-            XmlReader reader = XmlReader.Create(new StringReader(mxText));
-            mxMessages = new Dictionary<string, List<ScreeningInputTagModel>>();
+            XmlReader reader = XmlReader.Create(new StringReader(text));
+            ScreeningInputTags = new Dictionary<string, List<ScreeningInputTagModel>>();
             string ElementText = "";
             string ValueText = "";
 
             // ----Peocess Message----
-            TfMessageModel = new TfMessageModel(mxText);
+            TfMessageModel = new TfMessageModel(text);
             TfMessageModel.SwallowId = TfMessageModel.CreateDatetime.ToString("yyyyMMddHHmmssffffff", DateTimeFormatInfo.InvariantInfo) + "I0";
             Console.WriteLine($"MessageGuid:{TfMessageModel.id}");
             Console.WriteLine($"CreateDatetime:{TfMessageModel.CreateDatetime}");
@@ -109,29 +109,28 @@ namespace MegaTFLT.Utilitys
                     // ----Peocess Message----
 
                     // ----Peocess Screening----
-                    List<ScreeningInputTagModel> lstMxInputTag = null;
-                    if (mxMessages.ContainsKey(ElementText))
+                    List<ScreeningInputTagModel> InputTagList = null;
+                    if (ScreeningInputTags.ContainsKey(ElementText))
                     {
-                        lstMxInputTag = mxMessages[ElementText];
+                        InputTagList = ScreeningInputTags[ElementText];
                     }
                     else
                     {
-                        lstMxInputTag = new List<ScreeningInputTagModel>();
-                        mxMessages.Add(ElementText, lstMxInputTag);
+                        InputTagList = new List<ScreeningInputTagModel>();
+                        ScreeningInputTags.Add(ElementText, InputTagList);
                     }
-                    ScreeningInputTagModel tempMxInputTagModel = new ScreeningInputTagModel();
-                    tempMxInputTagModel.Input = ValueText;
-                    tempMxInputTagModel.TagName = ElementText;
-                    lstMxInputTag.Add(tempMxInputTagModel);
+                    ScreeningInputTagModel tempInputTagModel = new ScreeningInputTagModel();
+                    tempInputTagModel.Input = ValueText;
+                    tempInputTagModel.TagName = ElementText;
+                    InputTagList.Add(tempInputTagModel);
                     // ----Peocess Screening----
                 }
             }
-            //Console.WriteLine($"{mxMessages}");
-            foreach (string mxMessageKey in mxMessages.Keys)
+            foreach (string ScreeningKey in ScreeningInputTags.Keys)
             {
-                List<ScreeningInputTagModel> lstMxInputTag = mxMessages[mxMessageKey];
-                IEnumerable<ScreeningInputTagModel> noduplicates = (lstMxInputTag.Distinct());
-                mxMessages[mxMessageKey] = noduplicates.ToList();
+                List<ScreeningInputTagModel> InputTagList = ScreeningInputTags[ScreeningKey];
+                IEnumerable<ScreeningInputTagModel> noduplicates = (InputTagList.Distinct());
+                ScreeningInputTags[ScreeningKey] = noduplicates.ToList();
             }
 
             isSuccess = true;

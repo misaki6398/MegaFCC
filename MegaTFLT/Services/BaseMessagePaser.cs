@@ -10,7 +10,7 @@ namespace MegaTFLT.Utilitys
     public abstract class BaseMessagePaser
     {
         public TfMessageModel TfMessageModel { get; protected set; }
-        public Dictionary<string, List<ScreeningInputTagModel>> mxMessages { get; protected set; }
+        public Dictionary<string, List<ScreeningInputTagModel>> ScreeningInputTags { get; protected set; }
 
         public virtual bool ReadFromFile(string filePath)
         {
@@ -20,9 +20,8 @@ namespace MegaTFLT.Utilitys
             Console.WriteLine("-------------------------");
             try
             {
-                string mxText = File.ReadAllText(filePath);
-                //Console.WriteLine($"{mxText}");
-                isSuccess = this.ReadFromText(mxText);
+                string Text = File.ReadAllText(filePath);
+                isSuccess = this.ReadFromText(Text);
             }
             catch (DirectoryNotFoundException ex)
             {
@@ -39,6 +38,6 @@ namespace MegaTFLT.Utilitys
             }
             return isSuccess;
         }
-        public abstract bool ReadFromText(string mxText);
+        public abstract bool ReadFromText(string text);
     }
 }

@@ -26,19 +26,19 @@ namespace MegaTFLT
                 {"TheTestCode", new List<string>{"Oh My God"}}
             };
             */
-            //MxPaser MxPaser1 = new MxPaser();
-            //MxPaser1.ReadFromFile(@"./sample.xml");
-            TxnPaser TxnPaser1 = new TxnPaser();
-            TxnPaser1.ReadFromFile(@"./Sample/TXN/OBS/BlueTest2.rje");
-            //MxPaser1.ReadFromFile(@"./sample_NO_hit.xml");
-            //MxPaser1.ReadFromFile(@"./sample_pacs.008.xml");
-            //MxPaser1.ReadFromFile(@"./sample_ILoveYou200.xml");
+            MxPaser Paser1 = new MxPaser();
+            //Paser1.ReadFromFile(@"./sample.xml");
+            //TxnPaser Paser1 = new TxnPaser();
+            //Paser1.ReadFromFile(@"./Sample/TXN/OBS/BlueTest2.rje");
+            //Paser1.ReadFromFile(@"./sample_NO_hit.xml");
+            Paser1.ReadFromFile(@"./sample_pacs.008.xml");
+            //Paser1.ReadFromFile(@"./sample_ILoveYou200.xml");
 
             using (MegaEcmUnitOfWork _unitOfWork = new MegaEcmUnitOfWork())
             {
                 try
                 {
-                    await _unitOfWork.TfMessagesRepository.InsertAsync(TxnPaser1.TfMessageModel);
+                    await _unitOfWork.TfMessagesRepository.InsertAsync(Paser1.TfMessageModel);
                 }
                 catch (OracleException ex)
                 {
@@ -56,12 +56,12 @@ namespace MegaTFLT
             }
 
             EdqService edqService = new EdqService();
-            List<TfAlertsModel> tfAlertsModels = await edqService.ProcessScreeningAsync(TxnPaser1.ScreeningInputTags);
+            List<TfAlertsModel> tfAlertsModels = await edqService.ProcessScreeningAsync(Paser1.ScreeningInputTags);
             using (MegaEcmUnitOfWork _unitOfWork = new MegaEcmUnitOfWork())
             {
                 if (tfAlertsModels.Count() > 0)
                 {
-                    TfCasesModel tfCasesModel = new TfCasesModel(TxnPaser1.TfMessageModel);
+                    TfCasesModel tfCasesModel = new TfCasesModel(Paser1.TfMessageModel);
                     tfCasesModel.CaseStatusCode = 0;
                     tfAlertsModels.ForEach(c =>
                     {
