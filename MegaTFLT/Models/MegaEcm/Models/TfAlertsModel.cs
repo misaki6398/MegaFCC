@@ -8,7 +8,6 @@ namespace MegaTFLT.Models.MegaEcm.Models
 
         public byte[] id { get; set; } = GuidUtility.ToRaw16(Guid.NewGuid());
         public byte[] CaseId { get; set; }
-        public string AlertStatus { get; set; }
         public int AlertStatusCode { get; set; }
         public string Input { get; set; }
         // Country&city
@@ -98,6 +97,7 @@ namespace MegaTFLT.Models.MegaEcm.Models
 
         // Common
         public string ListSubTypeID { get; set; }
+        public string ListRecord { get; set; }
         public string IdentifierTagName { get; set; }
         public string IdentifierValue { get; set; }
         public string ExpressionCode { get; set; }

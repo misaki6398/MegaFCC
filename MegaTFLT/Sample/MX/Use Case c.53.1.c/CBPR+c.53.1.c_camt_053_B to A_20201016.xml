@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 											
+THE MESSAGE WILL WORK “AS IS” IN THE READINESS PORTAL. IT IS ESSENTIAL THAT USERS REMOVE THE ENVELOPE AND REPLACE IT WITH THEIR OWN TRANSPORT HEADER (FOR EXAMPLE FOR ALLIANCE ACCESS YOU WOULD USE THE XML V2 HEADERS).											
+=========================================================================================================================================================================================											
+Legal Disclaimer:											
+=================											
+SWIFT © 2020. All rights reserved. 											
+This publication contains SWIFT or third-party confidential information. Do not disclose this publication outside your organisation without SWIFT’s prior written consent.											
+The use of this document is governed by the legal notices appearing at the end of this document. By using this document, you will be deemed to have accepted those legal notices.											
+'=================================================================================================================================================================================											
+Use Case c.53.1.c - Flow#6 (camt.053) B to A
+========================================================================================================================											
+Change Log											
+2020-10-16 - Original version 											
+=============================											
+-->
+<AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.02">
+	<Fr>
+		<FIId>
+			<FinInstnId>
+				<BICFI>RBOSGB2L</BICFI>
+			</FinInstnId>
+		</FIId>
+	</Fr>
+	<To>
+		<FIId>
+			<FinInstnId>
+				<BICFI>ADAGGB2S</BICFI>
+			</FinInstnId>
+		</FIId>
+	</To>
+	<BizMsgIdr>B2A44506272708</BizMsgIdr> 
+	<MsgDefIdr>camt.053.001.08</MsgDefIdr>
+	<BizSvc>swift.cbprplus.core.01</BizSvc>
+	<CreDt>2020-08-04T14:00:00+01:00</CreDt>
+</AppHdr>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:camt.053.001.08">
+	<BkToCstmrStmt>
+		<GrpHdr>
+			<MsgId>B2A44506272708</MsgId>
+			<CreDtTm>2020-08-04T14:00:00+01:00</CreDtTm>
+			<MsgRcpt>
+				<Id>
+					<OrgId>
+						<AnyBIC>ADAGGB2S</AnyBIC>
+					</OrgId>
+				</Id>
+			</MsgRcpt>
+			<AddtlInf>/EODY/</AddtlInf>
+		</GrpHdr>
+		<Stmt>
+			<Id>20200111</Id>
+			<ElctrncSeqNb>2020011101</ElctrncSeqNb>
+			<Acct>
+				<Id>
+					<Othr>
+						<Id>48751258</Id>
+					</Othr>
+				</Id>
+				<Ccy>GBP</Ccy>
+			</Acct>
+			<Bal>
+				<Tp>
+					<CdOrPrtry>
+						<Cd>CLAV</Cd>
+					</CdOrPrtry>
+				</Tp>
+				<Amt Ccy="GBP">126553449.67</Amt>
+				<CdtDbtInd>CRDT</CdtDbtInd>
+				<Dt>
+					<Dt>2020-08-04</Dt>
+				</Dt>
+			</Bal>
+			<Ntry>
+				<NtryRef>0001</NtryRef>
+				<Amt Ccy="GBP">126546464.32</Amt>
+				<CdtDbtInd>DBIT</CdtDbtInd>
+				<Sts>
+					<Cd>BOOK</Cd>
+				</Sts>
+				<BookgDt>
+					<Dt>2020-08-04</Dt>
+				</BookgDt>
+				<ValDt>
+					<Dt>2020-08-04</Dt>
+				</ValDt>
+				<AcctSvcrRef>RBSREF-12345</AcctSvcrRef>
+				<BkTxCd>
+					<Domn>
+						<Cd>PMNT</Cd>
+						<Fmly>
+							<Cd>ICDT</Cd>
+							<SubFmlyCd>XBCT</SubFmlyCd>
+						</Fmly>
+					</Domn>
+				</BkTxCd>
+				<NtryDtls>
+					<TxDtls>
+						<Refs>
+							<AcctSvcrRef>RBSREF-12345</AcctSvcrRef>
+							<EndToEndId>pacs008EndToEndId-001</EndToEndId>
+							<UETR>8a562c67-ca16-48ba-b074-65581be6f001</UETR>
+						</Refs>
+						<Amt Ccy="GBP">126546464.32</Amt>
+						<CdtDbtInd>CRDT</CdtDbtInd>
+					</TxDtls>
+				</NtryDtls>
+			</Ntry>
+		</Stmt>
+	</BkToCstmrStmt>
+</Document>

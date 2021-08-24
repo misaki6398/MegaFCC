@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+THE MESSAGE WILL WORK “AS IS” IN THE READINESS PORTAL. IT IS ESSENTIAL THAT USERS REMOVE THE ENVELOPE AND REPLACE IT WITH THEIR OWN TRANSPORT HEADER (FOR EXAMPLE FOR ALLIANCE ACCESS YOU WOULD USE THE XML V2 HEADERS).
+=========================================================================================================================================================================================
+SWIFT © 2020. All rights reserved. 
+This publication contains SWIFT or third-party confidential information. Do not disclose this publication outside your organisation without SWIFT’s prior written consent.
+The use of this document is governed by the legal notices appearing at the end of this document. By using this document, you will be deemed to have accepted those legal notices.
+
+====================================================================================================================================================================
+Use Case p.8.2.1 pacs.008 FI to FI Customer Credit Transfer - Flow #2a
+========================================================================================================================
+Change Log
+2020-10-16 - Original version 
+=============================
+-->
+<env:Envelope xmlns:env="urn:swift:xsd:envelope">
+<AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.02" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Fr>
+		<FIId>
+			<FinInstnId>
+				<BICFI>CHASGB2LXXX</BICFI>
+			</FinInstnId>
+		</FIId>
+	</Fr>
+	<To>
+		<FIId>
+			<FinInstnId>
+				<BICFI>BKMGNL2AXXX</BICFI>
+			</FinInstnId>
+		</FIId>
+	</To>
+	<BizMsgIdr>A2D044506271305</BizMsgIdr>
+	<MsgDefIdr>pacs.008.001.08</MsgDefIdr>
+	<BizSvc>swift.cbprplus.01</BizSvc>
+	<CreDt>2020-01-11T12:43:41.960+00:00</CreDt>
+</AppHdr>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pacs.008.001.08" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<FIToFICstmrCdtTrf>
+		<GrpHdr>
+			<MsgId>A2D044506271305</MsgId>
+			<CreDtTm>2020-01-11T00:00:00+00:00</CreDtTm>
+			<NbOfTxs>1</NbOfTxs>
+			<SttlmInf>
+				<SttlmMtd>COVE</SttlmMtd>
+				<InstgRmbrsmntAgt>
+					<FinInstnId>
+						<BICFI>MOSDNL21XXX</BICFI>
+					</FinInstnId>
+				</InstgRmbrsmntAgt>
+				<InstdRmbrsmntAgt>
+					<FinInstnId>
+						<BICFI>ABNANL2AXXX</BICFI>
+					</FinInstnId>
+				</InstdRmbrsmntAgt>
+			</SttlmInf>
+		</GrpHdr>
+		<CdtTrfTxInf>
+			<PmtId>
+				<InstrId>A2D044506271305</InstrId>
+				<EndToEndId>E2E0404451305</EndToEndId>
+				<UETR>174c245f-2682-4291-ad67-2a41e530cd27</UETR>
+			</PmtId>
+			<IntrBkSttlmAmt Ccy="EUR">150050</IntrBkSttlmAmt>
+			<IntrBkSttlmDt>2020-01-11</IntrBkSttlmDt>
+			<InstdAmt Ccy="EUR">150000</InstdAmt>
+			<ChrgBr>DEBT</ChrgBr>
+			<ChrgsInf>
+				<Amt Ccy="EUR">50</Amt>
+				<Agt>
+					<FinInstnId>
+						<BICFI>BKMGNL2AXXX</BICFI>
+					</FinInstnId>
+				</Agt>
+			</ChrgsInf>			
+			<InstgAgt>
+				<FinInstnId>
+					<BICFI>CHASGB2LXXX</BICFI>
+				</FinInstnId>
+			</InstgAgt>
+			<InstdAgt>
+				<FinInstnId>
+					<BICFI>BKMGNL2AXXX</BICFI>
+				</FinInstnId>
+			</InstdAgt>
+			<Dbtr>
+				<Nm>A21,PLC.</Nm>
+				<PstlAdr>
+					<StrtNm>1 ANGEL LN</StrtNm>
+					<PstCd>EC4R 3AB</PstCd>
+					<TwnNm>LONDON</TwnNm>
+					<Ctry>GB</Ctry>
+				</PstlAdr>
+			</Dbtr>
+			<DbtrAcct>
+				<Id>
+					<Othr>
+						<Id>042100175</Id>
+					</Othr>
+				</Id>
+			</DbtrAcct>
+			<DbtrAgt>
+				<FinInstnId>
+					<BICFI>CHASGB2LXXX</BICFI>
+				</FinInstnId>
+			</DbtrAgt>
+			<CdtrAgt>
+				<FinInstnId>
+					<BICFI>BKMGNL2AXXX</BICFI>
+				</FinInstnId>
+			</CdtrAgt>
+			<Cdtr>
+				<Nm>DELTA LLOYD</Nm>
+				<PstlAdr>
+					<StrtNm>OMVAL 300</StrtNm>
+					<PstCd>1096</PstCd>
+					<TwnNm>AMSTERDAM</TwnNm>
+					<Ctry>NL</Ctry>
+				</PstlAdr>
+			</Cdtr>
+			<CdtrAcct>
+				<Id>
+					<Othr>
+						<Id>692511497</Id>
+					</Othr>
+				</Id>
+			</CdtrAcct>
+			<RmtInf>
+				<Ustrd>INVOICE 1234</Ustrd>
+			</RmtInf>
+		</CdtTrfTxInf>
+	</FIToFICstmrCdtTrf>
+</Document>
+</env:Envelope>

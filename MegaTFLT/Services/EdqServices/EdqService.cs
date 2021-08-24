@@ -29,7 +29,7 @@ namespace MegaTFLT.Services.EdqServices
             _mapper = config.CreateMapper();
 
         }
-        public async Task<List<TfAlertsModel>> ProcessScreeningAsync(Dictionary<string, List<MxInputTagModel>> mxMessages)
+        public async Task<List<TfAlertsModel>> ProcessScreeningAsync(Dictionary<string, List<ScreeningInputTagModel>> mxMessages)
         {
             var intersectKeys = mxMessages.Keys.Intersect(ConfigUtility.ScreenConfigs.Keys);
 
@@ -55,7 +55,7 @@ namespace MegaTFLT.Services.EdqServices
             return tfAlertsModels;
         }
 
-        private void DispatchScreenData(Dictionary<string, List<MxInputTagModel>> mxMessages, EdqRequestModel edqRequestModel)
+        private void DispatchScreenData(Dictionary<string, List<ScreeningInputTagModel>> mxMessages, EdqRequestModel edqRequestModel)
         {
             var intersectKeys = mxMessages.Keys.Intersect(ConfigUtility.ScreenConfigs.Keys);
             foreach (string intersectKey in intersectKeys)
@@ -65,7 +65,7 @@ namespace MegaTFLT.Services.EdqServices
                 {
                     mxMessages[intersectKey].ForEach(mxInputTag =>
                     {
-                        edqRequestModel.NameAddressRequestModels.Add(_mapper.Map<MxInputTagModel, NameAddressRequestModel>(mxInputTag));
+                        edqRequestModel.NameAddressRequestModels.Add(_mapper.Map<ScreeningInputTagModel, NameAddressRequestModel>(mxInputTag));
                     });
                 }
 
@@ -73,7 +73,7 @@ namespace MegaTFLT.Services.EdqServices
                 {
                     mxMessages[intersectKey].ForEach(mxInputTag =>
                     {
-                        edqRequestModel.CountryCityRequestModels.Add(_mapper.Map<MxInputTagModel, CountryCityRequestModel>(mxInputTag));
+                        edqRequestModel.CountryCityRequestModels.Add(_mapper.Map<ScreeningInputTagModel, CountryCityRequestModel>(mxInputTag));
                     });
                 }
 
@@ -81,7 +81,7 @@ namespace MegaTFLT.Services.EdqServices
                 {
                     mxMessages[intersectKey].ForEach(mxInputTag =>
                     {
-                        edqRequestModel.BicRequestModels.Add(_mapper.Map<MxInputTagModel, BicRequestModel>(mxInputTag));
+                        edqRequestModel.BicRequestModels.Add(_mapper.Map<ScreeningInputTagModel, BicRequestModel>(mxInputTag));
                     });
                 }
 
@@ -89,7 +89,7 @@ namespace MegaTFLT.Services.EdqServices
                 {
                     mxMessages[intersectKey].ForEach(mxInputTag =>
                     {
-                        edqRequestModel.NarrativeRequestModels.Add(_mapper.Map<MxInputTagModel, NarrativeRequestModel>(mxInputTag));
+                        edqRequestModel.NarrativeRequestModels.Add(_mapper.Map<ScreeningInputTagModel, NarrativeRequestModel>(mxInputTag));
                     });
                 }
 
@@ -97,7 +97,7 @@ namespace MegaTFLT.Services.EdqServices
                 {
                     mxMessages[intersectKey].ForEach(mxInputTag =>
                     {
-                        edqRequestModel.PortRequestModels.Add(_mapper.Map<MxInputTagModel, PortRequestModel>(mxInputTag));
+                        edqRequestModel.PortRequestModels.Add(_mapper.Map<ScreeningInputTagModel, PortRequestModel>(mxInputTag));
                     });
                 }
 
@@ -105,7 +105,7 @@ namespace MegaTFLT.Services.EdqServices
                 {
                     mxMessages[intersectKey].ForEach(mxInputTag =>
                     {
-                        edqRequestModel.GoodsRequestModels.Add(_mapper.Map<MxInputTagModel, GoodsRequestModel>(mxInputTag));
+                        edqRequestModel.GoodsRequestModels.Add(_mapper.Map<ScreeningInputTagModel, GoodsRequestModel>(mxInputTag));
                     });
                 }
 

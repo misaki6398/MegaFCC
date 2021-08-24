@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+THE MESSAGE WILL WORK “AS IS” IN THE READINESS PORTAL. IT IS ESSENTIAL THAT USERS REMOVE THE ENVELOPE AND REPLACE IT WITH THEIR OWN TRANSPORT HEADER (FOR EXAMPLE FOR ALLIANCE ACCESS YOU WOULD USE THE XML V2 HEADERS).
+========================================================================================================================================================================================= 
+Legal Disclaimer:
+SWIFT © 2020. All rights reserved. 
+This publication contains SWIFT or third-party confidential information. Do not disclose this publication outside your organisation without SWIFT’s prior written consent.
+The use of this document is governed by the legal notices appearing at the end of this document. By using this document, you will be deemed to have accepted those legal notices.												
+
+=========================================================================================================================================================================================
+Use Case p.9.2.3		The Instructed agent B Bank of America sends a pacs.009.COV to the creditor agent Podrovaska Bank Croatia
+========================================================================================================================
+Change Log
+2020-10-16 - Original version 
+=============================
+-->
+<env:Envelope xmlns:env="urn:swift:xsd:envelope">											
+	<AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.02">										
+		<Fr>									
+			<FIId>								
+				<FinInstnId>							
+					<BICFI>BOFAUS3NXXX</BICFI>						
+				</FinInstnId>							
+			</FIId>								
+		</Fr>									
+		<To>									
+			<FIId>								
+				<FinInstnId>							
+					<BICFI>IRVTUS3NXXX</BICFI>						
+				</FinInstnId>							
+			</FIId>								
+		</To>									
+		<BizMsgIdr>pacs9bizmsgidr03</BizMsgIdr>									
+		<MsgDefIdr>pacs.009.001.08</MsgDefIdr>									
+		<BizSvc>swift.cbprplus.cov.01</BizSvc>									
+		<CreDt>2020-07-28T11:12:47+01:00</CreDt>									
+	</AppHdr>										
+	<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pacs.009.001.08">										
+		<FICdtTrf>									
+			<GrpHdr>								
+				<MsgId>pacs9bizmsgidr03</MsgId>							
+				<CreDtTm>2020-07-28T11:12:47+01:00</CreDtTm>							
+				<NbOfTxs>1</NbOfTxs>							
+				<SttlmInf>							
+					<SttlmMtd>INDA</SttlmMtd>						
+				</SttlmInf>							
+			</GrpHdr>								
+			<CdtTrfTxInf>								
+				<PmtId>							
+					<InstrId>pacs8bizmsgidr01</InstrId>						
+					<EndToEndId>pacs8bizmsgidr01</EndToEndId>						
+					<UETR>8a562c67-ca16-48ba-b074-65581be6f001</UETR>						
+				</PmtId>							
+				<IntrBkSttlmAmt Ccy="USD">36998765.25</IntrBkSttlmAmt>							
+				<IntrBkSttlmDt>2020-07-28</IntrBkSttlmDt>							
+				<InstgAgt>							
+					<FinInstnId>						
+						<BICFI>BOFAUS3NXXX</BICFI>					
+					</FinInstnId>						
+				</InstgAgt>							
+				<InstdAgt>							
+					<FinInstnId>						
+						<BICFI>IRVTUS3NXXX</BICFI>					
+					</FinInstnId>						
+				</InstdAgt>							
+				<Dbtr>							
+					<FinInstnId>						
+						<BICFI>BNMXMXMMXXX</BICFI>					
+					</FinInstnId>						
+				</Dbtr>							
+				<Cdtr>							
+					<FinInstnId>						
+						<BICFI>PDKCHR2XXXX</BICFI>					
+					</FinInstnId>						
+				</Cdtr>							
+				<UndrlygCstmrCdtTrf>							
+					<Dbtr>						
+						<Nm>Midnight Spares S de RL</Nm>					
+						<PstlAdr>					
+							<StrtNm>Tequila Street</StrtNm>				
+							<TwnNm>Mexico City</TwnNm>				
+							<Ctry>MX</Ctry>				
+						</PstlAdr>					
+						</Dbtr>					
+					<DbtrAgt>						
+						<FinInstnId>					
+							<BICFI>BNMXMXMMXXX</BICFI>				
+						</FinInstnId>					
+					</DbtrAgt>						
+					<CdtrAgt>						
+						<FinInstnId>					
+							<BICFI>PDKCHR2XXXX</BICFI>				
+						</FinInstnId>					
+					</CdtrAgt>						
+					<Cdtr>						
+						<Nm>Rimac Automobili</Nm>					
+						<PstlAdr>					
+							<StrtNm>Ljubljanska 7</StrtNm>				
+							<TwnNm>Sveta Nedekja</TwnNm>				
+							<Ctry>HR</Ctry>				
+						</PstlAdr>					
+					</Cdtr>						
+					<CdtrAcct>						
+						<Id>					
+							<Othr>				
+								<Id>RIM741258</Id>			
+							</Othr>				
+						</Id>					
+					</CdtrAcct>						
+					<RmtInf>						
+						<Ustrd>Invoice: 65897/445</Ustrd>					
+					</RmtInf>						
+				</UndrlygCstmrCdtTrf>							
+			</CdtTrfTxInf>								
+		</FICdtTrf>									
+	</Document>										
+</env:Envelope>

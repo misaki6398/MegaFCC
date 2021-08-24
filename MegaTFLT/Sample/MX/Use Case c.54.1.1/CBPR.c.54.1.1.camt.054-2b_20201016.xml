@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+THE MESSAGE WILL WORK “AS IS” IN THE READINESS PORTAL. IT IS ESSENTIAL THAT USERS REMOVE THE ENVELOPE AND REPLACE IT WITH THEIR OWN TRANSPORT HEADER (FOR EXAMPLE FOR ALLIANCE ACCESS YOU WOULD USE THE XML V2 HEADERS).
+=========================================================================================================================================================================================
+Legal Disclaimer:
+SWIFT © 2020. All rights reserved. 
+This publication contains SWIFT or third-party confidential information. Do not disclose this publication outside your organisation without SWIFT's prior written consent.
+The use of this document is governed by the legal notices appearing at the end of this document. By using this document, you will be deemed to have accepted those legal notices.
+
+=========================================================================================================================================================================================
+Use Case c.54.1.1 Customer Debit/Credit Notification (camt.054) of a Customer Credit Transfer (pacs.008) - Flow#2b (camt.054)
+========================================================================================================================
+Change Log
+2020-10-16 - Original version 
+=============================
+-->
+<env:Envelope xmlns:env="urn:swift:xsd:envelope">
+<AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.02">
+	<Fr>
+		<FIId>
+			<FinInstnId>
+				<BICFI>BKAUATWW</BICFI>
+			</FinInstnId>
+		</FIId>
+	</Fr>
+	<To>
+		<FIId>
+			<FinInstnId>
+				<BICFI>ABVRATW1XXX</BICFI>
+			</FinInstnId>
+		</FIId>
+	</To>
+	<BizMsgIdr>BKAU202009081343</BizMsgIdr>
+	<MsgDefIdr>camt.054.001.08</MsgDefIdr>
+	<BizSvc>swift.cbprplus.01</BizSvc>
+	<CreDt>2020-09-08T11:30:00+02:00</CreDt>
+</AppHdr>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:camt.054.001.08">
+	<BkToCstmrDbtCdtNtfctn>
+		<GrpHdr>
+			<MsgId>BKAU202009081343</MsgId>
+			<CreDtTm>2020-09-08T11:30:00+02:00</CreDtTm>
+		</GrpHdr>
+		<Ntfctn>
+			<Id>StmtId/20200908/123</Id>
+			<Acct>
+				<Id>
+					<Othr>
+						<Id>265385644663</Id>
+					</Othr>
+				</Id>
+			</Acct>
+			<Ntry>
+				<NtryRef>001</NtryRef>
+				<Amt Ccy="EUR">300000</Amt>
+				<CdtDbtInd>DBIT</CdtDbtInd>
+				<Sts>
+					<Cd>BOOK</Cd>
+				</Sts>
+				<BkTxCd>
+					<Domn>
+						<Cd>PMNT</Cd>
+						<Fmly>
+							<Cd>ICDT</Cd>
+							<SubFmlyCd>XBCT</SubFmlyCd>
+						</Fmly>
+					</Domn>
+				</BkTxCd>
+				<NtryDtls>
+					<TxDtls>
+						<Refs>
+							<InstrId>ABVR20200908-22</InstrId>
+							<EndToEndId>E2E04044506271305</EndToEndId>
+							<UETR>174c245f-2682-4291-ad67-2a41e530cd27</UETR>
+						</Refs>
+						<Amt Ccy="EUR">300000</Amt>
+						<RltdPties>
+							<Cdtr>
+								<Pty>
+									<Nm>Leaseplan Corp N.V.</Nm>
+									<PstlAdr>
+										<StrtNm>OMVAL 300</StrtNm>
+										<PstCd>1096</PstCd>
+										<TwnNm>AMSTERDAM</TwnNm>
+										<Ctry>NL</Ctry>
+									</PstlAdr>
+								</Pty>
+							</Cdtr>
+						</RltdPties>
+						<RltdAgts>
+							<CdtrAgt>
+								<FinInstnId>
+									<BICFI>ABNANL2A</BICFI>
+								</FinInstnId>
+							</CdtrAgt>
+						</RltdAgts>
+						<RltdDts>
+							<TxDtTm>2020-09-08T11:30:00+02:00</TxDtTm>
+						</RltdDts>
+					</TxDtls>
+				</NtryDtls>
+			</Ntry>
+		</Ntfctn>
+	</BkToCstmrDbtCdtNtfctn>
+</Document>
+</env:Envelope>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>											
+<!-- 	SWIFT © 2020. All rights reserved. 										
+THE MESSAGE WILL WORK “AS IS” IN THE READINESS PORTAL. IT IS ESSENTIAL THAT USERS REMOVE THE ENVELOPE AND REPLACE IT WITH THEIR OWN TRANSPORT HEADER (FOR EXAMPLE FOR ALLIANCE ACCESS YOU WOULD USE THE XML V2 HEADERS).											
+=========================================================================================================================================================================================											
+Legal Disclaimer:											
+=================											
+SWIFT © 2020. All rights reserved. 											
+This publication contains SWIFT or third-party confidential information. Do not disclose this publication outside your organisation without SWIFT’s prior written consent.											
+The use of this document is governed by the legal notices appearing at the end of this document. By using this document, you will be deemed to have accepted those legal notices.											
+'=================================================================================================================================================================================											
+Use Case c.57.1.2		Creditor ANZ Bank as Account Owner sends a Notification to Receiver to Agent (C) Commonwealth Bank as Account Servicer.									
+=========================================================================================================================================================											
+Change Log											
+2020-12-02 - Original version 											
+=============================											
+-->											
+<Envelope xmlns="urn:swift:xsd:envelope" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:swift:xsd:envelope ../../../../Schemas/Translator_envelope.xsd">											
+	<AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.02">										
+		<Fr>									
+			<FIId>								
+				<FinInstnId>							
+					<BICFI>ANZBNZ22</BICFI>						
+				</FinInstnId>							
+			</FIId>								
+		</Fr>									
+		<To>									
+			<FIId>								
+				<FinInstnId>							
+					<BICFI>CTBAAU2S</BICFI>						
+				</FinInstnId>							
+			</FIId>								
+		</To>									
+		<BizMsgIdr>camt57bizmsgidr1</BizMsgIdr>									
+		<MsgDefIdr>camt.057.001.06</MsgDefIdr>									
+		<BizSvc>swift.cbprplus.core.01</BizSvc>									
+		<CreDt>2020-12-02T09:00:00+10:00</CreDt>									
+	</AppHdr>										
+	<Document xmlns="urn:iso:std:iso:20022:tech:xsd:camt.057.001.06">										
+		<NtfctnToRcv>									
+			<GrpHdr>								
+				<MsgId>camt57bizmsgidr1</MsgId>							
+				<CreDtTm>2020-12-02T09:00:00+10:00</CreDtTm>							
+			</GrpHdr>								
+			<Ntfctn>								
+				<Id>NTFCTNID10001 </Id>							
+				<Acct>							
+					<Id>						
+						<Othr>					
+							<Id>ANZ02564185DOSH</Id>				
+						</Othr>					
+					</Id>						
+				</Acct>							
+				<AcctOwnr>							
+					<Agt>						
+						<FinInstnId>					
+							<BICFI>ANZBNZ22</BICFI>				
+						</FinInstnId>					
+					</Agt>						
+				</AcctOwnr>							
+				<AcctSvcr>							
+					<FinInstnId>						
+						<BICFI>CTBAAU2S</BICFI>					
+					</FinInstnId>						
+				</AcctSvcr>							
+				<TtlAmt Ccy="AUD">15500000</TtlAmt>							
+				<XpctdValDt>2020-12-04</XpctdValDt>							
+				<Dbtr>							
+					<Agt>						
+						<FinInstnId>					
+							<BICFI>CITIUS33</BICFI>															
+						</FinInstnId>					
+					</Agt>						
+				</Dbtr>							
+				<DbtrAgt>							
+					<FinInstnId>						
+						<BICFI>WPACAU2S</BICFI>					
+					</FinInstnId>						
+				</DbtrAgt>							
+				<Itm>							
+					<Id>NTFCTNITEM01 </Id>						
+					<UETR>761d46fb-3734-4953-a160-afa9d8101212</UETR>						
+					<Amt Ccy="AUD">15500000</Amt>						
+				</Itm>							
+			</Ntfctn>								
+		</NtfctnToRcv>									
+	</Document>										
+</Envelope>											

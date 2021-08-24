@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+THE MESSAGE WILL WORK “AS IS” IN THE READINESS PORTAL. IT IS ESSENTIAL THAT USERS REMOVE THE ENVELOPE AND REPLACE IT WITH THEIR OWN TRANSPORT HEADER (FOR EXAMPLE FOR ALLIANCE ACCESS YOU WOULD USE THE XML V2 HEADERS).
+=========================================================================================================================================================================================
+SWIFT © 2020. All rights reserved. 
+This publication contains SWIFT or third-party confidential information. Do not disclose this publication outside your organisation without SWIFT’s prior written consent.
+The use of this document is governed by the legal notices appearing at the end of this document. By using this document, you will be deemed to have accepted those legal notices. 												
+
+=========================================================================================================================================================================================
+Use Case p.5.3.2		Debtor agent A [Banco BPI] sends serial pacs.008 to Intermediary B [Santander Totto]
+========================================================================================================================
+Change Log
+2020-10-16 - Original version 
+=============================
+-->
+<env:Envelope xmlns:env="urn:swift:xsd:envelope">											
+	<AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.02">										
+		<Fr>									
+			<FIId>								
+				<FinInstnId>							
+					<BICFI>BBPIPTPL</BICFI>						
+				</FinInstnId>							
+			</FIId>								
+		</Fr>									
+		<To>									
+			<FIId>								
+				<FinInstnId>							
+					<BICFI>TOTAPTPL</BICFI>						
+				</FinInstnId>							
+			</FIId>								
+		</To>									
+		<BizMsgIdr>pacs8bizmsgidr01</BizMsgIdr>									
+		<MsgDefIdr>pacs.008.001.08</MsgDefIdr>									
+		<BizSvc>swift.cbprplus.01</BizSvc>									
+		<CreDt>2020-08-04T10:00:47+01:00</CreDt>									
+	</AppHdr>										
+	<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pacs.008.001.08">										
+		<FIToFICstmrCdtTrf>									
+			<GrpHdr>								
+				<MsgId>pacs8bizmsgidr01</MsgId>							
+				<CreDtTm>2020-08-04T10:00:47+01:00</CreDtTm>							
+				<NbOfTxs>1</NbOfTxs>							
+				<SttlmInf>							
+					<SttlmMtd>INDA</SttlmMtd>						
+				</SttlmInf>							
+			</GrpHdr>								
+			<CdtTrfTxInf>								
+				<PmtId>							
+					<InstrId>pacs8bizmsgidr01</InstrId>						
+					<EndToEndId>pacs008EndToEndId-001</EndToEndId>						
+					<UETR>02713bdc-7257-4205-aebc-c3cd0a84d9c5</UETR>						
+				</PmtId>							
+				<IntrBkSttlmAmt Ccy="EUR">65124.23</IntrBkSttlmAmt>							
+				<IntrBkSttlmDt>2020-08-04</IntrBkSttlmDt>							
+				<ChrgBr>DEBT</ChrgBr>							
+				<InstgAgt>							
+					<FinInstnId>						
+						<BICFI>BBPIPTPL</BICFI>					
+					</FinInstnId>						
+				</InstgAgt>							
+				<InstdAgt>							
+					<FinInstnId>						
+						<BICFI>TOTAPTPL</BICFI>					
+					</FinInstnId>						
+				</InstdAgt>							
+				<IntrmyAgt1>							
+					<FinInstnId>						
+						<BICFI>KREDBEBB</BICFI>					
+					</FinInstnId>						
+				</IntrmyAgt1>							
+				<Dbtr>							
+					<Nm>Nandos</Nm>						
+					<PstlAdr>						
+						<StrtNm>Rue Tentente</StrtNm>					
+						<TwnNm>Porto</TwnNm>					
+						<Ctry>PT</Ctry>					
+					</PstlAdr>						
+				</Dbtr>							
+				<DbtrAgt>							
+					<FinInstnId>						
+						<BICFI>BBPIPTPL</BICFI>					
+					</FinInstnId>						
+				</DbtrAgt>							
+				<CdtrAgt>							
+					<FinInstnId>						
+						<BICFI>DELELULL</BICFI>					
+					</FinInstnId>						
+				</CdtrAgt>							
+				<Cdtr>							
+					<Nm>Rabobank</Nm>						
+					<PstlAdr>						
+						<StrtNm>Rijfstraat 2</StrtNm>					
+						<TwnNm>Antwerp</TwnNm>					
+						<Ctry>BE</Ctry>					
+					</PstlAdr>						
+				</Cdtr>							
+			</CdtTrfTxInf>								
+		</FIToFICstmrCdtTrf>									
+	</Document>										
+</env:Envelope>

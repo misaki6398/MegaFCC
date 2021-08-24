@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+THE MESSAGE WILL WORK “AS IS” IN THE READINESS PORTAL. IT IS ESSENTIAL THAT USERS REMOVE THE ENVELOPE AND REPLACE IT WITH THEIR OWN TRANSPORT HEADER (FOR EXAMPLE FOR ALLIANCE ACCESS YOU WOULD USE THE XML V2 HEADERS).
+=========================================================================================================================================================================================
+Legal Disclaimer:
+SWIFT © 2020. All rights reserved. 
+This publication contains SWIFT or third-party confidential information. Do not disclose this publication outside your organisation without SWIFT’s prior written consent.
+The use of this document is governed by the legal notices appearing at the end of this document. By using this document, you will be deemed to have accepted those legal notices.
+ 
+=========================================================================================================================================================================================
+Use Case p.9.1.1 First pacs.009
+========================================================================================================================
+Change Log
+2020-10-16 - Original version 
+=============================
+-->
+<env:Envelope xmlns:env="urn:swift:xsd:envelope">
+<AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.02">
+	<Fr>
+		<FIId>
+			<FinInstnId>
+				<BICFI>ROYCCAT2</BICFI>
+			</FinInstnId>
+		</FIId>
+	</Fr>
+	<To>
+		<FIId>
+			<FinInstnId>
+				<BICFI>ABNANL2AXXX</BICFI>
+			</FinInstnId>
+		</FIId>
+	</To>
+	<BizMsgIdr>ABCD/123/6789012</BizMsgIdr> 
+	<MsgDefIdr>pacs.009.001.08</MsgDefIdr>
+	<BizSvc>swift.cbprplus.01</BizSvc>
+	<CreDt>2020-06-25T12:43:41.960-05:00</CreDt>
+</AppHdr>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pacs.009.001.08">
+	<FICdtTrf>
+		<GrpHdr>
+			<MsgId>ABCD/123/6789012</MsgId>
+			<CreDtTm>2020-06-25T12:43:41.960-05:00</CreDtTm>
+			<NbOfTxs>1</NbOfTxs>
+			<SttlmInf>
+				<SttlmMtd>INDA</SttlmMtd>
+			</SttlmInf>
+		</GrpHdr>
+		<CdtTrfTxInf>
+			<PmtId>
+				<InstrId>ABCD/123/6789012</InstrId>
+				<EndToEndId>E2E-123456</EndToEndId>
+				<UETR>e7d02a48-f152-4d2d-874c-bd686415f307</UETR>
+			</PmtId>
+			<IntrBkSttlmAmt Ccy="EUR">6789123.34</IntrBkSttlmAmt>
+			<IntrBkSttlmDt>2020-06-25</IntrBkSttlmDt>
+			<InstgAgt>
+				<FinInstnId>
+					<BICFI>ROYCCAT2</BICFI>
+				</FinInstnId>
+			</InstgAgt>
+			<InstdAgt>
+				<FinInstnId>
+					<BICFI>ABNANL2AXXX</BICFI>
+				</FinInstnId>
+			</InstdAgt>
+			<Dbtr>
+				<FinInstnId>
+					<BICFI>ROYCCAT2</BICFI>
+					<LEI>ES7IP3U3RHIGC71XBU11</LEI>
+				</FinInstnId>
+			</Dbtr>
+			<CdtrAgt>
+				<FinInstnId>
+					<BICFI>NWBKDEFF</BICFI>
+					<LEI>213800IBT39XQ9C4CP71</LEI>
+				</FinInstnId>
+			</CdtrAgt>
+			<Cdtr>
+				<FinInstnId>
+					<BICFI>NWBKGB2L</BICFI>
+					<LEI>213800IBT39XQ9C4CP71</LEI>
+				</FinInstnId>
+			</Cdtr>
+		</CdtTrfTxInf>
+	</FICdtTrf>
+</Document>
+</env:Envelope>

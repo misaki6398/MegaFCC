@@ -9,28 +9,28 @@ namespace MegaTFLT.Models.MegaEcm.MapProfiles
         public MxInputTagToRequestProfile()
         {
             CreateMap<string, string>().ConvertUsing(s => s ?? string.Empty);
-            CreateMap<MxInputTagModel, NameAddressRequestModel>()
+            CreateMap<ScreeningInputTagModel, NameAddressRequestModel>()
             .ForMember(c => c.Input, x => x.MapFrom(y => y.Input))
             .ForMember(c => c.TagName, x => x.MapFrom(y => y.TagName));
 
-            CreateMap<MxInputTagModel, CountryCityRequestModel>()
+            CreateMap<ScreeningInputTagModel, CountryCityRequestModel>()
             .ForMember(c => c.Input, x => x.MapFrom(y => y.Input))
             .ForMember(c => c.TagName, x => x.MapFrom(y => y.TagName));
 
-            CreateMap<MxInputTagModel, GoodsRequestModel>()
+            CreateMap<ScreeningInputTagModel, GoodsRequestModel>()
             .ForMember(c => c.Input, x => x.MapFrom(y => y.Input))
             .ForMember(c => c.TagName, x => x.MapFrom(y => y.TagName));
             
-            CreateMap<MxInputTagModel, NarrativeRequestModel>()
+            CreateMap<ScreeningInputTagModel, NarrativeRequestModel>()
             .ForMember(c => c.Input, x => x.MapFrom(y => y.Input))
             .ForMember(c => c.TagName, x => x.MapFrom(y => y.TagName));
 
             
-            CreateMap<MxInputTagModel, PortRequestModel>()
+            CreateMap<ScreeningInputTagModel, PortRequestModel>()
             .ForMember(c => c.Input, x => x.MapFrom(y => y.Input))
             .ForMember(c => c.TagName, x => x.MapFrom(y => y.TagName));
 
-            CreateMap<MxInputTagModel, BicRequestModel>()
+            CreateMap<ScreeningInputTagModel, BicRequestModel>()
             .ForMember(c => c.Input, x => x.MapFrom(y => y.Input))
             .ForMember(c => c.TagName, x => x.MapFrom(y => y.TagName));
         }

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>											
+<!-- 											
+THE MESSAGE WILL WORK “AS IS” IN THE READINESS PORTAL. IT IS ESSENTIAL THAT USERS REMOVE THE ENVELOPE AND REPLACE IT WITH THEIR OWN TRANSPORT HEADER (FOR EXAMPLE FOR ALLIANCE ACCESS YOU WOULD USE THE XML V2 HEADERS).											
+=========================================================================================================================================================================================											
+Legal Disclaimer:											
+=================											
+SWIFT © 2020. All rights reserved. 											
+This publication contains SWIFT or third-party confidential information. Do not disclose this publication outside your organisation without SWIFT’s prior written consent.											
+The use of this document is governed by the legal notices appearing at the end of this document. By using this document, you will be deemed to have accepted those legal notices.											
+'=================================================================================================================================================================================											
+Use Case C.52.1.b.1		Creditor Agent RBS as the Account Servicer produces and sends a balance report to either the Account Owner Tesco Bank									
+========================================================================================================================											
+Change Log											
+2020-10-16 - Original version 											
+=============================											
+-->											
+<Envelope xmlns="urn:swift:xsd:envelope" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:swift:xsd:envelope ../../../../Schemas/Translator_envelope.xsd">											
+	<AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.02">										
+		<Fr>									
+			<FIId>								
+				<FinInstnId>							
+					<BICFI>RBOSGB2LXXX</BICFI>						
+				</FinInstnId>							
+			</FIId>								
+		</Fr>									
+		<To>									
+			<FIId>								
+				<FinInstnId>							
+					<BICFI>TPFGGB2EXXX</BICFI>						
+				</FinInstnId>							
+			</FIId>								
+		</To>									
+		<BizMsgIdr>cmt052bizmsgidr-001</BizMsgIdr>									
+		<MsgDefIdr>camt.052.001.08</MsgDefIdr>									
+		<BizSvc>swift.cbprplus.01</BizSvc>									
+		<CreDt>2020-11-25T11:00:00+00:00</CreDt>									
+	</AppHdr>										
+	<Document xmlns="urn:iso:std:iso:20022:tech:xsd:camt.053.001.08">										
+		<BkToCstmrStmt>									
+			<GrpHdr>								
+				<MsgId>cmt052bizmsgidr-001</MsgId>							
+				<CreDtTm>2020-11-25T11:00:00+00:00</CreDtTm>							
+				<MsgRcpt>							
+					<Nm>Tesco Bank</Nm>						
+				</MsgRcpt>							
+			</GrpHdr>								
+			<Stmt>								
+				<Id>100-01</Id>							
+				<StmtPgntn>							
+					<PgNb>1</PgNb>						
+					<LastPgInd>true</LastPgInd>						
+				</StmtPgntn>							
+				<CpyDplctInd>COPY</CpyDplctInd>							
+				<Acct>							
+					<Id>						
+						<Othr>					
+							<Id>48751258</Id>				
+						</Othr>					
+					</Id>						
+				<Ccy>EUR</Ccy>							
+				</Acct>							
+				<Bal>							
+					<Tp>						
+						<CdOrPrtry>					
+							<Cd>CLAV</Cd>				
+						</CdOrPrtry>					
+					</Tp>						
+					<Amt Ccy="EUR">45126.23</Amt>						
+					<CdtDbtInd>CRDT</CdtDbtInd>						
+					<Dt>						
+						<Dt>2020-11-25</Dt>					
+					</Dt>						
+				</Bal>							
+				<Ntry>							
+					<Amt Ccy="GBP">565025</Amt>						
+					<CdtDbtInd>DBIT</CdtDbtInd>						
+					<Sts>						
+						<Cd>BOOK</Cd>					
+					</Sts>						
+					<ValDt>						
+						<Dt>2020-11-25</Dt>					
+					</ValDt>						
+					<AcctSvcrRef>ABKREF-125646</AcctSvcrRef>						
+					<BkTxCd>						
+						<Prtry>					
+							<Cd>TXCD</Cd>				
+							<Issr>ABANK</Issr>				
+						</Prtry>					
+					</BkTxCd>						
+					<NtryDtls>						
+						<TxDtls>					
+							<Refs>				
+								<AcctSvcrRef>ABKREF-125646</AcctSvcrRef>			
+								<InstrId>pacs8bizmsgidr01</InstrId>			
+								<EndToEndId>pacs008EndToEndId-001</EndToEndId>			
+								<UETR>8a562c67-ca16-48ba-b074-65581be6f001</UETR>			
+							</Refs>				
+							<Amt Ccy="GBP">565025</Amt>				
+							<CdtDbtInd>DBIT</CdtDbtInd>				
+						</TxDtls>					
+					</NtryDtls>						
+				</Ntry>							
+			</Stmt>								
+		</BkToCstmrStmt>									
+	</Document>										
+</Envelope>											
+

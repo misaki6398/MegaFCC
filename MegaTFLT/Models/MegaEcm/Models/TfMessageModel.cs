@@ -1,5 +1,6 @@
 using System;
 using CommonMegaAp11.Utilitys;
+using Oracle.ManagedDataAccess.Types;
 
 namespace MegaTFLT.Models.MegaEcm.Models
 {
@@ -10,10 +11,11 @@ namespace MegaTFLT.Models.MegaEcm.Models
         public byte[] id { get; private set; } = GuidUtility.ToRaw16(Guid.NewGuid());
         //----From Original Message---
         public string RawMessage { get; private set; }
+        public OracleClob RawMessageClob { get; set; }
 
         //----From Message Header---
         //<AppHdr>
-        public string MessageDefinitionIdentifier { get; set; }
+        public string MessageType { get; set; }
         //<MsgDefIdr>
         public string BusinessMessageIdentifier { get; set; }
         //<BizMsgIdr>

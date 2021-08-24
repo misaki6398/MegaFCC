@@ -3,7 +3,7 @@ DROP TABLE MEGA_ECM.TF_MESSAGES;
 CREATE TABLE MEGA_ECM.TF_MESSAGES (
 	id raw(16) DEFAULT sys_guid() PRIMARY KEY,
 	RawMessage CLOB NOT NULL,
-	MessageDefinitionIdentifier VARCHAR2(40 CHAR),
+	MessageType VARCHAR2(40 CHAR),
 	BusinessMessageIdentifier VARCHAR2(40 CHAR),
 	BusinessService VARCHAR2(40 CHAR),
 	OriginalCreateDate TIMESTAMP,

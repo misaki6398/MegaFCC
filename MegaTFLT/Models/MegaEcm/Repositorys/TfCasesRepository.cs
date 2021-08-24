@@ -9,23 +9,22 @@ using Oracle.ManagedDataAccess.Client;
 
 namespace MegaTFLT.Models.MegaEcm.Repositorys
 {
-    public class TfCasesRepository : BaseRepository
+    public class TfCasesRepository : BaseRepository<TfCasesModel>
     {
         private readonly string _insertSql = @"
             INSERT INTO tf_cases (
                 id,
                 messageid,
-                mxtype,
+                messagetype,
                 swallowid,
-                msgid,
-                msgcurrency,
-                msgamount,
-                msgbranchno,
-                casestatus,
+                businessmessageidentifier,
+                currency,
+                amount,
+                branchno,
                 casestatuscode,
                 assignee,
                 owner,
-                msgoriginalcreatedate,
+                originalcreatedate,
                 validflag,
                 createuser,
                 createdatetime,
@@ -34,17 +33,16 @@ namespace MegaTFLT.Models.MegaEcm.Repositorys
             ) VALUES (
                 :id,
                 :messageid,
-                :mxtype,
+                :messagetype,
                 :swallowid,
-                :msgid,
-                :msgcurrency,
-                :msgamount,
-                :msgbranchno,
-                :casestatus,
+                :businessmessageidentifier,
+                :currency,
+                :amount,
+                :branchno,
                 :casestatuscode,
                 :assignee,
                 :owner,
-                :msgoriginalcreatedate,
+                :originalcreatedate,
                 :validflag,
                 :createuser,
                 :createdatetime,
@@ -54,23 +52,8 @@ namespace MegaTFLT.Models.MegaEcm.Repositorys
            ";
         public TfCasesRepository(IDbTransaction transaction) : base(transaction)
         {
-
+            this.InsertSql = _insertSql;
         }
-
-        public async Task<int> InsertAsync(TfCasesModel models)
-        {
-            try
-            {
-                return await Connection.ExecuteAsync(_insertSql, models, Transaction);
-            }
-            catch (OracleException)
-            {
-                throw;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
+        //public async Task<int> InsetAsync(TfCasesModel model) => await base.InsertAsync(model, _insertSql);
     }
 }

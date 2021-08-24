@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+THE MESSAGE WILL WORK “AS IS” IN THE READINESS PORTAL. IT IS ESSENTIAL THAT USERS REMOVE THE ENVELOPE AND REPLACE IT WITH THEIR OWN TRANSPORT HEADER (FOR EXAMPLE FOR ALLIANCE ACCESS YOU WOULD USE THE XML V2 HEADERS).
+=========================================================================================================================================================================================
+SWIFT © 2020. All rights reserved. 
+This publication contains SWIFT or third-party confidential information. Do not disclose this publication outside your organisation without SWIFT’s prior written consent.
+The use of this document is governed by the legal notices appearing at the end of this document. By using this document, you will be deemed to have accepted those legal notices. 											
+
+======================================================================================================================================================
+Use Case c.53.5		Creditor Agent Dellen Private Bank sends a camt.053 statement to Authorised party
+========================================================================================================================
+Change Log
+2020-10-16 - Original version 
+=============================
+-->
+<env:Envelope xmlns:env="urn:swift:xsd:envelope">											
+	<AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.02">										
+		<Fr>									
+			<FIId>								
+				<FinInstnId>							
+					<BICFI>UOVBSGSG</BICFI>						
+				</FinInstnId>							
+			</FIId>								
+		</Fr>									
+		<To>									
+			<FIId>								
+				<FinInstnId>							
+					<BICFI>HSBCSGS2</BICFI>						
+				</FinInstnId>							
+			</FIId>								
+		</To>									
+		<BizMsgIdr>cmt053bizmsgidr-001</BizMsgIdr>									
+		<MsgDefIdr>camt.053.001.08</MsgDefIdr>									
+		<BizSvc>swift.cbprplus.01</BizSvc>									
+		<CreDt>2020-08-05T18:00:00+08:00</CreDt>									
+	</AppHdr>										
+	<Document xmlns="urn:iso:std:iso:20022:tech:xsd:camt.053.001.08">										
+		<BkToCstmrStmt>									
+			<GrpHdr>								
+				<MsgId>cmt053bizmsgidr-001</MsgId>							
+				<CreDtTm>2020-08-05T18:00:00+08:00</CreDtTm>							
+			</GrpHdr>								
+			<Stmt>								
+				<Id>100-01</Id>							
+				<StmtPgntn>							
+					<PgNb>1</PgNb>						
+					<LastPgInd>true</LastPgInd>						
+				</StmtPgntn>							
+				<Acct>							
+					<Id>						
+						<Othr>					
+							<Id>48751258</Id>				
+						</Othr>					
+					</Id>						
+				<Ccy>SGD</Ccy>							
+				</Acct>							
+				<Bal>							
+					<Tp>						
+						<CdOrPrtry>					
+							<Cd>CLBD</Cd>				
+						</CdOrPrtry>					
+					</Tp>						
+					<Amt Ccy="SGD">54784.56</Amt>						
+					<CdtDbtInd>CRDT</CdtDbtInd>						
+					<Dt>						
+						<Dt>2020-08-05</Dt>					
+					</Dt>						
+				</Bal>							
+				<Ntry>							
+					<Amt Ccy="SGD">500000</Amt>						
+					<CdtDbtInd>DBIT</CdtDbtInd>						
+					<Sts>						
+						<Cd>BOOK</Cd>					
+					</Sts>						
+					<BookgDt>						
+						<Dt>2020-08-05</Dt>					
+					</BookgDt>						
+					<ValDt>						
+						<Dt>2020-08-05</Dt>					
+					</ValDt>						
+					<AcctSvcrRef>HSBCREF-125646</AcctSvcrRef>						
+					<BkTxCd>						
+						<Prtry>					
+							<Cd>TXCD</Cd>				
+							<Issr>ABANK</Issr>				
+						</Prtry>					
+					</BkTxCd>						
+					<NtryDtls>						
+						<TxDtls>					
+							<Refs>				
+								<AcctSvcrRef>HSBCREF-125646</AcctSvcrRef>			
+								<EndToEndId>pacs008EndToEndId-111</EndToEndId>			
+								<UETR>f1636d6e-1ed0-4b56-a7be-5706eb62ba9f</UETR>			
+							</Refs>				
+							<Amt Ccy="SGD">500000</Amt>				
+							<CdtDbtInd>CRDT</CdtDbtInd>				
+						</TxDtls>					
+					</NtryDtls>						
+				</Ntry>							
+			</Stmt>								
+		</BkToCstmrStmt>									
+	</Document>										
+</env:Envelope>

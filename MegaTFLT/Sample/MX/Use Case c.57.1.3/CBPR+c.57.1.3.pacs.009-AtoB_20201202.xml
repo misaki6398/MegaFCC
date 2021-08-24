@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>											
+<!-- 	SWIFT © 2020. All rights reserved. 										
+THE MESSAGE WILL WORK “AS IS” IN THE READINESS PORTAL. IT IS ESSENTIAL THAT USERS REMOVE THE ENVELOPE AND REPLACE IT WITH THEIR OWN TRANSPORT HEADER (FOR EXAMPLE FOR ALLIANCE ACCESS YOU WOULD USE THE XML V2 HEADERS).											
+=========================================================================================================================================================================================											
+Legal Disclaimer:											
+=================											
+SWIFT © 2020. All rights reserved. 											
+This publication contains SWIFT or third-party confidential information. Do not disclose this publication outside your organisation without SWIFT’s prior written consent.											
+The use of this document is governed by the legal notices appearing at the end of this document. By using this document, you will be deemed to have accepted those legal notices.											
+'=================================================================================================================================================================================											
+Use Case c.57.1.3		Debtor Agent (A) Citi Bank initiates a covering payment to credit the account of Agent (D) UBS via agents (B) Barclays and (C) RBS.									
+=========================================================================================================================================================											
+Change Log											
+2020-12-02 - Original version 											
+=============================											
+-->											
+<Envelope xmlns="urn:swift:xsd:envelope" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:swift:xsd:envelope ../../../../Schemas/Translator_envelope.xsd">											
+	<AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.02" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">										
+		<Fr>									
+			<FIId>								
+				<FinInstnId>							
+					<BICFI>CITIUS33</BICFI>						
+				</FinInstnId>							
+			</FIId>								
+		</Fr>									
+		<To>									
+			<FIId>								
+				<FinInstnId>							
+					<BICFI>BARCGB22</BICFI>						
+				</FinInstnId>							
+			</FIId>								
+		</To>									
+		<BizMsgIdr>pacs009bizmsgidr-001</BizMsgIdr>									
+		<MsgDefIdr>pacs.009.001.08</MsgDefIdr>									
+		<BizSvc>swift.cbprplus.cov.01</BizSvc>									
+		<CreDt>2020-12-14T09:00:00-04:00</CreDt>									
+	</AppHdr>										
+	<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pacs.009.001.08">										
+		<FICdtTrf>									
+			<GrpHdr>								
+				<MsgId>pacs009bizmsgidr-001</MsgId>							
+				<CreDtTm>2020-12-14T09:00:00-04:00</CreDtTm>							
+				<NbOfTxs>1</NbOfTxs>							
+				<SttlmInf>							
+					<SttlmMtd>INDA</SttlmMtd>						
+				</SttlmInf>							
+			</GrpHdr>								
+			<CdtTrfTxInf>								
+				<PmtId>							
+					<InstrId>pcs9InstrId002</InstrId>						
+					<EndToEndId>pacs009EndToEndId-001</EndToEndId>						
+					<UETR>7a123c67-ca98-45ba-b074-65581be6f001</UETR>						
+				</PmtId>							
+				<IntrBkSttlmAmt Ccy="GBP">100000000</IntrBkSttlmAmt>							
+				<IntrBkSttlmDt>2020-12-14</IntrBkSttlmDt>							
+				<InstgAgt>							
+					<FinInstnId>						
+						<BICFI>CITIUS33</BICFI>					
+					</FinInstnId>						
+				</InstgAgt>							
+				<InstdAgt>							
+					<FinInstnId>						
+						<BICFI>BARCGB22</BICFI>					
+					</FinInstnId>						
+				</InstdAgt>														
+				<Dbtr>							
+					<FinInstnId>						
+						<BICFI>GSCMUS33</BICFI>					
+					</FinInstnId>						
+				</Dbtr>							
+				<Cdtr>							
+					<FinInstnId>						
+						<BICFI>UBSWGB2L</BICFI>					
+					</FinInstnId>						
+				</Cdtr>							
+				<UndrlygCstmrCdtTrf>							
+					<Dbtr>						
+						<Nm>GOLDMANS</Nm>					
+						<PstlAdr>					
+							<StrtNm>5TH AVENUE</StrtNm>				
+							<TwnNm>New York</TwnNm>				
+							<Ctry>US</Ctry>				
+						</PstlAdr>					
+						</Dbtr>					
+					<DbtrAgt>						
+						<FinInstnId>					
+							<BICFI>CITIUS33</BICFI>				
+						</FinInstnId>					
+					</DbtrAgt>						
+					<CdtrAgt>						
+						<FinInstnId>					
+							<BICFI>UBSWGB2L</BICFI>				
+						</FinInstnId>					
+					</CdtrAgt>						
+					<Cdtr>						
+						<Nm>SMITHSON</Nm>					
+						<PstlAdr>					
+							<StrtNm>LONDON WALL</StrtNm>				
+							<TwnNm>LONDON</TwnNm>				
+							<Ctry>GB</Ctry>				
+						</PstlAdr>					
+					</Cdtr>						
+				</UndrlygCstmrCdtTrf>							
+			</CdtTrfTxInf>								
+		</FICdtTrf>									
+	</Document>										
+</Envelope>											
+

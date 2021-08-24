@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+THE MESSAGE WILL WORK “AS IS” IN THE READINESS PORTAL. IT IS ESSENTIAL THAT USERS REMOVE THE ENVELOPE AND REPLACE IT WITH THEIR OWN TRANSPORT HEADER (FOR EXAMPLE FOR ALLIANCE ACCESS YOU WOULD USE THE XML V2 HEADERS).
+=========================================================================================================================================================================================
+Legal Disclaimer:
+SWIFT © 2020. All rights reserved. 
+This publication contains SWIFT or third-party confidential information. Do not disclose this publication outside your organisation without SWIFT’s prior written consent.
+The use of this document is governed by the legal notices appearing at the end of this document. By using this document, you will be deemed to have accepted those legal notices.
+
+=========================================================================================================================================================================================
+Use Case p.9.2.2 High Level FI Customer Credit Transfer (pacs.008) settled using the cover method (pacs.009 COV) over a Payment Market Infrastructure - Flow#5 (camt.053)
+========================================================================================================================
+Change Log
+2020-10-16 - Original version 
+=============================
+-->
+<env:Envelope xmlns:env="urn:swift:xsd:envelope">
+<AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.02">
+	<Fr>
+		<FIId>
+			<FinInstnId>
+				<BICFI>BOTKJPJT</BICFI>
+			</FinInstnId>
+		</FIId>
+	</Fr>
+	<To>
+		<FIId>
+			<FinInstnId>
+				<BICFI>MHCBJPJT</BICFI>
+			</FinInstnId>
+		</FIId>
+	</To>
+	<BizMsgIdr>BOTK202007281212455</BizMsgIdr> 
+	<MsgDefIdr>camt.053.001.08</MsgDefIdr>
+	<BizSvc>swift.cbprplus.01</BizSvc>
+	<CreDt>2020-07-28T19:00:00+09:00</CreDt>
+</AppHdr>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:camt.053.001.08">
+	<BkToCstmrStmt>
+		<GrpHdr>
+			<MsgId>BOTK202007281212455</MsgId>
+			<CreDtTm>2020-07-28T19:00:00+09:00</CreDtTm>
+			<MsgRcpt>
+				<Nm>Bank of Tokyo-MITSUBISHI UFJ LTD, Tokyo</Nm>
+				<Id>
+					<OrgId>
+						<AnyBIC>MHCBJPJT</AnyBIC>
+					</OrgId>
+				</Id>
+			</MsgRcpt>
+			<AddtlInf>/EODY/</AddtlInf>
+		</GrpHdr>
+		<Stmt>
+			<Id>20200625</Id>
+			<ElctrncSeqNb>20200625001</ElctrncSeqNb>
+			<Acct>
+				<Id>
+					<Othr>
+						<Id>265385644663</Id>
+					</Othr>
+				</Id>
+				<Ccy>JPY</Ccy>
+				<Svcr>
+					<FinInstnId>
+						<BICFI>BOTKJPJT</BICFI>
+					</FinInstnId>
+				</Svcr>
+			</Acct>
+			<Bal>
+				<Tp>
+					<CdOrPrtry>
+						<Cd>OPBD</Cd>
+					</CdOrPrtry>
+				</Tp>
+				<Amt Ccy="JPY">123456</Amt>
+				<CdtDbtInd>CRDT</CdtDbtInd>
+				<Dt>
+					<Dt>2020-07-28</Dt>
+				</Dt>
+			</Bal>
+			<Bal>
+				<Tp>
+					<CdOrPrtry>
+						<Cd>CLBD</Cd>
+					</CdOrPrtry>
+				</Tp>
+				<Amt Ccy="JPY">296866</Amt>
+				<CdtDbtInd>CRDT</CdtDbtInd>
+				<Dt>
+					<Dt>2020-06-25</Dt>
+				</Dt>
+			</Bal>
+			<Ntry>
+				<NtryRef>0001</NtryRef>
+				<Amt Ccy="JPY">173410</Amt>
+				<CdtDbtInd>CRDT</CdtDbtInd>
+				<Sts>
+					<Cd>BOOK</Cd>
+				</Sts>
+				<BookgDt>
+					<Dt>2020-07-28</Dt>
+				</BookgDt>
+				<ValDt>
+					<Dt>2020-07-28</Dt>
+				</ValDt>
+				<AcctSvcrRef>BOTKCRDT001</AcctSvcrRef>
+				<BkTxCd>
+					<Domn>
+						<Cd>PMNT</Cd>
+						<Fmly>
+							<Cd>ICDT</Cd>
+							<SubFmlyCd>XBCT</SubFmlyCd>
+						</Fmly>
+					</Domn>
+				</BkTxCd>
+				<NtryDtls>
+					<TxDtls>
+						<Refs>
+							<AcctSvcrRef>BOTKCRDT001</AcctSvcrRef>
+							<EndToEndId>E2E20200728123</EndToEndId>
+							<UETR>8a562c67-ca16-48ba-b074-65581be6f001</UETR>
+						</Refs>
+						<Amt Ccy="JPY">173410</Amt>
+						<CdtDbtInd>CRDT</CdtDbtInd>
+						<RltdAgts>
+							<DbtrAgt>
+								<FinInstnId>
+									<BICFI>UBININBB</BICFI>
+								</FinInstnId>
+							</DbtrAgt>
+							<IntrmyAgt1>
+								<FinInstnId>
+									<BICFI>HSBCJPJT</BICFI>
+								</FinInstnId>
+							</IntrmyAgt1>
+						</RltdAgts>
+					</TxDtls>
+				</NtryDtls>
+			</Ntry>
+		</Stmt>
+	</BkToCstmrStmt>
+</Document>
+</env:Envelope>

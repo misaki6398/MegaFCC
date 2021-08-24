@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+THE MESSAGE WILL WORK “AS IS” IN THE READINESS PORTAL. IT IS ESSENTIAL THAT USERS REMOVE THE ENVELOPE AND REPLACE IT WITH THEIR OWN TRANSPORT HEADER (FOR EXAMPLE FOR ALLIANCE ACCESS YOU WOULD USE THE XML V2 HEADERS).
+=========================================================================================================================================================================================
+Legal Disclaimer:
+SWIFT © 2020. All rights reserved. 
+This publication contains SWIFT or third-party confidential information. Do not disclose this publication outside your organisation without SWIFT's prior written consent.
+The use of this document is governed by the legal notices appearing at the end of this document. By using this document, you will be deemed to have accepted those legal notices.
+
+=========================================================================================================================================================================================
+Use Case c.53.3 Bank to Customer Statement resends a previously sent statement/s to the Account Owner - Flow #3
+========================================================================================================================
+Change Log
+2020-10-16 - Original version 
+=============================
+-->
+<env:Envelope xmlns:env="urn:swift:xsd:envelope">
+<AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.02">
+	<Fr>
+		<FIId>
+			<FinInstnId>
+				<BICFI>CHASUS33</BICFI>
+			</FinInstnId>
+		</FIId>
+	</Fr>
+	<To>
+		<FIId>
+			<FinInstnId>
+				<BICFI>FTSBUS33</BICFI>
+			</FinInstnId>
+		</FIId>
+	</To>
+	<BizMsgIdr>CHAS20200908-109</BizMsgIdr>
+	<MsgDefIdr>pacs.008.001.08</MsgDefIdr>
+	<BizSvc>swift.cbprplus.01</BizSvc>
+	<CreDt>2020-09-08T12:00:00-05:00</CreDt>
+</AppHdr>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pacs.008.001.08">
+	<FIToFICstmrCdtTrf>
+		<GrpHdr>
+			<MsgId>CHAS20200908-109</MsgId>
+			<CreDtTm>2020-09-08T12:00:00-05:00</CreDtTm>
+			<NbOfTxs>1</NbOfTxs>
+			<SttlmInf>
+				<SttlmMtd>INDA</SttlmMtd>
+			</SttlmInf>
+		</GrpHdr>
+		<CdtTrfTxInf>
+			<PmtId>
+				<InstrId>CHAS20200908-109</InstrId>
+				<EndToEndId>E2E04044506271305</EndToEndId>
+				<UETR>174c245f-2682-4291-ad67-2a41e530cd27</UETR>
+			</PmtId>
+			<IntrBkSttlmAmt Ccy="EUR">299990</IntrBkSttlmAmt>
+			<IntrBkSttlmDt>2020-09-08</IntrBkSttlmDt>
+			<InstdAmt Ccy="EUR">300000</InstdAmt>
+			<ChrgBr>SHAR</ChrgBr>
+			<ChrgsInf>
+				<Amt Ccy="EUR">10</Amt>
+						<Agt>
+							<FinInstnId>
+								<BICFI>CHASUS33</BICFI>
+							</FinInstnId>
+						</Agt>
+			</ChrgsInf>
+			<InstgAgt>
+				<FinInstnId>
+					<BICFI>CHASUS33</BICFI>
+				</FinInstnId>
+			</InstgAgt>
+			<InstdAgt>
+				<FinInstnId>
+					<BICFI>FTSBUS33</BICFI>
+				</FinInstnId>
+			</InstdAgt>
+			<Dbtr>
+				<Nm>Fexco Merchant Services</Nm>
+				<PstlAdr>
+					<StrtNm>Str.34</StrtNm>
+					<PstCd>1140</PstCd>
+					<TwnNm>Heinrich Collin</TwnNm>
+					<TwnLctnNm>Vienna</TwnLctnNm>
+					<Ctry>AT</Ctry>
+				</PstlAdr>
+			</Dbtr>
+			<DbtrAgt>
+				<FinInstnId>
+					<BICFI>BKAUATWW</BICFI>
+				</FinInstnId>
+			</DbtrAgt>
+			<CdtrAgt>
+				<FinInstnId>
+					<BICFI>ABNANL2A</BICFI>
+				</FinInstnId>
+			</CdtrAgt>
+			<Cdtr>
+				<Nm>Leaseplan Corp N.V.</Nm>
+				<PstlAdr>
+					<StrtNm>OMVAL 300</StrtNm>
+					<PstCd>1096</PstCd>
+					<TwnNm>AMSTERDAM</TwnNm>
+					<Ctry>NL</Ctry>
+				</PstlAdr>
+			</Cdtr>
+			<CdtrAcct>
+				<Id>
+					<Othr>
+						<Id>794115296</Id>
+					</Othr>
+				</Id>
+			</CdtrAcct>
+			<RmtInf>
+				<Ustrd>INVOICE A245</Ustrd>
+			</RmtInf>
+		</CdtTrfTxInf>
+	</FIToFICstmrCdtTrf>
+</Document>
+</env:Envelope>

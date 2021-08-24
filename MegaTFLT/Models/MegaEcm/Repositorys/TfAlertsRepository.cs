@@ -6,16 +6,16 @@ using Dapper;
 using MegaTFLT.MegaEcm.Models;
 using MegaTFLT.Models.MegaEcm.Models;
 using Oracle.ManagedDataAccess.Client;
+using MegaTFLT.Utilitys;
 
 namespace MegaTFLT.Models.MegaEcm.Repositorys
 {
-    public class TfAlertsRepository : BaseRepository
+    public class TfAlertsRepository : BaseRepository<TfAlertsModel>
     {
-        private readonly string _insertSql = @"
+        private readonly string _insertSql = $@"
           INSERT INTO tf_alerts (
                 id,
                 caseid,
-                alertstatus,
                 alertstatuscode,
                 input,
                 score,
@@ -39,6 +39,7 @@ namespace MegaTFLT.Models.MegaEcm.Repositorys
                 importcountryfrom,
                 exportcountryto,
                 listsubtypeid,
+                listrecord,
                 identifiertagname,
                 identifiervalue,
                 expressioncode,
@@ -58,7 +59,6 @@ namespace MegaTFLT.Models.MegaEcm.Repositorys
             ) VALUES (
                 :id,
                 :CaseId,
-                :AlertStatus,
                 :AlertStatusCode,
                 :Input,
                 :Score,
@@ -82,6 +82,15 @@ namespace MegaTFLT.Models.MegaEcm.Repositorys
                 :ImportCountryFrom,
                 :ExportCountryTo,
                 :ListSubTypeID,
+                (
+                    SELECT
+                        C_LIST_REC
+                    FROM
+                        { ConfigUtility.FccmAtomicSchema }.FSI_RT_LIST_DATA
+                    WHERE
+                        V_LIST_SUB_TYPE_ID = :ListSubTypeID 
+                    FETCH FIRST ROW ONLY
+                ),
                 :IdentifierTagName,
                 :IdentifierValue,
                 :ExpressionCode,
@@ -102,23 +111,9 @@ namespace MegaTFLT.Models.MegaEcm.Repositorys
            ";
         public TfAlertsRepository(IDbTransaction transaction) : base(transaction)
         {
-
+            this.InsertSql = _insertSql;
         }
+        //public async Task<int> InsertAsync(List<TfAlertsModel> models) => await base.InsertAsync(models, _insertSql);
 
-        public async Task<int> InsertAsync(List<TfAlertsModel> models)
-        {
-            try
-            {
-                return await Connection.ExecuteAsync(_insertSql, models, Transaction);
-            }
-            catch (OracleException)
-            {
-                throw;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
     }
 }

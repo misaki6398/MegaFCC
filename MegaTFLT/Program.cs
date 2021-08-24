@@ -26,28 +26,51 @@ namespace MegaTFLT
                 {"TheTestCode", new List<string>{"Oh My God"}}
             };
             */
-            MxPaser MxPaser1 = new MxPaser();
-            MxPaser1.ReadFromFile(@"./sample_pacs.008.xml");
+            MxPaser Paser1 = new MxPaser();
+            //Paser1.ReadFromFile(@"./sample.xml");
+            //TxnPaser Paser1 = new TxnPaser();
+            //Paser1.ReadFromFile(@"./Sample/TXN/OBS/BlueTest2.rje");
+            //Paser1.ReadFromFile(@"./sample_NO_hit.xml");
+            Paser1.ReadFromFile(@"./sample_pacs.008.xml");
+            //Paser1.ReadFromFile(@"./sample_ILoveYou200.xml");
+
+            using (MegaEcmUnitOfWork _unitOfWork = new MegaEcmUnitOfWork())
+            {
+                try
+                {
+                    await _unitOfWork.TfMessagesRepository.InsertAsync(Paser1.TfMessageModel);
+                }
+                catch (OracleException ex)
+                {
+                    _unitOfWork.Rollback();
+                    Console.WriteLine(ex.Message, ex.ToString());
+                }
+                catch (Exception)
+                {
+                    _unitOfWork.Rollback();
+                }
+                finally
+                {
+                    _unitOfWork.Commit();
+                }
+            }
 
             EdqService edqService = new EdqService();
-            List<TfAlertsModel> tfAlertsModels = await edqService.ProcessScreeningAsync(MxPaser1.mxMessages);
+            List<TfAlertsModel> tfAlertsModels = await edqService.ProcessScreeningAsync(Paser1.ScreeningInputTags);
             using (MegaEcmUnitOfWork _unitOfWork = new MegaEcmUnitOfWork())
             {
                 if (tfAlertsModels.Count() > 0)
                 {
-                    TfCasesModel tfCasesModel = new TfCasesModel(MxPaser1.TfMessageModel);
-                    tfCasesModel.CaseStatus = "New Case";
+                    TfCasesModel tfCasesModel = new TfCasesModel(Paser1.TfMessageModel);
                     tfCasesModel.CaseStatusCode = 0;
                     tfAlertsModels.ForEach(c =>
                     {
-                        c.AlertStatus = "New Case";
                         c.AlertStatusCode = 0;
                         c.CaseId = tfCasesModel.Id;
                     });
 
                     try
                     {
-                        await _unitOfWork.TfMessagesRepository.InsertAsync(MxPaser1.TfMessageModel);
                         await _unitOfWork.TfCasesRepository.InsertAsync(tfCasesModel);
                         await _unitOfWork.TfAlertsRepository.InsertAsync(tfAlertsModels);
                     }
@@ -66,8 +89,6 @@ namespace MegaTFLT
                     }
                 }
             }
-
-
         }
     }
 }

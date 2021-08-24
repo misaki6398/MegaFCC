@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+THE MESSAGE WILL WORK “AS IS” IN THE READINESS PORTAL. IT IS ESSENTIAL THAT USERS REMOVE THE ENVELOPE AND REPLACE IT WITH THEIR OWN TRANSPORT HEADER (FOR EXAMPLE FOR ALLIANCE ACCESS YOU WOULD USE THE XML V2 HEADERS).
+=========================================================================================================================================================================================SWIFT © 2020. All rights reserved. 
+This publication contains SWIFT or third-party confidential information. Do not disclose this publication outside your organisation without SWIFT’s prior written consent.
+The use of this document is governed by the legal notices appearing at the end of this document. By using this document, you will be deemed to have accepted those legal notices. 												
+
+=========================================================================================================================================================================================
+Use Case C.53.1.a		Second intermediary agent C [Close Brothers] sends a pacs.008 to creditor agent D [ANDBank]	
+========================================================================================================================
+Change Log
+2020-10-16 - Original version 
+=============================
+-->
+<env:Envelope xmlns:env="urn:swift:xsd:envelope">											
+	<AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.02">										
+		<Fr>									
+			<FIId>								
+				<FinInstnId>							
+					<BICFI>CBRLGB2LXXX</BICFI>						
+				</FinInstnId>							
+			</FIId>								
+		</Fr>									
+		<To>									
+			<FIId>								
+				<FinInstnId>							
+					<BICFI>BACALULLXXX</BICFI>						
+				</FinInstnId>							
+			</FIId>								
+		</To>									
+		<BizMsgIdr>pacs8bizmsgidr03</BizMsgIdr>									
+		<MsgDefIdr>pacs.008.001.08</MsgDefIdr>									
+		<BizSvc>swift.cbprplus.01</BizSvc>									
+		<CreDt>2020-08-04T10:20:47+01:00</CreDt>									
+	</AppHdr>										
+	<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pacs.008.001.08">										
+		<FIToFICstmrCdtTrf>									
+			<GrpHdr>								
+				<MsgId>pacs8bizmsgidr03</MsgId>							
+				<CreDtTm>2020-08-04T10:20:47+01:00</CreDtTm>							
+				<NbOfTxs>1</NbOfTxs>							
+				<SttlmInf>							
+					<SttlmMtd>INDA</SttlmMtd>						
+				</SttlmInf>							
+			</GrpHdr>								
+			<CdtTrfTxInf>								
+				<PmtId>							
+					<InstrId>pacs8bizmsgidr03</InstrId>						
+					<EndToEndId>pacs008EndToEndId-001</EndToEndId>						
+					<UETR>8a562c67-ca16-48ba-b074-65581be6f001</UETR>						
+				</PmtId>							
+				<IntrBkSttlmAmt Ccy="EUR">35000</IntrBkSttlmAmt>							
+				<IntrBkSttlmDt>2020-08-04</IntrBkSttlmDt>							
+				<ChrgBr>DEBT</ChrgBr>							
+				<PrvsInstgAgt1>							
+					<FinInstnId>						
+						<BICFI>RBOSGB2L</BICFI>					
+					</FinInstnId>						
+				</PrvsInstgAgt1>							
+				<InstgAgt>							
+					<FinInstnId>						
+						<BICFI>CBRLGB2LXXX</BICFI>					
+					</FinInstnId>						
+				</InstgAgt>							
+				<InstdAgt>							
+					<FinInstnId>						
+						<BICFI>BACALULLXXX</BICFI>					
+					</FinInstnId>						
+				</InstdAgt>							
+				<Dbtr>							
+					<Nm>Mr Gone</Nm>						
+					<PstlAdr>						
+						<StrtNm>25 Rowan Street</StrtNm>					
+						<TwnNm>Monument</TwnNm>					
+						<Ctry>GB</Ctry>					
+					</PstlAdr>						
+				</Dbtr>							
+				<DbtrAgt>							
+					<FinInstnId>						
+						<BICFI>ADAGGB2S</BICFI>					
+					</FinInstnId>						
+				</DbtrAgt>							
+				<CdtrAgt>							
+					<FinInstnId>						
+						<BICFI>BACALULLXXX</BICFI>					
+					</FinInstnId>						
+				</CdtrAgt>							
+				<Cdtr>							
+					<Nm>Pictet Asset Management</Nm>						
+					<PstlAdr>						
+						<StrtNm>15, avenue J. F. Kennedy</StrtNm>					
+						<TwnNm>Luxembourg</TwnNm>					
+						<Ctry>LU</Ctry>					
+					</PstlAdr>						
+				</Cdtr>							
+			</CdtTrfTxInf>								
+		</FIToFICstmrCdtTrf>									
+	</Document>										
+</env:Envelope>

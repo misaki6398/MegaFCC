@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+THE MESSAGE WILL WORK “AS IS” IN THE READINESS PORTAL. IT IS ESSENTIAL THAT USERS REMOVE THE ENVELOPE AND REPLACE IT WITH THEIR OWN TRANSPORT HEADER (FOR EXAMPLE FOR ALLIANCE ACCESS YOU WOULD USE THE XML V2 HEADERS).
+========================================================================================================================================================================================= 
+Legal Disclaimer:
+SWIFT © 2020. All rights reserved. 
+This publication contains SWIFT or third-party confidential information. Do not disclose this publication outside your organisation without SWIFT’s prior written consent.
+The use of this document is governed by the legal notices appearing at the end of this document. By using this document, you will be deemed to have accepted those legal notices.											
+
+=========================================================================================================================================================================================
+Use Case p.9.2.3		Chase Bank instructed in error responds to Bank of America with a pacs.002 rejecting the pacs.009.COV
+========================================================================================================================
+Change Log
+2020-10-16 - Original version 
+=============================
+-->
+<env:Envelope xmlns:env="urn:swift:xsd:envelope">											
+	<AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.02">										
+		<Fr>									
+			<FIId>								
+				<FinInstnId>							
+					<BICFI>CHASUSU3XXX</BICFI>						
+				</FinInstnId>							
+			</FIId>								
+		</Fr>									
+		<To>									
+			<FIId>								
+				<FinInstnId>							
+					<BICFI>BOFAUS3NXXX</BICFI>						
+				</FinInstnId>							
+			</FIId>								
+		</To>									
+		<BizMsgIdr>pacs2bizmsgidr03</BizMsgIdr>									
+		<MsgDefIdr>pacs.002.001.10</MsgDefIdr>									
+		<BizSvc>swift.cbprplus.01</BizSvc>									
+		<CreDt>2020-07-28T11:25:47+01:00</CreDt>									
+	</AppHdr>										
+	<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pacs.002.001.10">										
+		<FIToFIPmtStsRpt>									
+			<GrpHdr>								
+				<MsgId>pacs2bizmsgidr03</MsgId>							
+				<CreDtTm>2020-07-28T11:25:47+01:00</CreDtTm>							
+			</GrpHdr>								
+			<TxInfAndSts>								
+				<OrgnlGrpInf>							
+					<OrgnlMsgId>pacs9bizmsgidr02</OrgnlMsgId>						
+					<OrgnlMsgNmId>pacs.009.001.08</OrgnlMsgNmId>						
+				</OrgnlGrpInf>							
+				<OrgnlInstrId>pacs8bizmsgidr01</OrgnlInstrId>							
+				<OrgnlEndToEndId>pacs8bizmsgidr01</OrgnlEndToEndId>							
+				<OrgnlUETR>8a562c67-ca16-48ba-b074-65581be6f001</OrgnlUETR>							
+				<TxSts>RJCT</TxSts>
+				<StsRsnInf>			
+					<Rsn>		
+						<Cd>AC12</Cd>	
+					</Rsn>		
+				</StsRsnInf>							
+				<InstgAgt>							
+					<FinInstnId>						
+						<BICFI>BOFAUS3NXXX</BICFI>					
+					</FinInstnId>						
+				</InstgAgt>							
+				<InstdAgt>							
+					<FinInstnId>						
+						<BICFI>CHASUSU3XXX</BICFI>					
+					</FinInstnId>						
+				</InstdAgt>							
+			</TxInfAndSts>								
+		</FIToFIPmtStsRpt>									
+	</Document>										
+</env:Envelope>

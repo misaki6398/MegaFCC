@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+THE MESSAGE WILL WORK “AS IS” IN THE READINESS PORTAL. IT IS ESSENTIAL THAT USERS REMOVE THE ENVELOPE AND REPLACE IT WITH THEIR OWN TRANSPORT HEADER (FOR EXAMPLE FOR ALLIANCE ACCESS YOU WOULD USE THE XML V2 HEADERS).
+========================================================================================================================================================================================= 
+SWIFT © 2020. All rights reserved. 
+This publication contains SWIFT or third-party confidential information. Do not disclose this publication outside your organisation without SWIFT’s prior written consent.
+The use of this document is governed by the legal notices appearing at the end of this document. By using this document, you will be deemed to have accepted those legal notices.												
+
+=========================================================================================================================================================================================
+Use Case c.54.3.1 Agent D Hiroshima Bank may also provide a credit notification (camt.054) to the Creditor OTSUKA CORP.
+========================================================================================================================
+Change Log
+2020-10-16 - Original version 
+=============================
+-->
+<env:Envelope xmlns:env="urn:swift:xsd:envelope">											
+	<AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.02">										
+		<Fr>									
+			<FIId>								
+				<FinInstnId>							
+					<BICFI>SMBCJPJT</BICFI>						
+				</FinInstnId>							
+			</FIId>								
+		</Fr>									
+		<To>									
+			<FIId>								
+				<FinInstnId>							
+					<BICFI>HIROJPJT</BICFI>						
+				</FinInstnId>							
+			</FIId>								
+		</To>									
+		<BizMsgIdr>cmt054bizmsgidr-002</BizMsgIdr>									
+		<MsgDefIdr>camt.054.001.08</MsgDefIdr>									
+		<BizSvc>swift.cbprplus.01</BizSvc>									
+		<CreDt>2020-08-06T10:00:47+09:00</CreDt>									
+	</AppHdr>										
+	<Document xmlns="urn:iso:std:iso:20022:tech:xsd:camt.054.001.08">										
+		<BkToCstmrDbtCdtNtfctn>									
+			<GrpHdr>								
+				<MsgId>cmt054bizmsgidr-002</MsgId>							
+				<CreDtTm>2020-08-06T10:00:47+09:00</CreDtTm>							
+			</GrpHdr>								
+			<Ntfctn>								
+				<Id>cmt054NtfctnId-002</Id>							
+				<Acct>							
+					<Id>						
+						<Othr>					
+							<Id>DS654787ACT</Id>				
+						</Othr>					
+					</Id>						
+				</Acct>							
+				<Ntry>							
+					<NtryRef>cmt054NtryRef001</NtryRef>						
+					<Amt Ccy="JPY">1654886600</Amt>						
+					<CdtDbtInd>CRDT</CdtDbtInd>						
+					<Sts>						
+						<Cd>STCD</Cd>					
+					</Sts>						
+					<BkTxCd>						
+						<Prtry>					
+							<Cd>TXCD</Cd>				
+							<Issr>ABANK</Issr>				
+						</Prtry>					
+					</BkTxCd>						
+					<NtryDtls>						
+						<TxDtls>					
+							<Refs>				
+								<InstrId>cmt54InstrId003</InstrId>			
+								<EndToEndId>pacs008EndToEndId-001</EndToEndId>			
+							</Refs>				
+							<Amt Ccy="JPY">1654886600</Amt>				
+							<CdtDbtInd>CRDT</CdtDbtInd>				
+							<RltdPties>				
+								<Dbtr>			
+									<Pty>		
+										<Nm>A B Engineering</Nm>	
+									</Pty>		
+								</Dbtr>			
+								<Cdtr>			
+									<Pty>		
+										<Nm>OTSUKA CORP</Nm>	
+									</Pty>		
+								</Cdtr>			
+							</RltdPties>				
+							<RltdAgts>				
+								<DbtrAgt>			
+									<FinInstnId>		
+										<BICFI>SCBLSG22</BICFI>	
+									</FinInstnId>		
+								</DbtrAgt>			
+								<CdtrAgt>			
+									<FinInstnId>		
+										<BICFI>HIROJPJT</BICFI>	
+									</FinInstnId>		
+								</CdtrAgt>			
+							</RltdAgts>				
+							<LclInstrm>				
+								<Cd>CTP</Cd>			
+							</LclInstrm>				
+							<Purp>				
+								<Cd>COMC</Cd>			
+							</Purp>				
+							<RltdRmtInf>				
+								<RmtId>ID-1236654</RmtId>			
+							</RltdRmtInf>				
+							<RmtInf>				
+								<Ustrd>Inv: 99999-99</Ustrd>			
+							</RmtInf>				
+							<RltdDts>				
+								<IntrBkSttlmDt>2020-08-06</IntrBkSttlmDt>			
+							</RltdDts>				
+						</TxDtls>					
+					</NtryDtls>						
+				</Ntry>							
+			</Ntfctn>								
+		</BkToCstmrDbtCdtNtfctn>									
+	</Document>										
+</env:Envelope>

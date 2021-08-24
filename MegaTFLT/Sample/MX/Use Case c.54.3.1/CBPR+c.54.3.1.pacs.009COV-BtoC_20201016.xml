@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+THE MESSAGE WILL WORK “AS IS” IN THE READINESS PORTAL. IT IS ESSENTIAL THAT USERS REMOVE THE ENVELOPE AND REPLACE IT WITH THEIR OWN TRANSPORT HEADER (FOR EXAMPLE FOR ALLIANCE ACCESS YOU WOULD USE THE XML V2 HEADERS).
+=========================================================================================================================================================================================
+SWIFT © 2020. All rights reserved. 
+This publication contains SWIFT or third-party confidential information. Do not disclose this publication outside your organisation without SWIFT’s prior written consent.
+The use of this document is governed by the legal notices appearing at the end of this document. By using this document, you will be deemed to have accepted those legal notices. 											
+
+=========================================================================================================================================================================================
+Use Case c.54.3.1		As instructing agent Awa Bank sends a pacs.009 COV to Sumitomo Bank	
+========================================================================================================================
+Change Log
+2020-10-16 - Original version 
+=============================
+-->
+<Envelope xmlns:env="urn:swift:xsd:envelope">
+	<AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.02">										
+		<Fr>									
+			<FIId>								
+				<FinInstnId>							
+					<BICFI>AWABJPJT</BICFI>						
+				</FinInstnId>							
+			</FIId>								
+		</Fr>									
+		<To>									
+			<FIId>								
+				<FinInstnId>							
+					<BICFI>SMBCJPJT</BICFI>						
+				</FinInstnId>							
+			</FIId>								
+		</To>									
+		<BizMsgIdr>pacs9bizmsgidr02</BizMsgIdr>									
+		<MsgDefIdr>pacs.009.001.08</MsgDefIdr>									
+		<BizSvc>swift.cbprplus.cov.01</BizSvc>									
+		<CreDt>2020-08-06T10:00:47+09:00</CreDt>									
+	</AppHdr>										
+	<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pacs.009.001.08">										
+		<FICdtTrf>									
+			<GrpHdr>								
+				<MsgId>pacs9bizmsgidr02</MsgId>							
+				<CreDtTm>2020-08-06T10:00:47+09:00</CreDtTm>							
+				<NbOfTxs>1</NbOfTxs>							
+				<SttlmInf>							
+					<SttlmMtd>INDA</SttlmMtd>						
+				</SttlmInf>							
+			</GrpHdr>								
+			<CdtTrfTxInf>								
+				<PmtId>							
+					<InstrId>pcs9InstrId003</InstrId>						
+					<EndToEndId>pacs008EndToEndId-001</EndToEndId>						
+					<UETR>8a562c67-ca16-48ba-b074-65581be6f001</UETR>						
+				</PmtId>							
+				<IntrBkSttlmAmt Ccy="JPY">1654886600</IntrBkSttlmAmt>							
+				<IntrBkSttlmDt>2020-08-06</IntrBkSttlmDt>							
+				<InstgAgt>							
+					<FinInstnId>						
+						<BICFI>AWABJPJT</BICFI>					
+					</FinInstnId>						
+				</InstgAgt>							
+				<InstdAgt>							
+					<FinInstnId>						
+						<BICFI>SMBCJPJT</BICFI>					
+					</FinInstnId>						
+				</InstdAgt>							
+				<Dbtr>							
+					<FinInstnId>						
+						<BICFI>SCBLSG22</BICFI>					
+					</FinInstnId>						
+				</Dbtr>							
+				<Cdtr>							
+					<FinInstnId>						
+						<BICFI>HIROJPJT</BICFI>					
+					</FinInstnId>						
+				</Cdtr>							
+				<UndrlygCstmrCdtTrf>							
+					<Dbtr>						
+						<Nm>A B Engineering</Nm>					
+						<PstlAdr>					
+							<StrtNm>9 High Street</StrtNm>				
+							<TwnNm>Cambridge</TwnNm>				
+							<Ctry>GB</Ctry>				
+						</PstlAdr>					
+						</Dbtr>					
+					<DbtrAgt>						
+						<FinInstnId>					
+							<BICFI>SCBLSG22</BICFI>				
+						</FinInstnId>					
+					</DbtrAgt>						
+					<CdtrAgt>						
+						<FinInstnId>					
+							<BICFI>HIROJPJT</BICFI>				
+						</FinInstnId>					
+					</CdtrAgt>						
+					<Cdtr>						
+						<Nm>OTSUKA CORP</Nm>					
+						<PstlAdr>					
+							<StrtNm>2-18-4 Iidabashi</StrtNm>				
+							<TwnNm>Tokyo</TwnNm>				
+							<Ctry>JP</Ctry>				
+						</PstlAdr>					
+					</Cdtr>						
+					<CdtrAcct>						
+						<Id>					
+							<Othr>				
+								<Id>SUM455512HIR</Id>			
+							</Othr>				
+						</Id>					
+					</CdtrAcct>						
+					<RmtInf>						
+						<Ustrd>Inv: 99999-99</Ustrd>					
+					</RmtInf>						
+				</UndrlygCstmrCdtTrf>							
+			</CdtTrfTxInf>								
+		</FICdtTrf>									
+	</Document>										
+</Envelope>

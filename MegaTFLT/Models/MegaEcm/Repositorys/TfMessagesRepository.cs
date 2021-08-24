@@ -1,21 +1,24 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Reflection;
 using System.Threading.Tasks;
 using Dapper;
+using Dapper.Oracle;
 using MegaTFLT.MegaEcm.Models;
 using MegaTFLT.Models.MegaEcm.Models;
 using Oracle.ManagedDataAccess.Client;
+using CommonMegaAp11.Utilitys;
 
 namespace MegaTFLT.Models.MegaEcm.Repositorys
 {
-    public class TfMessagesRepository : BaseRepository
+    public class TfMessagesRepository : BaseRepository<TfMessageModel>
     {
         private readonly string _insertSql = @"
           INSERT INTO tf_messages (
                 id,
                 RawMessage,
-                MessageDefinitionIdentifier,
+                MessageType,
                 BusinessMessageIdentifier,
                 BusinessService,
                 OriginalCreateDate,
@@ -32,8 +35,8 @@ namespace MegaTFLT.Models.MegaEcm.Repositorys
                 UpdateDatetime
             ) VALUES (
                 :id,
-                :RawMessage,
-                :MessageDefinitionIdentifier,
+                :RawMessageClob,
+                :MessageType,
                 :BusinessMessageIdentifier,
                 :BusinessService,
                 :OriginalCreateDate,
@@ -52,23 +55,20 @@ namespace MegaTFLT.Models.MegaEcm.Repositorys
            ";
         public TfMessagesRepository(IDbTransaction transaction) : base(transaction)
         {
-
+            this.InsertSql = _insertSql;
         }
-
-        public async Task<int> InsertAsync(TfMessageModel models)
+        public override async Task<int> InsertAsync(TfMessageModel tfMessageModel)
         {
-            try
+            tfMessageModel.RawMessageClob = OracleDBUtility.ConvertToClob(tfMessageModel.RawMessage, (Oracle.ManagedDataAccess.Client.OracleConnection)this.Connection);
+            var parameter = new OracleDynamicParameters();
+            // Get the type and PropertyInfo.
+            Type t = tfMessageModel.GetType();
+            PropertyInfo[] propInfos = t.GetProperties();
+            foreach (PropertyInfo propInfo in propInfos)
             {
-                return await Connection.ExecuteAsync(_insertSql, models, Transaction);
+                parameter.Add(propInfo.Name, propInfo.GetGetMethod().Invoke(tfMessageModel, null));
             }
-            catch (OracleException)
-            {
-                throw;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            return await base.InsertAsync(parameter);
         }
     }
 }

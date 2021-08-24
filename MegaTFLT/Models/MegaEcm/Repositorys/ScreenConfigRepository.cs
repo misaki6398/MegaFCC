@@ -9,7 +9,7 @@ using Oracle.ManagedDataAccess.Client;
 
 namespace MegaTFLT.Models.MegaEcm.Repositorys
 {
-    public class ScreenConfigRepository : BaseRepository
+    public class ScreenConfigRepository : BaseRepository<TfScreenConfigModel>
     {
         private readonly string _sql = $@"
         SELECT 

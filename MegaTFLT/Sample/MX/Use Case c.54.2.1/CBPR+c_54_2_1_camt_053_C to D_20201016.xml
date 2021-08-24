@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+THE MESSAGE WILL WORK “AS IS” IN THE READINESS PORTAL. IT IS ESSENTIAL THAT USERS REMOVE THE ENVELOPE AND REPLACE IT WITH THEIR OWN TRANSPORT HEADER (FOR EXAMPLE FOR ALLIANCE ACCESS YOU WOULD USE THE XML V2 HEADERS).
+=========================================================================================================================================================================================
+SWIFT © 2020. All rights reserved. 
+This publication contains SWIFT or third-party confidential information. Do not disclose this publication outside your organisation without SWIFT’s prior written consent.
+The use of this document is governed by the legal notices appearing at the end of this document. By using this document, you will be deemed to have accepted those legal notices.
+
+=========================================================================================================================================================================================
+Use Case c.54.2.1 Customer Debit/Credit Notification (camt.053) of a FI to FI Credit Transfer (pacs.009) - Flow 3 C to D
+========================================================================================================================
+Change Log
+2020-10-16 - Original version 
+=============================
+-->
+<env:Envelope xmlns:env="urn:swift:xsd:envelope">
+<AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.02">
+	<Fr>
+		<FIId>
+			<FinInstnId>
+				<BICFI>FTSBUS33XXX</BICFI>
+			</FinInstnId>
+		</FIId>
+	</Fr>
+	<To>
+		<FIId>
+			<FinInstnId>
+				<BICFI>BAUTUS31XXX</BICFI>
+			</FinInstnId>
+		</FIId>
+	</To>
+	<BizMsgIdr>C2D044506272708</BizMsgIdr> 
+	<MsgDefIdr>camt.053.001.08</MsgDefIdr>
+	<BizSvc>swift.cbprplus.01</BizSvc>
+	<CreDt>2020-01-11T10:00:00-05:00</CreDt>
+</AppHdr>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:camt.053.001.08" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<BkToCstmrStmt>
+		<GrpHdr>
+			<MsgId>C2D044506272708</MsgId>
+			<CreDtTm>2020-01-11T10:00:00-05:00</CreDtTm>
+			<MsgRcpt>
+				<Id>
+					<OrgId>
+						<AnyBIC>BAUTUS31XXX</AnyBIC>
+					</OrgId>
+				</Id>
+			</MsgRcpt>
+			<AddtlInf>/EODY/</AddtlInf>
+		</GrpHdr>
+		<Stmt>
+			<Id>20200111</Id>
+			<ElctrncSeqNb>2020011101</ElctrncSeqNb>
+			<Acct>
+				<Id>
+					<Othr>
+						<Id>101200453</Id>
+					</Othr>
+				</Id>
+				<Ccy>USD</Ccy>
+			</Acct>
+			<Bal>
+				<Tp>
+					<CdOrPrtry>
+						<Cd>CLAV</Cd>
+					</CdOrPrtry>
+				</Tp>
+				<Amt Ccy="USD">2000000</Amt>
+				<CdtDbtInd>CRDT</CdtDbtInd>
+				<Dt>
+					<Dt>2020-01-11</Dt>
+				</Dt>
+			</Bal>
+			<Ntry>
+				<NtryRef>0001</NtryRef>
+				<Amt Ccy="USD">150000</Amt>
+				<CdtDbtInd>CRDT</CdtDbtInd>
+				<Sts>
+					<Cd>BOOK</Cd>
+				</Sts>
+				<BookgDt>
+					<Dt>2020-01-11</Dt>
+				</BookgDt>
+				<ValDt>
+					<Dt>2020-01-11</Dt>
+				</ValDt>
+				<AcctSvcrRef>ABCD01</AcctSvcrRef>
+				<BkTxCd>
+					<Domn>
+						<Cd>PMNT</Cd>
+						<Fmly>
+							<Cd>ICDT</Cd>
+							<SubFmlyCd>XBCT</SubFmlyCd>
+						</Fmly>
+					</Domn>
+				</BkTxCd>
+				<NtryDtls>
+					<TxDtls>
+						<Refs>
+							<AcctSvcrRef>ABCD01</AcctSvcrRef>
+							<EndToEndId>A2D20201305</EndToEndId>
+							<UETR>174c245f-2682-4291-ad67-2a41e530cd27</UETR>
+						</Refs>
+						<Amt Ccy="USD">150000</Amt>
+						<CdtDbtInd>CRDT</CdtDbtInd>
+						<RltdPties>
+							<Dbtr>
+								<Pty>
+								<Id>
+								<OrgId>
+								<AnyBIC>CHASGB2LXXX</AnyBIC>
+								</OrgId>
+								</Id>
+								</Pty>
+							</Dbtr>
+							<Cdtr>
+								<Pty>
+								<Id>
+								<OrgId>
+								<AnyBIC>BAUTUS31XXX</AnyBIC>
+								</OrgId>
+								</Id>
+								</Pty>
+							</Cdtr>
+						</RltdPties>
+						<RltdAgts>
+							<DbtrAgt>
+								<FinInstnId>
+									<BICFI>CHASUS33XXX</BICFI>
+								</FinInstnId>
+							</DbtrAgt>
+							<CdtrAgt>
+								<FinInstnId>
+									<BICFI>FTSBUS33XXX</BICFI>
+								</FinInstnId>
+							</CdtrAgt>
+						</RltdAgts>
+					</TxDtls>
+				</NtryDtls>
+			</Ntry>
+		</Stmt>
+	</BkToCstmrStmt>
+</Document>
+</env:Envelope>
