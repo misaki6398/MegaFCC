@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { CaseList } from '../classes/case-list';
+import { State } from '../classes/state';
 
 @Component({
   selector: 'app-case-management',
@@ -44,8 +45,23 @@ export class CaseManagementComponent implements OnInit, AfterViewInit {
     }
   }
 
-  clickAssign(caseId): void {
-    this.router.navigate(['TransationFilter/CaseDetail', caseId]);
+  clickAssign(caseId: string, assignee: string): void {
+    const state: State = {
+      caseId,
+      userComment: ''
+    };
+    // TODO: 未來要抓登入者與 assignee 相等
+    if (assignee === '009647') {
+      this.router.navigate(['TransationFilter/CaseDetail', caseId]);
+      return;
+    }
+
+
+    this.datasourceService.doPostAssignCase(state).subscribe((response: any) => {
+      this.router.navigate(['TransationFilter/CaseDetail', caseId]);
+    }, error => {
+      alert('Case Already Assigned by other user');
+    });
   }
 
 }

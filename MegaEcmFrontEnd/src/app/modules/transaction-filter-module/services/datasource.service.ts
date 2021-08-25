@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { State } from '../classes/state';
 
 @Injectable({
   providedIn: 'root'
@@ -38,5 +39,9 @@ export class DatasourceService {
 
   doGetTfCasesRawdata(caseId: string): Observable<any> {
     return this.http.get(`${this.url}/api/TfCases/RawData/${caseId}`, this.options);
+  }
+
+  doPostAssignCase(state: State): Observable<any> {
+    return this.http.post(`${this.url}/api/TfCases/AssignCase/`, state, this.options);
   }
 }
