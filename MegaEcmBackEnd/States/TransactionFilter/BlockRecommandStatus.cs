@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using MegaEcmBackEnd.Enums;
 
 namespace MegaEcmBackEnd.States.TransactionFilter
@@ -10,17 +11,20 @@ namespace MegaEcmBackEnd.States.TransactionFilter
             _context = context;
         }
 
-        public override void Running(CaseStatus nextStatus)
+        public override Task Running(CaseStatus nextStatus)
         {
             switch (nextStatus)
             {
                 case CaseStatus.Block:
+                    
                     break;
                 case CaseStatus.Reject:
                     break;
                 default:
                     throw new ArgumentException("Next status error");
             }
+
+            return Task.CompletedTask;
         }
     }
 }

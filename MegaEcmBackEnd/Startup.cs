@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using AutoMapper;
 
 namespace MegaEcmBackEnd
 {
@@ -35,16 +36,16 @@ namespace MegaEcmBackEnd
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MegaEcmBackEnd", Version = "v1" });
             });
 
-            
-            services.AddCors (o => o.AddPolicy ("CorsPolicy", builder => {
-                builder.AllowAnyOrigin ()
-                    .AllowAnyMethod ()
-                    .AllowAnyHeader ();
+
+            services.AddCors(o => o.AddPolicy("CorsPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
             }));
-
-
-            services.AddTransient<MegaEcmUnitOfWork> ();
-            services.AddTransient<FccmAtomicUnitOfWork> ();
+            services.AddAutoMapper(typeof(Startup));
+            services.AddTransient<MegaEcmUnitOfWork>();
+            services.AddTransient<FccmAtomicUnitOfWork>();
 
         }
 

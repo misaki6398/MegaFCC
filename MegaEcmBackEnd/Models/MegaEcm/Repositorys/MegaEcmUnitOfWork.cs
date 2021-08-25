@@ -13,6 +13,7 @@ namespace MegaEcmBackEnd.Models.MegaEcm.Repositorys
         private IDbTransaction _transaction;
         private TfAlertsRepository _tfAlertsRepository;
         private TfCasesRepository _tfCasesRepository;
+        private TfCasesAuditsRepository _tfCasesAuditsRepository;
         private bool _disposed;
 
         public MegaEcmUnitOfWork()
@@ -29,6 +30,11 @@ namespace MegaEcmBackEnd.Models.MegaEcm.Repositorys
         public TfCasesRepository TfCasesRepository
         {
             get { return _tfCasesRepository ?? (_tfCasesRepository = new TfCasesRepository(_transaction)); }
+        }
+
+        public TfCasesAuditsRepository TfCasesAuditsRepository
+        {
+            get { return _tfCasesAuditsRepository ?? (_tfCasesAuditsRepository = new TfCasesAuditsRepository(_transaction)); }
         }
         
         public void Commit()
@@ -71,6 +77,8 @@ namespace MegaEcmBackEnd.Models.MegaEcm.Repositorys
         private void resetRepositories()
         {
             _tfAlertsRepository = null;
+            _tfCasesAuditsRepository = null;
+            _tfCasesRepository = null;
         }
 
         public void Dispose()

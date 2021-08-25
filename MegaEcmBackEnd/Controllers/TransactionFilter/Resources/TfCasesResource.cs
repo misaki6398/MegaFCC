@@ -12,6 +12,7 @@ namespace MegaEcmBackEnd.Controllers.TransactionFilter.Resources
         public float Amount { get; set; }
         public string BranchNo { get; set; }
         public string CaseStatus { get; set; }
+        public string Assignee { get; set; }
         public string CreateDateTime { get; set; }
 
         private byte[] caseIdRaw { get; set; }        

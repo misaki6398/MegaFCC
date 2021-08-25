@@ -4,6 +4,7 @@ namespace MegaEcmBackEnd.Enums
     {
         // 不要亂動順序，會爆掉
         NewCase,
+        Assigned,
         ReleaseRecommand,
         BlockRecommand,
         Release,

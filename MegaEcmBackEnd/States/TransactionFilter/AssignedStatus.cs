@@ -4,9 +4,9 @@ using MegaEcmBackEnd.Enums;
 
 namespace MegaEcmBackEnd.States.TransactionFilter
 {
-    public class ReleaseRecommandStatus : BaseCaseStatus
+    public class AssignedStatus : BaseCaseStatus
     {
-        public ReleaseRecommandStatus(CaseContext context)
+        public AssignedStatus(CaseContext context)
         {
             _context = context;
         }
@@ -15,9 +15,9 @@ namespace MegaEcmBackEnd.States.TransactionFilter
         {
             switch (nextStatus)
             {
-                case CaseStatus.Release:
+                case CaseStatus.ReleaseRecommand:
                     break;
-                case CaseStatus.Reject:
+                case CaseStatus.BlockRecommand:
                     break;
                 default:
                     throw new ArgumentException("Next status error");
