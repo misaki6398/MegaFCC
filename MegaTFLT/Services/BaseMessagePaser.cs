@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Xml;
+using MegaTFLT.MegaEcm.Models;
 using MegaTFLT.Models.MegaEcm.Models;
 
 namespace MegaTFLT.Utilitys
@@ -10,7 +11,7 @@ namespace MegaTFLT.Utilitys
     public abstract class BaseMessagePaser
     {
         public TfMessageModel TfMessageModel { get; protected set; }
-        public Dictionary<string, List<ScreeningInputTagModel>> ScreeningInputTags { get; protected set; }
+        public Dictionary<TfScreenConfigKeyModel, List<ScreeningInputTagModel>> ScreeningInputTags { get; protected set; }
 
         public virtual bool ReadFromFile(string filePath)
         {

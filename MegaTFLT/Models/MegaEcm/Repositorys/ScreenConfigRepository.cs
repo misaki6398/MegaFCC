@@ -14,7 +14,9 @@ namespace MegaTFLT.Models.MegaEcm.Repositorys
         private readonly string _sql = $@"
         SELECT 
              ID
+            ,MESSAGESOURCECODE	
             ,TAGNAME
+            ,ENTITYTYPE
             ,NAMEADDRESS
             ,COUNTRYANDCITY
             ,GOODS
@@ -31,7 +33,7 @@ namespace MegaTFLT.Models.MegaEcm.Repositorys
             VALIDFLAG = 1
     ";
 
-        public ScreenConfigRepository(IDbTransaction transaction): base(transaction)
+        public ScreenConfigRepository(IDbTransaction transaction) : base(transaction)
         {
 
         }

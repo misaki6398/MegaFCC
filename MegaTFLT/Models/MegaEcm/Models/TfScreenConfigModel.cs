@@ -6,7 +6,9 @@ namespace MegaTFLT.MegaEcm.Models
     public class TfScreenConfigModel
     {
         public byte[] Id { get; set; } = GuidUtility.ToRaw16(Guid.NewGuid());
+        public int MessageSourceCode { get; set; }
         public string TagName { get; set; }
+        public string EntityType { get; set; }
         public bool NameAddress { get; set; }
         public bool CountryAndCity { get; set; }
         public bool Goods { get; set; }

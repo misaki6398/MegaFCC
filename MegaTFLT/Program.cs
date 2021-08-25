@@ -28,11 +28,11 @@ namespace MegaTFLT
                         };
                         */
             await ReadMessageFile(@"./sample.xml", MessageSource.Mx);
-            await ReadMessageFile(@"./sample_NO_hit.xml", MessageSource.Mx);
-            await ReadMessageFile(@"./sample_pacs.008.xml", MessageSource.Mx);
-            await ReadMessageFile(@"./sample_ILoveYou200.xml", MessageSource.Mx);
+            //await ReadMessageFile(@"./sample_NO_hit.xml", MessageSource.Mx);
+            //await ReadMessageFile(@"./sample_pacs.008.xml", MessageSource.Mx);
+            //await ReadMessageFile(@"./sample_ILoveYou200.xml", MessageSource.Mx);
             await ReadMessageFile(@"./Sample/TXN/OBS/BlueTest.xml", MessageSource.TxnObs);
-            await ReadMessageFile(@"./Sample/TXN/OBS/BlueTest2.xml", MessageSource.TxnObs);
+            //await ReadMessageFile(@"./Sample/TXN/OBS/BlueTest2.xml", MessageSource.TxnObs);
 
         }
 

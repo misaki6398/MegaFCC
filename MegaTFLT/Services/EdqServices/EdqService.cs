@@ -29,7 +29,7 @@ namespace MegaTFLT.Services.EdqServices
             _mapper = config.CreateMapper();
 
         }
-        public async Task<List<TfAlertsModel>> ProcessScreeningAsync(Dictionary<string, List<ScreeningInputTagModel>> mxMessages)
+        public async Task<List<TfAlertsModel>> ProcessScreeningAsync(Dictionary<TfScreenConfigKeyModel, List<ScreeningInputTagModel>> mxMessages)
         {
             var intersectKeys = mxMessages.Keys.Intersect(ConfigUtility.ScreenConfigs.Keys);
 
@@ -55,10 +55,10 @@ namespace MegaTFLT.Services.EdqServices
             return tfAlertsModels;
         }
 
-        private void DispatchScreenData(Dictionary<string, List<ScreeningInputTagModel>> mxMessages, EdqRequestModel edqRequestModel)
+        private void DispatchScreenData(Dictionary<TfScreenConfigKeyModel, List<ScreeningInputTagModel>> mxMessages, EdqRequestModel edqRequestModel)
         {
             var intersectKeys = mxMessages.Keys.Intersect(ConfigUtility.ScreenConfigs.Keys);
-            foreach (string intersectKey in intersectKeys)
+            foreach (TfScreenConfigKeyModel intersectKey in intersectKeys)
             {
 
                 if (ConfigUtility.ScreenConfigs[intersectKey].NameAddress)

@@ -17,16 +17,16 @@ namespace MegaTFLT.Utilitys
 
         public static IConfiguration Configuration = builder.Build();
         public static EdqConfigModel EdqConfigModel = Configuration.GetSection("EdqConfig").Get<EdqConfigModel>();
-        public static string MegaEcmConnectionString = Configuration.GetSection("ConnectionStrings").GetValue<string>("MegaEcm");        
-        public static string FccmAtomicSchema = Configuration.GetSection("ConnectionStrings").GetValue<string>("FccmAtomicSchema");        
-        public static Dictionary<string, TfScreenConfigModel> ScreenConfigs;
+        public static string MegaEcmConnectionString = Configuration.GetSection("ConnectionStrings").GetValue<string>("MegaEcm");
+        public static string FccmAtomicSchema = Configuration.GetSection("ConnectionStrings").GetValue<string>("FccmAtomicSchema");
+        public static Dictionary<TfScreenConfigKeyModel, TfScreenConfigModel> ScreenConfigs;
 
         static ConfigUtility()
         {
             using (MegaEcmUnitOfWork _unitOfWork = new MegaEcmUnitOfWork())
             {
                 IEnumerable<TfScreenConfigModel> screenConfigs = _unitOfWork.ScreenConfigRepository.Query();
-                ScreenConfigs = screenConfigs.ToDictionary(c => c.TagName);
+                ScreenConfigs = screenConfigs.ToDictionary(c => new TfScreenConfigKeyModel(c.MessageSourceCode, c.TagName, c.EntityType));
             }
         }
     }

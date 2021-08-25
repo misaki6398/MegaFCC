@@ -5,6 +5,7 @@ using System.IO;
 using System.Xml;
 using System.Linq;
 using MegaTFLT.Models.MegaEcm.Models;
+using MegaTFLT.MegaEcm.Models;
 
 namespace MegaTFLT.Utilitys
 {
@@ -14,7 +15,7 @@ namespace MegaTFLT.Utilitys
         {
             bool isSuccess = false;
             XmlReader reader = XmlReader.Create(new StringReader(text));
-            ScreeningInputTags = new Dictionary<string, List<ScreeningInputTagModel>>();
+            ScreeningInputTags = new Dictionary<TfScreenConfigKeyModel, List<ScreeningInputTagModel>>();
             string ElementText = "";
             string ValueText = "";
 
@@ -110,14 +111,15 @@ namespace MegaTFLT.Utilitys
 
                     // ----Peocess Screening----
                     List<ScreeningInputTagModel> InputTagList = null;
-                    if (ScreeningInputTags.ContainsKey(ElementText))
+                    TfScreenConfigKeyModel tfScreenConfigKey = new TfScreenConfigKeyModel(0, ElementText, null);
+                    if (ScreeningInputTags.ContainsKey(tfScreenConfigKey))
                     {
-                        InputTagList = ScreeningInputTags[ElementText];
+                        InputTagList = ScreeningInputTags[tfScreenConfigKey];
                     }
                     else
                     {
                         InputTagList = new List<ScreeningInputTagModel>();
-                        ScreeningInputTags.Add(ElementText, InputTagList);
+                        ScreeningInputTags.Add(tfScreenConfigKey, InputTagList);
                     }
                     ScreeningInputTagModel tempInputTagModel = new ScreeningInputTagModel();
                     tempInputTagModel.Input = ValueText;
@@ -126,11 +128,11 @@ namespace MegaTFLT.Utilitys
                     // ----Peocess Screening----
                 }
             }
-            foreach (string ScreeningKey in ScreeningInputTags.Keys)
+            foreach (TfScreenConfigKeyModel tfScreenConfigKey in ScreeningInputTags.Keys)
             {
-                List<ScreeningInputTagModel> InputTagList = ScreeningInputTags[ScreeningKey];
+                List<ScreeningInputTagModel> InputTagList = ScreeningInputTags[tfScreenConfigKey];
                 IEnumerable<ScreeningInputTagModel> noduplicates = (InputTagList.Distinct());
-                ScreeningInputTags[ScreeningKey] = noduplicates.ToList();
+                ScreeningInputTags[tfScreenConfigKey] = noduplicates.ToList();
             }
 
             isSuccess = true;
