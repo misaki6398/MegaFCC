@@ -9,6 +9,7 @@ using System.Text;
 using MegaTFLT.Models.MegaEcm.Repositorys;
 using System.Linq;
 using Oracle.ManagedDataAccess.Client;
+using CommonMegaAp11.Enums;
 
 namespace MegaTFLT
 {
@@ -18,27 +19,50 @@ namespace MegaTFLT
         {
 
             /*
-            Dictionary<string, List<string>> mxMessages = new Dictionary<string, List<string>>()
-            {
-                {"BICFI", new List<string>{"Bank of dandong","ZHANG YONG YUAN","Crimea","KERCH","SABRRUMM","Billions No.18"}},
-                {"CountryCode", new List<string>{"IRAN"}},
-                {"PortCode", new List<string>{"PORT OF ABADAN"}},
-                {"TheTestCode", new List<string>{"Oh My God"}}
-            };
-            */
-            MxPaser Paser1 = new MxPaser();
-            //Paser1.ReadFromFile(@"./sample.xml");
-            //TxnPaser Paser1 = new TxnPaser();
-            //Paser1.ReadFromFile(@"./Sample/TXN/OBS/BlueTest2.rje");
-            //Paser1.ReadFromFile(@"./sample_NO_hit.xml");
-            Paser1.ReadFromFile(@"./sample_pacs.008.xml");
-            //Paser1.ReadFromFile(@"./sample_ILoveYou200.xml");
+                        Dictionary<string, List<string>> mxMessages = new Dictionary<string, List<string>>()
+                        {
+                            {"BICFI", new List<string>{"Bank of dandong","ZHANG YONG YUAN","Crimea","KERCH","SABRRUMM","Billions No.18"}},
+                            {"CountryCode", new List<string>{"IRAN"}},
+                            {"PortCode", new List<string>{"PORT OF ABADAN"}},
+                            {"TheTestCode", new List<string>{"Oh My God"}}
+                        };
+                        */
+            await ReadMessageFile(@"./sample.xml", MessageSource.Mx);
+            await ReadMessageFile(@"./sample_NO_hit.xml", MessageSource.Mx);
+            await ReadMessageFile(@"./sample_pacs.008.xml", MessageSource.Mx);
+            await ReadMessageFile(@"./sample_ILoveYou200.xml", MessageSource.Mx);
+            await ReadMessageFile(@"./Sample/TXN/OBS/BlueTest.xml", MessageSource.TxnObs);
+            await ReadMessageFile(@"./Sample/TXN/OBS/BlueTest2.xml", MessageSource.TxnObs);
 
+        }
+
+        public static async Task ReadMessageFile(string filePath, MessageSource messageSource)
+        {
+            BaseMessagePaser myPaser = null;
+            switch (messageSource)
+            {
+                case MessageSource.Mx:
+                    myPaser = new MxPaser();
+                    break;
+                case MessageSource.TxnObs:
+                    myPaser = new TxnPaser();
+                    break;
+                default:
+                    break;
+            }
+            myPaser.ReadFromFile(filePath);
+            if (myPaser != null)
+                await InputMessage(myPaser);
+        }
+        public static async Task InputMessage(BaseMessagePaser myPaser)
+        {
+
+            //*/
             using (MegaEcmUnitOfWork _unitOfWork = new MegaEcmUnitOfWork())
             {
                 try
                 {
-                    await _unitOfWork.TfMessagesRepository.InsertAsync(Paser1.TfMessageModel);
+                    await _unitOfWork.TfMessagesRepository.InsertAsync(myPaser.TfMessageModel);
                 }
                 catch (OracleException ex)
                 {
@@ -56,12 +80,12 @@ namespace MegaTFLT
             }
 
             EdqService edqService = new EdqService();
-            List<TfAlertsModel> tfAlertsModels = await edqService.ProcessScreeningAsync(Paser1.ScreeningInputTags);
+            List<TfAlertsModel> tfAlertsModels = await edqService.ProcessScreeningAsync(myPaser.ScreeningInputTags);
             using (MegaEcmUnitOfWork _unitOfWork = new MegaEcmUnitOfWork())
             {
                 if (tfAlertsModels.Count() > 0)
                 {
-                    TfCasesModel tfCasesModel = new TfCasesModel(Paser1.TfMessageModel);
+                    TfCasesModel tfCasesModel = new TfCasesModel(myPaser.TfMessageModel);
                     tfCasesModel.CaseStatusCode = 0;
                     tfAlertsModels.ForEach(c =>
                     {

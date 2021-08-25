@@ -7,12 +7,16 @@ namespace MegaTFLT.Models.MegaEcm.Models
     public class TfMessageModel
     {
         // Constractor
-        public TfMessageModel(string rawMessage) => this.RawMessage = rawMessage;
+        public TfMessageModel(string rawMessage, string messageSource)
+        {
+            this.RawMessage = rawMessage;
+            this.MessageSource = messageSource;
+        }
         public byte[] Id { get; private set; } = GuidUtility.ToRaw16(Guid.NewGuid());
         //----From Original Message---
         public string RawMessage { get; private set; }
         public OracleClob RawMessageClob { get; set; }
-
+        public string MessageSource { get; private set; }
         //----From Message Header---
         //<AppHdr>
         public string MessageType { get; set; }

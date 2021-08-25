@@ -19,7 +19,7 @@ namespace MegaTFLT.Utilitys
             string ValueText = "";
 
             // ----Peocess Message----
-            TfMessageModel = new TfMessageModel(text);
+            TfMessageModel = new TfMessageModel(text, "MX");
             TfMessageModel.SwallowId = TfMessageModel.CreateDatetime.ToString("yyyyMMddHHmmssffffff", DateTimeFormatInfo.InvariantInfo) + "I0";
             Console.WriteLine($"MessageGuid:{TfMessageModel.Id}");
             Console.WriteLine($"CreateDatetime:{TfMessageModel.CreateDatetime}");

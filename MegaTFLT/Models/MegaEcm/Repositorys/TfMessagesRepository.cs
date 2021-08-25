@@ -18,6 +18,7 @@ namespace MegaTFLT.Models.MegaEcm.Repositorys
           INSERT INTO tf_messages (
                 id,
                 RawMessage,
+                MessageSource,
                 MessageType,
                 BusinessMessageIdentifier,
                 BusinessService,
@@ -36,6 +37,7 @@ namespace MegaTFLT.Models.MegaEcm.Repositorys
             ) VALUES (
                 :id,
                 :RawMessageClob,
+                :MessageSource,
                 :MessageType,
                 :BusinessMessageIdentifier,
                 :BusinessService,

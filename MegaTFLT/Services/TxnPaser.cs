@@ -25,7 +25,7 @@ namespace MegaTFLT.Utilitys
             string entityRelationshipDesc = "";
 
             // ----Peocess Message----
-            TfMessageModel = new TfMessageModel(text);
+            TfMessageModel = new TfMessageModel(text, "TxnObs");
             TfMessageModel.MessageType = "Transaction";
             // ----Peocess Message----
             while (reader.Read())
