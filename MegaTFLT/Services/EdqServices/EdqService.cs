@@ -22,20 +22,20 @@ namespace MegaTFLT.Services.EdqServices
         {
             MapperConfiguration config = new MapperConfiguration(cfg =>
             {
-                cfg.AddProfile(new MxInputTagToRequestProfile());
+                cfg.AddProfile(new ScreeningInputTagToRequestProfile());
                 cfg.AddProfile(new EdqResponseToAlertsProfile());
             });
 
             _mapper = config.CreateMapper();
 
         }
-        public async Task<List<TfAlertsModel>> ProcessScreeningAsync(Dictionary<TfScreenConfigKeyModel, List<ScreeningInputTagModel>> mxMessages)
+        public async Task<List<TfAlertsModel>> ProcessScreeningAsync(Dictionary<TfScreenConfigKeyModel, List<ScreeningInputTagModel>> screeningInputTags)
         {
-            var intersectKeys = mxMessages.Keys.Intersect(ConfigUtility.ScreenConfigs.Keys);
+            var intersectKeys = screeningInputTags.Keys.Intersect(ConfigUtility.ScreenConfigs.Keys);
 
             EdqRequestModel edqRequestModel = new EdqRequestModel();
 
-            this.DispatchScreenData(mxMessages, edqRequestModel);
+            this.DispatchScreenData(screeningInputTags, edqRequestModel);
 
             // Start Screen
             EdqResponseModel edqResponseModel = new EdqResponseModel();
@@ -55,57 +55,57 @@ namespace MegaTFLT.Services.EdqServices
             return tfAlertsModels;
         }
 
-        private void DispatchScreenData(Dictionary<TfScreenConfigKeyModel, List<ScreeningInputTagModel>> mxMessages, EdqRequestModel edqRequestModel)
+        private void DispatchScreenData(Dictionary<TfScreenConfigKeyModel, List<ScreeningInputTagModel>> screeningInputTags, EdqRequestModel edqRequestModel)
         {
-            var intersectKeys = mxMessages.Keys.Intersect(ConfigUtility.ScreenConfigs.Keys);
+            var intersectKeys = screeningInputTags.Keys.Intersect(ConfigUtility.ScreenConfigs.Keys);
             foreach (TfScreenConfigKeyModel intersectKey in intersectKeys)
             {
 
                 if (ConfigUtility.ScreenConfigs[intersectKey].NameAddress)
                 {
-                    mxMessages[intersectKey].ForEach(mxInputTag =>
+                    screeningInputTags[intersectKey].ForEach(screeningInputTag =>
                     {
-                        edqRequestModel.NameAddressRequestModels.Add(_mapper.Map<ScreeningInputTagModel, NameAddressRequestModel>(mxInputTag));
+                        edqRequestModel.NameAddressRequestModels.Add(_mapper.Map<ScreeningInputTagModel, NameAddressRequestModel>(screeningInputTag));
                     });
                 }
 
                 if (ConfigUtility.ScreenConfigs[intersectKey].CountryAndCity)
                 {
-                    mxMessages[intersectKey].ForEach(mxInputTag =>
+                    screeningInputTags[intersectKey].ForEach(screeningInputTag =>
                     {
-                        edqRequestModel.CountryCityRequestModels.Add(_mapper.Map<ScreeningInputTagModel, CountryCityRequestModel>(mxInputTag));
+                        edqRequestModel.CountryCityRequestModels.Add(_mapper.Map<ScreeningInputTagModel, CountryCityRequestModel>(screeningInputTag));
                     });
                 }
 
                 if (ConfigUtility.ScreenConfigs[intersectKey].BicCode)
                 {
-                    mxMessages[intersectKey].ForEach(mxInputTag =>
+                    screeningInputTags[intersectKey].ForEach(screeningInputTag =>
                     {
-                        edqRequestModel.BicRequestModels.Add(_mapper.Map<ScreeningInputTagModel, BicRequestModel>(mxInputTag));
+                        edqRequestModel.BicRequestModels.Add(_mapper.Map<ScreeningInputTagModel, BicRequestModel>(screeningInputTag));
                     });
                 }
 
                 if (ConfigUtility.ScreenConfigs[intersectKey].Narrative)
                 {
-                    mxMessages[intersectKey].ForEach(mxInputTag =>
+                    screeningInputTags[intersectKey].ForEach(screeningInputTag =>
                     {
-                        edqRequestModel.NarrativeRequestModels.Add(_mapper.Map<ScreeningInputTagModel, NarrativeRequestModel>(mxInputTag));
+                        edqRequestModel.NarrativeRequestModels.Add(_mapper.Map<ScreeningInputTagModel, NarrativeRequestModel>(screeningInputTag));
                     });
                 }
 
                 if (ConfigUtility.ScreenConfigs[intersectKey].Port)
                 {
-                    mxMessages[intersectKey].ForEach(mxInputTag =>
+                    screeningInputTags[intersectKey].ForEach(screeningInputTag =>
                     {
-                        edqRequestModel.PortRequestModels.Add(_mapper.Map<ScreeningInputTagModel, PortRequestModel>(mxInputTag));
+                        edqRequestModel.PortRequestModels.Add(_mapper.Map<ScreeningInputTagModel, PortRequestModel>(screeningInputTag));
                     });
                 }
 
                 if (ConfigUtility.ScreenConfigs[intersectKey].Goods)
                 {
-                    mxMessages[intersectKey].ForEach(mxInputTag =>
+                    screeningInputTags[intersectKey].ForEach(screeningInputTag =>
                     {
-                        edqRequestModel.GoodsRequestModels.Add(_mapper.Map<ScreeningInputTagModel, GoodsRequestModel>(mxInputTag));
+                        edqRequestModel.GoodsRequestModels.Add(_mapper.Map<ScreeningInputTagModel, GoodsRequestModel>(screeningInputTag));
                     });
                 }
 

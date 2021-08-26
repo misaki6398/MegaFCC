@@ -17,16 +17,6 @@ namespace MegaTFLT
     {
         static async Task Main(string[] args)
         {
-
-            /*
-                        Dictionary<string, List<string>> mxMessages = new Dictionary<string, List<string>>()
-                        {
-                            {"BICFI", new List<string>{"Bank of dandong","ZHANG YONG YUAN","Crimea","KERCH","SABRRUMM","Billions No.18"}},
-                            {"CountryCode", new List<string>{"IRAN"}},
-                            {"PortCode", new List<string>{"PORT OF ABADAN"}},
-                            {"TheTestCode", new List<string>{"Oh My God"}}
-                        };
-                        */
             await ReadMessageFile(@"./sample.xml", MessageSource.Mx);
             //await ReadMessageFile(@"./sample_NO_hit.xml", MessageSource.Mx);
             //await ReadMessageFile(@"./sample_pacs.008.xml", MessageSource.Mx);
