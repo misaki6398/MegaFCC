@@ -11,7 +11,8 @@ namespace MegaTFLT.Utilitys
     public abstract class BaseMessagePaser
     {
         public TfMessageModel TfMessageModel { get; protected set; }
-        public Dictionary<TfScreenConfigKeyModel, List<ScreeningInputTagModel>> ScreeningInputTags { get; protected set; }
+        public Dictionary<string, List<ScreeningInputTagModel>> ScreeningInputTags { get; protected set; }
+        public Dictionary<string, List<ScreeningInputTagModel>> ScreeningInputSubTags { get; protected set; }
 
         public virtual bool ReadFromFile(string filePath)
         {

@@ -6,6 +6,7 @@ using System.Xml;
 using System.Linq;
 using MegaTFLT.Models.MegaEcm.Models;
 using MegaTFLT.MegaEcm.Models;
+using CommonMegaAp11.Enums;
 
 namespace MegaTFLT.Utilitys
 {
@@ -15,7 +16,7 @@ namespace MegaTFLT.Utilitys
         {
             bool isSuccess = false;
             XmlReader reader = XmlReader.Create(new StringReader(text));
-            ScreeningInputTags = new Dictionary<TfScreenConfigKeyModel, List<ScreeningInputTagModel>>();
+            ScreeningInputTags = new Dictionary<string, List<ScreeningInputTagModel>>();
             string ElementText = "";
             string ValueText = "";
 
@@ -111,7 +112,7 @@ namespace MegaTFLT.Utilitys
 
                     // ----Peocess Screening----
                     List<ScreeningInputTagModel> InputTagList = null;
-                    TfScreenConfigKeyModel tfScreenConfigKey = new TfScreenConfigKeyModel(0, ElementText, null);
+                    string tfScreenConfigKey = new TfScreenConfigKeyModel(MessageSource.Mx, ElementText).ToString();
                     if (ScreeningInputTags.ContainsKey(tfScreenConfigKey))
                     {
                         InputTagList = ScreeningInputTags[tfScreenConfigKey];
@@ -128,7 +129,7 @@ namespace MegaTFLT.Utilitys
                     // ----Peocess Screening----
                 }
             }
-            foreach (TfScreenConfigKeyModel tfScreenConfigKey in ScreeningInputTags.Keys)
+            foreach (string tfScreenConfigKey in ScreeningInputTags.Keys)
             {
                 List<ScreeningInputTagModel> InputTagList = ScreeningInputTags[tfScreenConfigKey];
                 IEnumerable<ScreeningInputTagModel> noduplicates = (InputTagList.Distinct());

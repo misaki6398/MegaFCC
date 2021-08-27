@@ -1,19 +1,31 @@
 using System;
+using CommonMegaAp11.Enums;
 
 namespace MegaTFLT.MegaEcm.Models
 {
     public class TfScreenConfigKeyModel : IEquatable<TfScreenConfigKeyModel>
     {
-        public TfScreenConfigKeyModel(int messageSourceCode, string tagName, string entityType)
+        public TfScreenConfigKeyModel(MessageSource messageSourceCode, string tagName, string entityType = null)
         {
             this.MessageSourceCode = messageSourceCode;
             this.TagName = tagName;
             this.EntityType = entityType;
             //Console.WriteLine($"{messageSourceCode},{tagName},{entityType}");
+            //Console.WriteLine($"{this}");
         }
-        public int MessageSourceCode { get; private set; }
+        public MessageSource MessageSourceCode { get; private set; }
         public string TagName { get; private set; }
         public string EntityType { get; private set; }
+
+        public override string ToString()
+        {
+            return $"{this.TagName}";
+        }
+        public string ToStringWithSubType()
+        {
+            return $"{this.TagName}||{this.EntityType}";
+        }
+
         public bool Equals(TfScreenConfigKeyModel other)
         {
 
@@ -40,7 +52,8 @@ namespace MegaTFLT.MegaEcm.Models
             //Get hash code for the Code field.
             int hashEntityType = EntityType == null ? 0 : EntityType.GetHashCode();
             //Calculate the hash code for the product.
-            return MessageSourceCode ^ hashTagName ^ hashEntityType;
+            return ((int)MessageSourceCode) ^ hashTagName ^ hashEntityType;
         }
+
     }
 }

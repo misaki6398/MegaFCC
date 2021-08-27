@@ -9,14 +9,15 @@ using Oracle.ManagedDataAccess.Client;
 
 namespace MegaTFLT.Models.MegaEcm.Repositorys
 {
-    public class ScreenConfigRepository : BaseRepository<TfScreenConfigModel>
+    public class ScreenSubConfigRepository : BaseRepository<TfScreenSubConfigModel>
     {
         private readonly string _sql = $@"
         SELECT 
              ID
+            ,ScreenConfigId
             ,MESSAGESOURCECODE	
             ,TAGNAME
-            ,HasSubFlag
+            ,EntityType
             ,NAMEADDRESS
             ,COUNTRYANDCITY
             ,GOODS
@@ -28,21 +29,21 @@ namespace MegaTFLT.Models.MegaEcm.Repositorys
             ,CREATEDATETIME
             ,UPDATEUSER
             ,UPDATEDATETIME
-        FROM SCREENCONFIG
+        FROM SCREENSUBCONFIG
         Where 
             VALIDFLAG = 1
     ";
 
-        public ScreenConfigRepository(IDbTransaction transaction) : base(transaction)
+        public ScreenSubConfigRepository(IDbTransaction transaction) : base(transaction)
         {
 
         }
 
-        public IEnumerable<TfScreenConfigModel> Query()
+        public IEnumerable<TfScreenSubConfigModel> Query()
         {
             try
             {
-                return Connection.Query<TfScreenConfigModel>(_sql, new { }, Transaction);
+                return Connection.Query<TfScreenSubConfigModel>(_sql, new { }, Transaction);
             }
             catch (OracleException)
             {

@@ -6,6 +6,7 @@ using System.Xml;
 using System.Linq;
 using MegaTFLT.Models.MegaEcm.Models;
 using MegaTFLT.MegaEcm.Models;
+using CommonMegaAp11.Enums;
 
 namespace MegaTFLT.Utilitys
 {
@@ -15,7 +16,8 @@ namespace MegaTFLT.Utilitys
         {
             bool isSuccess = false;
             XmlReader reader = XmlReader.Create(new StringReader(text));
-            ScreeningInputTags = new Dictionary<TfScreenConfigKeyModel, List<ScreeningInputTagModel>>();
+            ScreeningInputTags = new Dictionary<string, List<ScreeningInputTagModel>>();
+            ScreeningInputSubTags = new Dictionary<string, List<ScreeningInputTagModel>>();
             string ElementText = "";
             string ValueText = "";
 
@@ -94,26 +96,43 @@ namespace MegaTFLT.Utilitys
                         case "year_of_birth":
                             ScreeningInputTagModel tempInputTagModel = new ScreeningInputTagModel();
                             tempInputTagModel.Input = ValueText;
-//todo KILL 05,07
-                            TfScreenConfigKeyModel tfScreenConfigKey = new TfScreenConfigKeyModel(
-                                1,
-                                 ElementText,
-                            (entityType == "05" || entityType == "07") ? entityType : null
-                            );
+                            tempInputTagModel.TagName = ElementText;
+                            string tfScreenConfigKey = new TfScreenConfigKeyModel(MessageSource.TxnObs, ElementText, entityType).ToString();
+                            string tfScreenSubConfigKey = new TfScreenConfigKeyModel(MessageSource.TxnObs, ElementText, entityType).ToStringWithSubType();
 
-                            // ----Peocess Screening----
-                            List<ScreeningInputTagModel> InputTagList = null;
-                            if (ScreeningInputTags.ContainsKey(tfScreenConfigKey))
+                            if (ConfigUtility.ScreenSubConfigs.ContainsKey(tfScreenSubConfigKey))
                             {
-                                InputTagList = ScreeningInputTags[tfScreenConfigKey];
+                                // ----Peocess Screening----
+                                List<ScreeningInputTagModel> InputTagWithSubTypeList = null;
+                                if (ScreeningInputSubTags.ContainsKey(tfScreenSubConfigKey))
+                                {
+                                    InputTagWithSubTypeList = ScreeningInputSubTags[tfScreenSubConfigKey];
+                                }
+                                else
+                                {
+                                    InputTagWithSubTypeList = new List<ScreeningInputTagModel>();
+                                    ScreeningInputSubTags.Add(tfScreenSubConfigKey, InputTagWithSubTypeList);
+                                }
+                                InputTagWithSubTypeList.Add(tempInputTagModel);
+                                // ----Peocess Screening----
                             }
                             else
                             {
-                                InputTagList = new List<ScreeningInputTagModel>();
-                                ScreeningInputTags.Add(tfScreenConfigKey, InputTagList);
+                                // ----Peocess Screening----
+                                List<ScreeningInputTagModel> InputTagList = null;
+                                if (ScreeningInputTags.ContainsKey(tfScreenConfigKey))
+                                {
+                                    InputTagList = ScreeningInputTags[tfScreenConfigKey];
+                                }
+                                else
+                                {
+                                    InputTagList = new List<ScreeningInputTagModel>();
+                                    ScreeningInputTags.Add(tfScreenConfigKey, InputTagList);
+                                }
+                                InputTagList.Add(tempInputTagModel);
+                                // ----Peocess Screening----
                             }
-                            InputTagList.Add(tempInputTagModel);
-                            // ----Peocess Screening----
+
                             break;
                         default:
                             break;
@@ -121,11 +140,17 @@ namespace MegaTFLT.Utilitys
                     // ----Peocess Message----
                 }
             }
-            foreach (TfScreenConfigKeyModel tfScreenConfigKey in ScreeningInputTags.Keys)
+            foreach (string tfScreenConfigKey in ScreeningInputTags.Keys)
             {
                 List<ScreeningInputTagModel> InputTagList = ScreeningInputTags[tfScreenConfigKey];
                 IEnumerable<ScreeningInputTagModel> noduplicates = (InputTagList.Distinct());
                 ScreeningInputTags[tfScreenConfigKey] = noduplicates.ToList();
+            }
+            foreach (string tfScreenSubConfigKey in ScreeningInputSubTags.Keys)
+            {
+                List<ScreeningInputTagModel> InputTagList = ScreeningInputSubTags[tfScreenSubConfigKey];
+                IEnumerable<ScreeningInputTagModel> noduplicates = (InputTagList.Distinct());
+                ScreeningInputSubTags[tfScreenSubConfigKey] = noduplicates.ToList();
             }
 
             isSuccess = true;

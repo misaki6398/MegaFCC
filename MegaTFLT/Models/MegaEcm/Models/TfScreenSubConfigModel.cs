@@ -4,12 +4,13 @@ using CommonMegaAp11.Utilitys;
 
 namespace MegaTFLT.MegaEcm.Models
 {
-    public class TfScreenConfigModel
+    public class TfScreenSubConfigModel
     {
         public byte[] Id { get; set; } = GuidUtility.ToRaw16(Guid.NewGuid());
+        public byte[] ScreenConfigId { get; set; }
         public MessageSource MessageSourceCode { get; set; }
         public string TagName { get; set; }
-        public bool HasSubFlag { get; set; }
+        public string EntityType { get; set; }
         public bool NameAddress { get; set; }
         public bool CountryAndCity { get; set; }
         public bool Goods { get; set; }
@@ -20,7 +21,7 @@ namespace MegaTFLT.MegaEcm.Models
         public string CreateUser { get; set; }
         public DateTime CreateDatetime { get; set; }
         public string UpdateUser { get; set; }
-        public DateTime UpdateDatetime { get; set; }        
-        
+        public DateTime UpdateDatetime { get; set; }
+
     }
 }

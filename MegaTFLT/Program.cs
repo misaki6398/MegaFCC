@@ -17,9 +17,10 @@ namespace MegaTFLT
     {
         static async Task Main(string[] args)
         {
-            await ReadMessageFile(@"./sample.xml", MessageSource.Mx);
+            //await ReadMessageFile(@"./sample.xml", MessageSource.Mx);
             //await ReadMessageFile(@"./sample_NO_hit.xml", MessageSource.Mx);
             //await ReadMessageFile(@"./sample_pacs.008.xml", MessageSource.Mx);
+            //await ReadMessageFile(@"./Sample/MX/Use Case c.52.1.a/CBPR+c.52.1.a.camt.052-CtoD_20201016.xml", MessageSource.Mx);
             //await ReadMessageFile(@"./sample_ILoveYou200.xml", MessageSource.Mx);
             await ReadMessageFile(@"./Sample/TXN/OBS/BlueTest.xml", MessageSource.TxnObs);
             //await ReadMessageFile(@"./Sample/TXN/OBS/BlueTest2.xml", MessageSource.TxnObs);
@@ -46,8 +47,6 @@ namespace MegaTFLT
         }
         public static async Task InputMessage(BaseMessagePaser myPaser)
         {
-
-            //*/
             using (MegaEcmUnitOfWork _unitOfWork = new MegaEcmUnitOfWork())
             {
                 try
@@ -70,7 +69,7 @@ namespace MegaTFLT
             }
 
             EdqService edqService = new EdqService();
-            List<TfAlertsModel> tfAlertsModels = await edqService.ProcessScreeningAsync(myPaser.ScreeningInputTags);
+            List<TfAlertsModel> tfAlertsModels = await edqService.ProcessScreeningAsync(myPaser);
             using (MegaEcmUnitOfWork _unitOfWork = new MegaEcmUnitOfWork())
             {
                 if (tfAlertsModels.Count() > 0)
