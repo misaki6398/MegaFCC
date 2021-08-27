@@ -26,10 +26,6 @@
 
 table {
   width: 100%;
-
-  .blue {
-    background-color: yellow;
-  }
 }
 
 
@@ -79,7 +75,7 @@ tr.element-row:not(.example-expanded-row):active {
   display: flex;
   justify-content: flex-end;
   >button {
-    margin: 0 2px;
+    margin: 0 10px;
   }
 }
 
@@ -89,4 +85,12 @@ tr.element-row:not(.example-expanded-row):active {
   >button {
     margin: 0 2px;
   }
+}
+
+.green {
+  color: #69f0ae;
+}
+
+.red {
+  color: #f44336
 }

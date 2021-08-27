@@ -1,8 +1,17 @@
 <h1 i18n>Transation Filter - Case Detail</h1>
 <div class="flex-start">
-  <button mat-stroked-button color="accent" (click)="back()" i18n="@@Back"><i class="fas fa-reply-all"></i> Back</button>
-  <button mat-stroked-button (click)="openDialog()" i18n="@@Rawdata"><i class="fas fa-sticky-note"></i> Rawdata</button>
-  <button mat-stroked-button color="dark-yellow" i18n="@@AttachFile"><i class="fas fa-paperclip"></i> Attach File</button>
+  <button mat-stroked-button color="accent" (click)="back()" i18n="@@Back"><i class="fas fa-reply-all"></i>
+    Back</button>
+
+
+  <button mat-stroked-button [matMenuTriggerFor]="menu" i18n="@@Functions">Functions <i
+      class="fas fa-chevron-down"></i></button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="openDialog()" i18n="@@Rawdata"><i class="fas fa-sticky-note"></i> Rawdata</button>
+    <button mat-menu-item color="dark-yellow" i18n="@@AttachFile"><i class="fas fa-paperclip"></i> Attach File</button>
+    <button mat-menu-item i18n="@@AllFalseMatch" (click)="onClickAllFalseMatch()"><i class="fas fa-times"></i> All False Match</button>
+    <button mat-menu-item i18n="@@AllTrueMatch" (click)="onClickAllTrueMatch()"><i class="fas fa-check"></i>All True Match</button>
+  </mat-menu>
 </div>
 <hr>
 <div class="row">
@@ -15,29 +24,38 @@
           <td mat-cell *matCellDef="let element">
             {{element[column]}}
         </ng-container> -->
+
         <ng-container matColumnDef="matchedListRecordId">
           <th mat-header-cell *matHeaderCellDef mat-sort-header i18n="@@ListRecordId">List Record Id</th>
-          <td mat-cell *matCellDef="let row"> {{row.matchedListRecordId}} </td>
+          <td mat-cell *matCellDef="let row"
+            [ngClass]="{'red': row.alertStatusCode === 1 , 'green': row.alertStatusCode === 2}">
+            {{row.matchedListRecordId}} </td>
         </ng-container>
 
         <ng-container matColumnDef="matchedName">
           <th mat-header-cell *matHeaderCellDef mat-sort-header i18n="@@MatchedName">Matched Name</th>
-          <td mat-cell *matCellDef="let row"> {{row.matchedName}} </td>
+          <td mat-cell *matCellDef="let row"
+            [ngClass]="{'red': row.alertStatusCode === 1 , 'green': row.alertStatusCode === 2}"> {{row.matchedName}}
+          </td>
         </ng-container>
 
         <ng-container matColumnDef="matchType">
           <th mat-header-cell *matHeaderCellDef mat-sort-header i18n="@@MatchType">Match Type</th>
-          <td mat-cell *matCellDef="let row"> {{row.matchType}} </td>
+          <td mat-cell *matCellDef="let row"
+            [ngClass]="{'red': row.alertStatusCode === 1 , 'green': row.alertStatusCode === 2}"> {{row.matchType}} </td>
         </ng-container>
 
         <ng-container matColumnDef="rule">
           <th mat-header-cell *matHeaderCellDef mat-sort-header i18n="@@Rule">Rule</th>
-          <td mat-cell *matCellDef="let row"> {{row.rule}} </td>
+          <td mat-cell *matCellDef="let row"
+            [ngClass]="{'red': row.alertStatusCode === 1 , 'green': row.alertStatusCode === 2}"> {{row.rule}} </td>
         </ng-container>
 
         <ng-container matColumnDef="matchedListSubKey">
           <th mat-header-cell *matHeaderCellDef mat-sort-header i18n="@@ListSubKey">List Sub Key</th>
-          <td mat-cell *matCellDef="let row"> {{row.matchedListSubKey}} </td>
+          <td mat-cell *matCellDef="let row"
+            [ngClass]="{'red': row.alertStatusCode === 1 , 'green': row.alertStatusCode === 2}">
+            {{row.matchedListSubKey}} </td>
         </ng-container>
 
         <ng-container matColumnDef="expandedDetail">
@@ -59,14 +77,13 @@
                   </table>
                 </div>
                 <div class="element-select col-xl-3 col-lg-12">
-                  <mat-form-field appearance="fill">
-                    <mat-label>State</mat-label>
-                    <mat-select>
-                      <mat-option>None</mat-option>
-                      <mat-option *ngFor="let state of states" [value]="state">{{state}}</mat-option>
+                  <mat-form-field>
+                    <mat-label i18n="@@Status">Status</mat-label>
+                    <mat-select [(value)]="element.alertStatusCode">
+                      <mat-option *ngFor="let status of alertStatus" [value]="status.value"
+                        (click)="onClickDecision(element, status.value)">{{status.name}}</mat-option>
                     </mat-select>
                   </mat-form-field>
-
                 </div>
               </div>
             </div>
@@ -93,7 +110,7 @@
 
   <div class="col-xl-3 col-md-12 h-70vh overflow-auto">
     <mat-tab-group>
-      <mat-tab label="Hit Columns" i18n-label="@@HitColumns">
+      <mat-tab label="Hit Tags" i18n-label="@@HitTags">
         <table class="table table-dark blue">
           <tbody>
             <!-- <tr>
@@ -121,6 +138,14 @@
 
 
 <div class="flex-end">
-  <button mat-raised-button color="accent"><i class="fas fa-forward"></i> Recomman Release</button>
-  <button mat-raised-button color="warn"><i class="fas fa-stop"></i> Recomman Block</button>
+  <mat-form-field>
+    <mat-label i18n="@@CaseResolution">CaseResolution</mat-label>
+    <mat-select [(value)]="caseResolution" [disabled]="newAlerDecisionCount>0">
+      <mat-option *ngFor="let status of l1CaseStatus" [value]="status.value">{{status.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-raised-button [ngClass]="{'mat-accent' : caseResolution === 2, 'mat-warn': caseResolution === 3}"
+    class="button-max-height" i18n="@@Submit" [disabled]="caseResolution === 0" (click)="onClickSubmit()">
+    <i class="fas fa-forward"></i> Submit
+  </button>
 </div>

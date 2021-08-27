@@ -11,13 +11,13 @@ using Microsoft.Extensions.Logging;
 using MegaEcmBackEnd.Models.FccmAtomic.Repositorys;
 using System.Text.Json;
 using System.Net.Http;
-
+using SasReportService.Controllers;
 
 namespace MegaEcmBackEnd.Controllers.TransactionFilter
 {
     [Route("api/[controller]")]
     [EnableCors("CorsPolicy")]
-    public class TfAlertsController : ControllerBase
+    public class TfAlertsController : BaseController
     {
         private readonly ILogger<TfAlertsController> _logger;
         private readonly MegaEcmUnitOfWork _megaEcmUnitOfWork;
@@ -60,16 +60,36 @@ namespace MegaEcmBackEnd.Controllers.TransactionFilter
             }
         }
 
-        [HttpGet("ListDetail/{listSubTypeId}")]        
-        public async Task<IActionResult> GetListDetail(string listSubTypeId)
+        [HttpGet("ListDetail/{alertId}")]
+        public async Task<IActionResult> GetListDetail(Guid alertId)
         {
             try
             {
-                var result = await _fccmAtomicUnitOfWork.FsiRtListDataRepositroy.QueryListAsync(listSubTypeId);
-                return Content(result.FirstOrDefault(), "application/json");
+                string result = await _megaEcmUnitOfWork.TfAlertsRepository.QueryListAsync(GuidUtility.ToRaw16(alertId));
+                return Content(result, "application/json");
             }
             catch (System.Exception ex)
             {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("AlertDecision")]
+        public async Task<IActionResult> PostAlertDecision([FromBody] List<AlertDecisionResource> resources)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(this.GetModelAttributeErrorMessage());
+            }
+            try
+            {
+                var result = await _megaEcmUnitOfWork.TfAlertsRepository.UpdateAlertDecisionAsync(resources);
+                _megaEcmUnitOfWork.Commit();
+                return Ok(result);
+            }
+            catch (System.Exception ex)
+            {
+                _megaEcmUnitOfWork.Rollback();
                 return BadRequest(ex.Message);
             }
         }

@@ -107,7 +107,17 @@
         <target><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;fas fa-reply-all&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> 上一頁</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-detail/case-detail.component.html</context>
-          <context context-type="linenumber">3</context>
+          <context context-type="linenumber">3,4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Functions" datatype="html">
+        <source>Functions <x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i
+      class=&quot;fas fa-chevron-down&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/></source>
+      <target>功能列 <x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i
+      class=&quot;fas fa-chevron-down&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-detail/case-detail.component.html</context>
+          <context context-type="linenumber">7,8</context>
         </context-group>
       </trans-unit>
       <trans-unit id="Rawdata" datatype="html">
@@ -115,7 +125,7 @@
         <target><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;fas fa-sticky-note&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> 原始資料</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-detail/case-detail.component.html</context>
-          <context context-type="linenumber">4</context>
+          <context context-type="linenumber">10</context>
         </context-group>
       </trans-unit>
       <trans-unit id="AttachFile" datatype="html">
@@ -123,7 +133,23 @@
         <target><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;fas fa-paperclip&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> 附加檔案</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-detail/case-detail.component.html</context>
-          <context context-type="linenumber">5</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="AllFalseMatch" datatype="html">
+        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;fas fa-times&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> All False Match</source>
+        <target><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;fas fa-times&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> 全部虛假命中</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-detail/case-detail.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="AllTrueMatch" datatype="html">
+        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;fas fa-check&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/>All True Match</source>
+        <target><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;fas fa-check&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/>全部確實命中</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-detail/case-detail.component.html</context>
+          <context context-type="linenumber">13</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ListRecordId" datatype="html">
@@ -131,7 +157,7 @@
         <target>名單 Id</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-detail/case-detail.component.html</context>
-          <context context-type="linenumber">19</context>
+          <context context-type="linenumber">29</context>
         </context-group>
       </trans-unit>
       <trans-unit id="MatchedName" datatype="html">
@@ -139,7 +165,7 @@
         <target>命中名字</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-detail/case-detail.component.html</context>
-          <context context-type="linenumber">24</context>
+          <context context-type="linenumber">36</context>
         </context-group>
       </trans-unit>
       <trans-unit id="MatchType" datatype="html">
@@ -147,7 +173,7 @@
         <target>命中名單類型</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-detail/case-detail.component.html</context>
-          <context context-type="linenumber">29</context>
+          <context context-type="linenumber">43</context>
         </context-group>
       </trans-unit>
       <trans-unit id="Rule" datatype="html">
@@ -155,7 +181,7 @@
         <target>命中規則</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-detail/case-detail.component.html</context>
-          <context context-type="linenumber">34</context>
+          <context context-type="linenumber">49</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ListSubKey" datatype="html">
@@ -163,7 +189,19 @@
         <target>命中名單</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-detail/case-detail.component.html</context>
-          <context context-type="linenumber">39</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Status" datatype="html">
+        <source>Status</source>
+        <target>狀態</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-detail/case-detail.component.html</context>
+          <context context-type="linenumber">81</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-management/case-management.component.html</context>
+          <context context-type="linenumber">41</context>
         </context-group>
       </trans-unit>
       <trans-unit id="NoMatch" datatype="html">
@@ -171,19 +209,19 @@
         <target>沒有資料符合 &quot;<x id="INTERPOLATION" equiv-text="{{input.value}}"/>&quot;</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-detail/case-detail.component.html</context>
-          <context context-type="linenumber">85</context>
+          <context context-type="linenumber">102</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-management/case-management.component.html</context>
           <context context-type="linenumber">66</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="HitColumns" datatype="html">
-        <source>Hit Columns</source>
+      <trans-unit id="HitTags" datatype="html">
+        <source>Hit Tags</source>
         <target>命中欄位</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-detail/case-detail.component.html</context>
-          <context context-type="linenumber">96</context>
+          <context context-type="linenumber">113</context>
         </context-group>
       </trans-unit>
       <trans-unit id="Audit" datatype="html">
@@ -191,7 +229,7 @@
         <target>案件歷史</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-detail/case-detail.component.html</context>
-          <context context-type="linenumber">109</context>
+          <context context-type="linenumber">126</context>
         </context-group>
       </trans-unit>
       <trans-unit id="Attachment" datatype="html">
@@ -199,7 +237,30 @@
         <target>附加檔案</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-detail/case-detail.component.html</context>
-          <context context-type="linenumber">112</context>
+          <context context-type="linenumber">129</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="CaseResolution" datatype="html">
+        <source>CaseResolution</source>
+        <target>案件決議</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-detail/case-detail.component.html</context>
+          <context context-type="linenumber">142</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Submit" datatype="html">
+        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;fas fa-forward&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Submit </source>
+        <target><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;fas fa-forward&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> 提交 </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-detail/case-detail.component.html</context>
+          <context context-type="linenumber">149,150</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="NewAlert" datatype="html">
+        <source>New Alert</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-detail/case-detail.component.ts</context>
+          <context context-type="linenumber">35</context>
         </context-group>
       </trans-unit>
       <trans-unit id="TrueMatch" datatype="html">
@@ -207,7 +268,7 @@
         <target>確實命中</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-detail/case-detail.component.ts</context>
-          <context context-type="linenumber">28</context>
+          <context context-type="linenumber">36</context>
         </context-group>
       </trans-unit>
       <trans-unit id="FalseMatch" datatype="html">
@@ -215,10 +276,26 @@
         <target>虛假命中</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-detail/case-detail.component.ts</context>
-          <context context-type="linenumber">28</context>
+          <context context-type="linenumber">37</context>
         </context-group>
       </trans-unit>
-       <trans-unit id="2054484984166391403" datatype="html">
+      <trans-unit id="ReleaseRecommand" datatype="html">
+        <source>Release Recommand</source>
+        <target>建議放行</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-detail/case-detail.component.ts</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="BlockRecommand" datatype="html">
+        <source>Block Recommand</source>
+        <target>建議阻擋</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-detail/case-detail.component.ts</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2054484984166391403" datatype="html">
         <source>Transation Filter - Case Management</source>
         <target>交易掃描 - 案件審查</target>
         <context-group purpose="location">
@@ -272,14 +349,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-management/case-management.component.html</context>
           <context context-type="linenumber">37</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="Status" datatype="html">
-        <source>Status</source>
-        <target>案件狀態</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/transaction-filter-module/case-management/case-management.component.html</context>
-          <context context-type="linenumber">41</context>
         </context-group>
       </trans-unit>
       <trans-unit id="AssignBy" datatype="html">

@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AlertDecision } from '../classes/alert-decision';
 import { State } from '../classes/state';
 
 @Injectable({
@@ -43,5 +44,9 @@ export class DatasourceService {
 
   doPostAssignCase(state: State): Observable<any> {
     return this.http.post(`${this.url}/api/TfCases/AssignCase/`, state, this.options);
+  }
+
+  doPostAlertDesicion(alertDecision: Array<AlertDecision>): Observable<any> {
+     return this.http.post(`${this.url}/api/TfAlerts/AlertDecision/`, alertDecision, this.options);
   }
 }

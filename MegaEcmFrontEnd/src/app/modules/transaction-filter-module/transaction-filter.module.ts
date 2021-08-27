@@ -19,7 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
 import { RawdataComponent } from './rawdata/rawdata.component';
-
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,9 @@ import { RawdataComponent } from './rawdata/rawdata.component';
     MatSelectModule,
     HttpClientModule,
     MatProgressSpinnerModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCheckboxModule,
+    MatMenuModule
   ],
   providers: [DatasourceService],
   exports: [

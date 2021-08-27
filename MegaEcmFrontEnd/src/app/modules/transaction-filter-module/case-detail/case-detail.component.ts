@@ -1,3 +1,5 @@
+import { CaseStatus } from './../enums/case-status.enum';
+import { AlertDecision } from './../classes/alert-decision';
 import { RawdataComponent } from './../rawdata/rawdata.component';
 import { HitColumns } from './../classes/hit-columns';
 import { DatasourceService } from './../services/datasource.service';
@@ -9,6 +11,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertList } from '../classes/alert-list';
 import { MatDialog } from '@angular/material/dialog';
+import { SelectionModel } from '@angular/cdk/collections';
+import { AlertStatus } from '../enums/alert-status.enum';
 
 @Component({
   selector: 'app-case-detail',
@@ -25,14 +29,30 @@ import { MatDialog } from '@angular/material/dialog';
 export class CaseDetailComponent implements OnInit, AfterViewInit {
 
   displayedColumns: string[] = ['matchedListRecordId', 'matchedName', 'matchType', 'rule', 'matchedListSubKey'];
-  states: string[] = [$localize`:@@TrueMatch:True Match`, $localize`:@@FalseMatch:False Match`];
+
+  // 需對應到 backend 專案 AlertStatus enum
+  alertStatus = [
+    { name: $localize`:@@NewAlert:New Alert`, value: AlertStatus.NewAlert },
+    { name: $localize`:@@TrueMatch:True Match`, value: AlertStatus.TrueMatch },
+    { name: $localize`:@@FalseMatch:False Match`, value: AlertStatus.FalseMatch }
+  ];
+
+  // 需對應到 backend 專案 CaseStatus enum
+  l1CaseStatus = [
+    { name: $localize`:@@ReleaseRecommand:Release Recommand`, value: CaseStatus.ReleaseRecommand },
+    { name: $localize`:@@BlockRecommand:Block Recommand`, value: CaseStatus.BlockRecommand },
+  ];
+
+  selection = new SelectionModel<AlertList>(true, []);
   tableDataSource: MatTableDataSource<AlertList>;
-  alterts: Array<AlertList> = [];
+  alerts: Array<AlertList> = [];
   caseId: string;
   hitColumns: Array<HitColumns>;
   selectedColumn;
   distinctColumns;
   listDetail: any = [];
+  caseResolution = 0;
+  newAlerDecisionCount;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -52,11 +72,12 @@ export class CaseDetailComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
 
     this.datasourceService.doGetTfAlerts(this.caseId).subscribe((response: any) => {
-      this.alterts = response;
-      this.tableDataSource = new MatTableDataSource(this.alterts);
+      this.alerts = response;
+      this.tableDataSource = new MatTableDataSource(this.alerts);
       this.tableDataSource.paginator = this.paginator;
       this.tableDataSource.sort = this.sort;
-      console.log(this.alterts);
+      console.log(this.alerts);
+      this.newAlerDecisionCount = this.alerts.filter(c => c.alertStatusCode === 0).length;
     });
 
     this.datasourceService.doGetHitColumn(this.caseId).subscribe((responses: any) => {
@@ -94,7 +115,7 @@ export class CaseDetailComponent implements OnInit, AfterViewInit {
     });
 
     if (expandedElement !== null) {
-      this.datasourceService.doGetListDetail(expandedElement.listSubTypeId).subscribe((responses: any) => {
+      this.datasourceService.doGetListDetail(expandedElement.alertId).subscribe((responses: any) => {
         responses.forEach((response: any) => {
           // 處理 aliases 換行
           if (response.key === 'Aliases') {
@@ -130,6 +151,45 @@ export class CaseDetailComponent implements OnInit, AfterViewInit {
     this.router.navigate(['TransationFilter/CaseManagement']);
   }
 
-}
 
+  onClickDecision(element, alertStatusCode): void {
+    const alertDecision: Array<AlertDecision> = [{
+      alertId: element.alertId,
+      alertStatusCode
+    }];
+    this.newAlerDecisionCount = this.alerts.filter(c => c.alertStatusCode === 0).length;
+    this.datasourceService.doPostAlertDesicion(alertDecision).subscribe((respones: any) => {
+    }, error => {
+      alert('Update error');
+    });
+  }
+
+  onClickAllFalseMatch(): void {
+    this.updateDecision(AlertStatus.FalseMatch);
+
+  }
+
+  onClickAllTrueMatch(): void {
+    this.updateDecision(AlertStatus.TrueMatch);
+  }
+
+  updateDecision(alertStatusCode: number): void {
+    const alertDecisions: Array<AlertDecision> = [];
+
+    this.alerts.forEach((row, index) => {
+      const alertDecision: AlertDecision = { alertId: row.alertId, alertStatusCode };
+      alertDecisions.push(alertDecision);
+    });
+
+    this.datasourceService.doPostAlertDesicion(alertDecisions).subscribe((respones: any) => {
+      this.alerts.map(c => c.alertStatusCode = alertStatusCode);
+    }, error => {
+      alert('Update error');
+    });
+  }
+
+  onClickSubmit(): void {
+
+  }
+}
 
