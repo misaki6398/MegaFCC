@@ -4,9 +4,9 @@ using MegaTFLT.Models.MegaEcm.Models;
 
 namespace MegaTFLT.Models.MegaEcm.MapProfiles
 {
-    public class MxInputTagToRequestProfile : Profile
+    public class ScreeningInputTagToRequestProfile : Profile
     {
-        public MxInputTagToRequestProfile()
+        public ScreeningInputTagToRequestProfile()
         {
             CreateMap<string, string>().ConvertUsing(s => s ?? string.Empty);
             CreateMap<ScreeningInputTagModel, NameAddressRequestModel>()

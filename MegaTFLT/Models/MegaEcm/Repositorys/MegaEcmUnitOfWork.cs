@@ -12,6 +12,7 @@ namespace MegaTFLT.Models.MegaEcm.Repositorys
         private IDbConnection _connection;
         private IDbTransaction _transaction;
         private ScreenConfigRepository _screenConfigRepository;
+        private ScreenSubConfigRepository _screenSubConfigRepository;
         private TfMessagesRepository _tfMessagesRepository;
         private TfCasesRepository _tfCasesRepository;
         private TfAlertsRepository _tfAlertsRepository;
@@ -28,6 +29,11 @@ namespace MegaTFLT.Models.MegaEcm.Repositorys
         {
             get { return _screenConfigRepository ?? (_screenConfigRepository = new ScreenConfigRepository(_transaction)); }
         }
+        public ScreenSubConfigRepository ScreenSubConfigRepository
+        {
+            get { return _screenSubConfigRepository ?? (_screenSubConfigRepository = new ScreenSubConfigRepository(_transaction)); }
+        }
+
         public TfMessagesRepository TfMessagesRepository
         {
             get { return _tfMessagesRepository ?? (_tfMessagesRepository = new TfMessagesRepository(_transaction)); }
@@ -40,7 +46,7 @@ namespace MegaTFLT.Models.MegaEcm.Repositorys
         {
             get { return _tfAlertsRepository ?? (_tfAlertsRepository = new TfAlertsRepository(_transaction)); }
         }
-        
+
         public void Commit()
         {
             try
@@ -67,7 +73,7 @@ namespace MegaTFLT.Models.MegaEcm.Repositorys
                 _transaction.Rollback();
             }
             catch
-            {                
+            {
                 throw;
             }
             finally
