@@ -1,5 +1,6 @@
 using System;
 using CommonMegaAp11.Utilitys;
+using MegaEcmBackEnd.Enums;
 
 namespace MegaEcmBackEnd.Controllers.TransactionFilter.Resources
 {
@@ -12,6 +13,7 @@ namespace MegaEcmBackEnd.Controllers.TransactionFilter.Resources
         public float Amount { get; set; }
         public string BranchNo { get; set; }
         public string CaseStatus { get; set; }
+        public CaseStatus CaseStatusCode { get; set; }
         public string Assignee { get; set; }
         public string CreateDateTime { get; set; }
 

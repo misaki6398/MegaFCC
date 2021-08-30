@@ -27,6 +27,10 @@ export class DatasourceService {
     return this.http.get(`${this.url}/api/TfCases/`, this.options);
   }
 
+  doGetTfCase(caseId: string): Observable<any> {
+    return this.http.get(`${this.url}/api/TfCases/${caseId}`, this.options);
+  }
+
   doGetTfAlerts(caseId: string): Observable<any> {
     return this.http.get(`${this.url}/api/TfAlerts/${caseId}`, this.options);
 
@@ -42,8 +46,8 @@ export class DatasourceService {
     return this.http.get(`${this.url}/api/TfCases/RawData/${caseId}`, this.options);
   }
 
-  doPostAssignCase(state: State): Observable<any> {
-    return this.http.post(`${this.url}/api/TfCases/AssignCase/`, state, this.options);
+  doPostWorkflow(state: State): Observable<any> {
+    return this.http.post(`${this.url}/api/TfCases/Workflow/`, state, this.options);
   }
 
   doPostAlertDesicion(alertDecision: Array<AlertDecision>): Observable<any> {

@@ -14,7 +14,6 @@ export class RawdataComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any, private datasource: DatasourceService) { }
 
   ngOnInit(): void {
-    console.log(this.data);
     this.datasource.doGetTfCasesRawdata(this.data.caseId).subscribe(response => {
       response[0] = response[0].replaceAll('<', '&lt;').replaceAll('>', '&gt;');
       this.rawdata = response[0];

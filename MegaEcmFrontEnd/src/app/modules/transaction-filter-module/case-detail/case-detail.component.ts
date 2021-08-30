@@ -13,6 +13,7 @@ import { AlertList } from '../classes/alert-list';
 import { MatDialog } from '@angular/material/dialog';
 import { SelectionModel } from '@angular/cdk/collections';
 import { AlertStatus } from '../enums/alert-status.enum';
+import { CaseCommentComponent } from '../case-comment/case-comment.component';
 
 @Component({
   selector: 'app-case-detail',
@@ -43,6 +44,18 @@ export class CaseDetailComponent implements OnInit, AfterViewInit {
     { name: $localize`:@@BlockRecommand:Block Recommand`, value: CaseStatus.BlockRecommand },
   ];
 
+  // 需對應到 backend 專案 CaseStatus enum
+  RRCaseStatus = [
+    { name: $localize`:@@Release:Release`, value: CaseStatus.Release },
+    { name: $localize`:@@Reject:Reject`, value: CaseStatus.Reject },
+  ];
+
+  // 需對應到 backend 專案 CaseStatus enum
+  BRCaseStatus = [
+    { name: $localize`:@@Block:Block`, value: CaseStatus.Block },
+    { name: $localize`:@@Reject:Reject`, value: CaseStatus.Reject },
+  ];
+
   selection = new SelectionModel<AlertList>(true, []);
   tableDataSource: MatTableDataSource<AlertList>;
   alerts: Array<AlertList> = [];
@@ -53,6 +66,7 @@ export class CaseDetailComponent implements OnInit, AfterViewInit {
   listDetail: any = [];
   caseResolution = 0;
   newAlerDecisionCount;
+  caseDetail: any = [];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -70,6 +84,10 @@ export class CaseDetailComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    this.datasourceService.doGetTfCase(this.caseId).subscribe((response: any) => {
+      this.caseDetail = response[0];
+      console.log(this.caseDetail);
+    });
 
     this.datasourceService.doGetTfAlerts(this.caseId).subscribe((response: any) => {
       this.alerts = response;
@@ -141,7 +159,7 @@ export class CaseDetailComponent implements OnInit, AfterViewInit {
     }
   }
 
-  openDialog(): void {
+  openRawdataDialog(): void {
     const dialogRef = this.dialog.open(RawdataComponent, {
       data: { caseId: this.caseId, hitColums: this.distinctColumns }
     });
@@ -157,7 +175,7 @@ export class CaseDetailComponent implements OnInit, AfterViewInit {
       alertId: element.alertId,
       alertStatusCode
     }];
-    this.newAlerDecisionCount = this.alerts.filter(c => c.alertStatusCode === 0).length;
+    console.log(this.newAlerDecisionCount);
     this.datasourceService.doPostAlertDesicion(alertDecision).subscribe((respones: any) => {
     }, error => {
       alert('Update error');
@@ -183,12 +201,30 @@ export class CaseDetailComponent implements OnInit, AfterViewInit {
 
     this.datasourceService.doPostAlertDesicion(alertDecisions).subscribe((respones: any) => {
       this.alerts.map(c => c.alertStatusCode = alertStatusCode);
+      this.newAlerDecisionCount = this.alerts.filter(c => c.alertStatusCode === 0).length;
     }, error => {
       alert('Update error');
     });
   }
 
   onClickSubmit(): void {
+    if (this.caseDetail.caseStatusCode === CaseStatus.Assigned || this.caseDetail.caseStatusCode === CaseStatus.Reject) {
+      const dialogRef = this.dialog.open(CaseCommentComponent, {
+        data: { caseId: this.caseId, caseResolution: this.caseResolution, caseStatus: CaseStatus.Assigned }
+      });
+    }
+
+    if (this.caseDetail.caseStatusCode === CaseStatus.ReleaseRecommand) {
+      const dialogRef = this.dialog.open(CaseCommentComponent, {
+        data: { caseId: this.caseId, caseResolution: this.caseResolution, caseStatus: CaseStatus.ReleaseRecommand }
+      });
+    }
+
+    if (this.caseDetail.caseStatusCode === CaseStatus.BlockRecommand) {
+      const dialogRef = this.dialog.open(CaseCommentComponent, {
+        data: { caseId: this.caseId, caseResolution: this.caseResolution, caseStatus: CaseStatus.BlockRecommand }
+      });
+    }
 
   }
 }

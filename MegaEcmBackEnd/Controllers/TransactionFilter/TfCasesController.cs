@@ -46,8 +46,8 @@ namespace MegaEcmBackEnd.Controllers.TransactionFilter
             return Ok(result);
         }
 
-        [HttpPost("AssignCase")]
-        public async Task<IActionResult> PostAssignCase([FromBody] StateResource resource)
+        [HttpPost("Workflow")]
+        public async Task<IActionResult> PostWorkflow([FromBody] StateResource resource)
         {
             if (!ModelState.IsValid)
             {
@@ -57,8 +57,8 @@ namespace MegaEcmBackEnd.Controllers.TransactionFilter
             {
                 try
                 {
-                    var caseContext = new CaseContext(CaseStatus.NewCase, resource, _megaEcmUnitOfWork);
-                    await caseContext.RunProcess(CaseStatus.Assigned);
+                    var caseContext = new CaseContext(resource.NowWorkflow, resource, _megaEcmUnitOfWork);
+                    await caseContext.RunProcess(resource.NextWorkflow);
                     return Ok();
                 }
                 catch (TaskCanceledException ex)
@@ -81,61 +81,6 @@ namespace MegaEcmBackEnd.Controllers.TransactionFilter
         }
 
 
-        [HttpPost("ReleaseRecommand")]
-        public async Task<IActionResult> PostReleaseRecommandCase([FromBody] StateResource resource)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(this.GetModelAttributeErrorMessage());
-            }
-
-            try
-            {
-                var caseContext = new CaseContext(CaseStatus.Assigned, resource, _megaEcmUnitOfWork);
-                await caseContext.RunProcess(CaseStatus.ReleaseRecommand);
-                return Ok();
-            }
-            catch (OracleException ex)
-            {
-                return BadRequest(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-            finally
-            {
-                _megaEcmUnitOfWork.Rollback();
-            }
-
-        }
-
-        [HttpPost("BlockRecommand")]
-        public async Task<IActionResult> PostBlockRecommandCase([FromBody] StateResource resource)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(this.GetModelAttributeErrorMessage());
-            }
-
-            try
-            {
-                var caseContext = new CaseContext(CaseStatus.Assigned, resource, _megaEcmUnitOfWork);
-                await caseContext.RunProcess(CaseStatus.BlockRecommand);
-                return Ok();
-            }
-            catch (OracleException ex)
-            {
-                return BadRequest(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-            finally
-            {
-                _megaEcmUnitOfWork.Rollback();
-            }
-        }
+        
     }
 }

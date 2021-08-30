@@ -1,3 +1,4 @@
+import { CaseStatus } from './../enums/case-status.enum';
 import { DatasourceService } from './../services/datasource.service';
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
@@ -48,7 +49,9 @@ export class CaseManagementComponent implements OnInit, AfterViewInit {
   clickAssign(caseId: string, assignee: string): void {
     const state: State = {
       caseId,
-      userComment: ''
+      userComment: '',
+      nowWorkflow: CaseStatus.NewCase,
+      nextWorkflow: CaseStatus.Assigned
     };
     // TODO: 未來要抓登入者與 assignee 相等
     if (assignee === '009647') {
@@ -57,7 +60,7 @@ export class CaseManagementComponent implements OnInit, AfterViewInit {
     }
 
 
-    this.datasourceService.doPostAssignCase(state).subscribe((response: any) => {
+    this.datasourceService.doPostWorkflow(state).subscribe((response: any) => {
       this.router.navigate(['TransationFilter/CaseDetail', caseId]);
     }, error => {
       alert('Case Already Assigned by other user');

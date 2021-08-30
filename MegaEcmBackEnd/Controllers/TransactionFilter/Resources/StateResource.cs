@@ -8,7 +8,11 @@ namespace MegaEcmBackEnd.Controllers.TransactionFilter.Resources
     {
         [Required]
         public Guid CaseId { get; set; }
-        public string UserComment { get; set; }  
+        [Required]
+        public CaseStatus NowWorkflow { get; set; }
+        [Required]
+        public CaseStatus NextWorkflow { get; set; }
+        public string UserComment { get; set; }
 
     }
 }

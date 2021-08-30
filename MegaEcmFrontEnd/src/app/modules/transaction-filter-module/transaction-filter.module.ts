@@ -21,13 +21,16 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { RawdataComponent } from './rawdata/rawdata.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatMenuModule } from '@angular/material/menu';
+import { CaseCommentComponent } from './case-comment/case-comment.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     CaseManagementComponent,
     CaseDetailComponent,
     XmlPipe,
-    RawdataComponent
+    RawdataComponent,
+    CaseCommentComponent
   ],
   imports: [
     CommonModule,
@@ -46,7 +49,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatProgressSpinnerModule,
     MatDialogModule,
     MatCheckboxModule,
-    MatMenuModule
+    MatMenuModule,
+    FormsModule
   ],
   providers: [DatasourceService],
   exports: [

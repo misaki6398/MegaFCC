@@ -34,7 +34,7 @@ namespace MegaEcmBackEnd.States.TransactionFilter
                         {
                             // lock case                            
                             await _context._megaEcmUnitOfWork.TfCasesRepository.UpdateLockFlag(id, true);
-                            await _context._megaEcmUnitOfWork.TfCasesRepository.UpdateAssignCase(id);
+                            await _context._megaEcmUnitOfWork.TfCasesRepository.UpdateCaseStatus(id, nextStatus);
                             var model = _context._mapper.Map<StateResource, TfCaseAuditsModel>(_context._resource);
                             model.CaseStatusCode = CaseStatus.Assigned;
                             await _context._megaEcmUnitOfWork.TfCasesAuditsRepository.InsertAsync(model);

@@ -1,19 +1,54 @@
 <h1 i18n>Transation Filter - Case Detail</h1>
-<div class="flex-start">
+<hr>
+<table class="table table-dark blue">
+  <tbody>
+    <tr>
+      <th>Message Id</th>
+      <td>{{caseDetail.businessMessageIdentifier}}</td>
+      <th>Assignee</th>
+      <td>{{caseDetail.assignee}}</td>
+    </tr>
+    <tr>
+      <th>Message Type</th>
+      <td>{{caseDetail.messageType}}</td>
+      <th>Swallow Id</th>
+      <td>{{caseDetail.swallowId}}</td>
+    </tr>
+    <tr>
+      <th>Case Status</th>
+      <td>{{caseDetail.caseStatus}}</td>
+    </tr>
+    <tr>
+      <th>Currency</th>
+      <td>{{caseDetail.currency}}</td>
+      <th>Amount</th>
+      <td>{{caseDetail.amount}}</td>
+    </tr>
+  </tbody>
+</table>
+<hr>
+
+<h2>Alert</h2>
+
+<div class="functions-area">
   <button mat-stroked-button color="accent" (click)="back()" i18n="@@Back"><i class="fas fa-reply-all"></i>
     Back</button>
-
-
   <button mat-stroked-button [matMenuTriggerFor]="menu" i18n="@@Functions">Functions <i
       class="fas fa-chevron-down"></i></button>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item (click)="openDialog()" i18n="@@Rawdata"><i class="fas fa-sticky-note"></i> Rawdata</button>
-    <button mat-menu-item color="dark-yellow" i18n="@@AttachFile"><i class="fas fa-paperclip"></i> Attach File</button>
-    <button mat-menu-item i18n="@@AllFalseMatch" (click)="onClickAllFalseMatch()"><i class="fas fa-times"></i> All False Match</button>
-    <button mat-menu-item i18n="@@AllTrueMatch" (click)="onClickAllTrueMatch()"><i class="fas fa-check"></i>All True Match</button>
+    <button mat-menu-item (click)="openRawdataDialog()" i18n="@@Rawdata"><i class="fas fa-sticky-note"></i>
+      Rawdata</button>
+    <button mat-menu-item color="dark-yellow" i18n="@@AttachFile"><i class="fas fa-paperclip"></i> Attach
+      File</button>
+    <button mat-menu-item i18n="@@AllFalseMatch" (click)="onClickAllFalseMatch()"><i class="fas fa-times"></i> All
+      False
+      Match</button>
+    <button mat-menu-item i18n="@@AllTrueMatch" (click)="onClickAllTrueMatch()"><i class="fas fa-check"></i>All True
+      Match</button>
   </mat-menu>
 </div>
-<hr>
+
+
 <div class="row">
   <div class="col-xl-9 col-sm-12">
     <div class="table-container">
@@ -138,10 +173,22 @@
 
 
 <div class="flex-end">
-  <mat-form-field>
+  <mat-form-field *ngIf="caseDetail.caseStatusCode === 1 || caseDetail.caseStatusCode === 6">
     <mat-label i18n="@@CaseResolution">CaseResolution</mat-label>
     <mat-select [(value)]="caseResolution" [disabled]="newAlerDecisionCount>0">
       <mat-option *ngFor="let status of l1CaseStatus" [value]="status.value">{{status.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field *ngIf="caseDetail.caseStatusCode === 2">
+    <mat-label i18n="@@CaseResolution">CaseResolution</mat-label>
+    <mat-select [(value)]="caseResolution" [disabled]="newAlerDecisionCount>0">
+      <mat-option *ngFor="let status of RRCaseStatus" [value]="status.value">{{status.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field *ngIf="caseDetail.caseStatusCode === 3">
+    <mat-label i18n="@@CaseResolution">CaseResolution</mat-label>
+    <mat-select [(value)]="caseResolution" [disabled]="newAlerDecisionCount>0">
+      <mat-option *ngFor="let status of BRCaseStatus" [value]="status.value">{{status.name}}</mat-option>
     </mat-select>
   </mat-form-field>
   <button mat-raised-button [ngClass]="{'mat-accent' : caseResolution === 2, 'mat-warn': caseResolution === 3}"

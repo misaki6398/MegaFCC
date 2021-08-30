@@ -1,0 +1,8 @@
+<div class="form-group">
+  <label i18n="@@Comment">Comment</label>
+  <textarea class="form-control" rows="10" maxlength="4000" [(ngModel)]="userComment"></textarea>
+</div>
+<button mat-raised-button [ngClass]="{'mat-accent' : data.caseResolution === 2, 'mat-warn': data.caseResolution === 3}"
+  class="button-max-height" i18n="@@Submit" [disabled]="data.caseResolution === 0" (click)="onClickSubmit()">
+  <i class="fas fa-forward"></i> Submit
+</button>

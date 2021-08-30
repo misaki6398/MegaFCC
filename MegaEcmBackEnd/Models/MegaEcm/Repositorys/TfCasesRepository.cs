@@ -6,6 +6,7 @@ using Dapper;
 using MegaEcmBackEnd.Controllers.TransactionFilter.Resources;
 using Oracle.ManagedDataAccess.Client;
 using System.Linq;
+using MegaEcmBackEnd.Enums;
 
 namespace MegaEcmBackEnd.Models.MegaEcm.Repositorys
 {
@@ -20,6 +21,7 @@ namespace MegaEcmBackEnd.Models.MegaEcm.Repositorys
                 Amount,
                 BranchNo,
                 CaseStatus,
+                tf_cases.CaseStatusCode,
                 Assignee,
                 tf_cases.CreateDateTime,
                 tf_cases.Id as caseIdRaw
@@ -27,6 +29,7 @@ namespace MegaEcmBackEnd.Models.MegaEcm.Repositorys
             JOIN tf_case_status ON tf_cases.CaseStatusCode = tf_case_status.CaseStatusCode and tf_case_status.validflag = 1
             WHERE 
                 tf_cases.validflag = 1
+            -- AND tf_cases.casestatuscode IN (0,1,2,3)
         ";
         private readonly string _readRawDataSql = @"
             select 
@@ -56,7 +59,7 @@ namespace MegaEcmBackEnd.Models.MegaEcm.Repositorys
             and ValidFlag = 1
         ";
 
-        private readonly string _updateAssignCaseSql = @"
+        private readonly string _updateCaseStatusCodeSql = @"
             update
               mega_ecm.tf_cases 
             set 
@@ -156,11 +159,11 @@ namespace MegaEcmBackEnd.Models.MegaEcm.Repositorys
         }
 
 
-        public async Task<int> UpdateAssignCase(byte[] caseId)
+        public async Task<int> UpdateCaseStatus(byte[] caseId, CaseStatus caseStatus)
         {
             try
             {
-                return await Connection.ExecuteAsync(_updateAssignCaseSql, new { CaseId = caseId, CaseStatus = Enums.CaseStatus.Assigned }, Transaction);
+                return await Connection.ExecuteAsync(_updateCaseStatusCodeSql, new { CaseId = caseId, CaseStatus = caseStatus }, Transaction);
             }
             catch (OracleException)
             {
