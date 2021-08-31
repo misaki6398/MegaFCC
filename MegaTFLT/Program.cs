@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using MegaTFLT.Services.EdqServices;
-using MegaTFLT.Utilitys;
 using MegaTFLT.Models.MegaEcm.Models;
 using System;
 using System.Text;
@@ -10,48 +9,80 @@ using MegaTFLT.Models.MegaEcm.Repositorys;
 using System.Linq;
 using Oracle.ManagedDataAccess.Client;
 using CommonMegaAp11.Enums;
+using MegaTFLT.Services.Parsers;
+using MegaTFLT.Utilitys;
+using IBM.WMQ;
+using System.Threading;
 
 namespace MegaTFLT
 {
     class Program
     {
-        static async Task Main(string[] args)
+        static void Main(string[] args)
         {
-            //await ReadMessageFile(@"./sample.xml", MessageSource.Mx);
-            //await ReadMessageFile(@"./sample_NO_hit.xml", MessageSource.Mx);
-            //await ReadMessageFile(@"./sample_pacs.008.xml", MessageSource.Mx);
-            //await ReadMessageFile(@"./Sample/MX/Use Case c.52.1.a/CBPR+c.52.1.a.camt.052-CtoD_20201016.xml", MessageSource.Mx);
-            //await ReadMessageFile(@"./sample_ILoveYou200.xml", MessageSource.Mx);
-            await ReadMessageFile(@"./Sample/TXN/OBS/BlueTest.xml", MessageSource.TxnObs);
-            //await ReadMessageFile(@"./Sample/TXN/OBS/BlueTest2.xml", MessageSource.TxnObs);
-
-        }
-
-        public static async Task ReadMessageFile(string filePath, MessageSource messageSource)
-        {
-            BaseMessagePaser myPaser = null;
-            switch (messageSource)
+            int threadNum = ConfigUtility.ThreadNum;
+            for (int i = 0; i < threadNum; i++)
             {
-                case MessageSource.Mx:
-                    myPaser = new MxPaser();
-                    break;
-                case MessageSource.TxnObs:
-                    myPaser = new TxnPaser();
-                    break;
-                default:
-                    break;
+                Thread thread = new Thread(new ThreadStart(ReceiveMessage))
+                {
+                    IsBackground = true
+                };
+                thread.Start();
             }
-            myPaser.ReadFromFile(filePath);
-            if (myPaser != null)
-                await InputMessage(myPaser);
+            Console.ReadLine();
         }
-        public static async Task InputMessage(BaseMessagePaser myPaser)
+
+        public static async void ReceiveMessage()
+        {
+
+            bool isReadSuccess = false;
+            while (true)
+            {
+                // Decide Message Type
+                try
+                {
+                    BaseMessageParser messagePaser = PaserFactory.PaserType(MessageSource.TxnObs);
+                    // isReadSuccess = await messagePaser.ReadFromFile(@"./Sample/TXN/OBS/BlueTest.xml");
+                    isReadSuccess = await messagePaser.ReadFromMq(ConfigUtility.MqModel);
+                    if (isReadSuccess)
+                    {
+                        await WriteTfMessage(messagePaser.TfMessageModel);
+                    }
+                    else
+                    {
+                        continue;
+                    }
+
+                    // Screen
+                    EdqService edqService = new EdqService();
+                    List<TfAlertsModel> tfAlertsModels = await edqService.ProcessScreeningAsync(messagePaser.ScreeningInputTags, messagePaser.ScreeningInputSubTags);
+                    if (tfAlertsModels.Count() > 0)
+                    {
+                        await WriteTfCaseAlerts(messagePaser.TfMessageModel, tfAlertsModels);
+                    }
+                    Console.WriteLine("Complete");
+                }
+                catch (OracleException ex)
+                {
+                    throw ex;
+                }
+                catch (MQException ex)
+                {
+                    throw ex;
+                }
+                catch (System.Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+        public static async Task WriteTfMessage(TfMessageModel model)
         {
             using (MegaEcmUnitOfWork _unitOfWork = new MegaEcmUnitOfWork())
             {
                 try
                 {
-                    await _unitOfWork.TfMessagesRepository.InsertAsync(myPaser.TfMessageModel);
+                    await _unitOfWork.TfMessagesRepository.InsertAsync(model);
                 }
                 catch (OracleException ex)
                 {
@@ -67,39 +98,37 @@ namespace MegaTFLT
                     _unitOfWork.Commit();
                 }
             }
+        }
 
-            EdqService edqService = new EdqService();
-            List<TfAlertsModel> tfAlertsModels = await edqService.ProcessScreeningAsync(myPaser);
+        public static async Task WriteTfCaseAlerts(TfMessageModel tfMessageModel, List<TfAlertsModel> tfAlertsModels)
+        {
             using (MegaEcmUnitOfWork _unitOfWork = new MegaEcmUnitOfWork())
             {
-                if (tfAlertsModels.Count() > 0)
+                TfCasesModel tfCasesModel = new TfCasesModel(tfMessageModel);
+                tfCasesModel.CaseStatusCode = 0;
+                tfAlertsModels.ForEach(c =>
                 {
-                    TfCasesModel tfCasesModel = new TfCasesModel(myPaser.TfMessageModel);
-                    tfCasesModel.CaseStatusCode = 0;
-                    tfAlertsModels.ForEach(c =>
-                    {
-                        c.AlertStatusCode = 0;
-                        c.CaseId = tfCasesModel.Id;
-                    });
+                    c.AlertStatusCode = 0;
+                    c.CaseId = tfCasesModel.Id;
+                });
 
-                    try
-                    {
-                        await _unitOfWork.TfCasesRepository.InsertAsync(tfCasesModel);
-                        await _unitOfWork.TfAlertsRepository.InsertAsync(tfAlertsModels);
-                    }
-                    catch (OracleException ex)
-                    {
-                        _unitOfWork.Rollback();
-                        Console.WriteLine(ex.Message, ex.ToString());
-                    }
-                    catch (Exception)
-                    {
-                        _unitOfWork.Rollback();
-                    }
-                    finally
-                    {
-                        _unitOfWork.Commit();
-                    }
+                try
+                {
+                    await _unitOfWork.TfCasesRepository.InsertAsync(tfCasesModel);
+                    await _unitOfWork.TfAlertsRepository.InsertAsync(tfAlertsModels);
+                }
+                catch (OracleException ex)
+                {
+                    _unitOfWork.Rollback();
+                    Console.WriteLine(ex.Message, ex.ToString());
+                }
+                catch (Exception)
+                {
+                    _unitOfWork.Rollback();
+                }
+                finally
+                {
+                    _unitOfWork.Commit();
                 }
             }
         }

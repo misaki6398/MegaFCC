@@ -7,15 +7,21 @@ using System.Linq;
 using MegaTFLT.Models.MegaEcm.Models;
 using MegaTFLT.MegaEcm.Models;
 using CommonMegaAp11.Enums;
+using MegaTFLT.Utilitys;
+using System.Threading.Tasks;
 
-namespace MegaTFLT.Utilitys
+namespace MegaTFLT.Services.Parsers
 {
-    public class TxnPaser : BaseMessagePaser
+    public class TxnParser : BaseMessageParser
     {
-        public override bool ReadFromText(string text)
+        public override async Task<bool> ReadFromText(string text)
         {
             bool isSuccess = false;
-            XmlReader reader = XmlReader.Create(new StringReader(text));
+            XmlReaderSettings settings = new XmlReaderSettings
+            {
+                Async = true
+            };
+            XmlReader reader = XmlReader.Create(new StringReader(text), settings);
             ScreeningInputTags = new Dictionary<string, List<ScreeningInputTagModel>>();
             ScreeningInputSubTags = new Dictionary<string, List<ScreeningInputTagModel>>();
             string ElementText = "";
@@ -27,27 +33,27 @@ namespace MegaTFLT.Utilitys
             string entityRelationship = "";
             string entityRelationshipDesc = "";
 
-            // ----Peocess Message----
+            // ----Process Message----
             TfMessageModel = new TfMessageModel(text, "TxnObs");
             TfMessageModel.MessageType = "Transaction";
-            // ----Peocess Message----
-            while (reader.Read())
+            // ----Process Message----
+            while (await reader.ReadAsync())
             {
                 if (reader.NodeType == XmlNodeType.Element)
                 {
                     ElementText = reader.Name;
-                    // ----Peocess Message----
+                    // ----Process Message----
                     if ("seq" == ElementText)
                     {
                     }
-                    // ----Peocess Message----
+                    // ----Process Message----
                 }
                 else if (reader.NodeType == XmlNodeType.Text && (reader.HasValue))
                 {
                     ValueText = reader.Value;
                     Console.WriteLine($"{ElementText}:{ValueText}");
 
-                    // ----Peocess Message----
+                    // ----Process Message----
                     switch (ElementText)
                     {
                         case "unique_key":
@@ -102,7 +108,7 @@ namespace MegaTFLT.Utilitys
 
                             if (ConfigUtility.ScreenSubConfigs.ContainsKey(tfScreenSubConfigKey))
                             {
-                                // ----Peocess Screening----
+                                // ----Process Screening----
                                 List<ScreeningInputTagModel> InputTagWithSubTypeList = null;
                                 if (ScreeningInputSubTags.ContainsKey(tfScreenSubConfigKey))
                                 {
@@ -114,11 +120,11 @@ namespace MegaTFLT.Utilitys
                                     ScreeningInputSubTags.Add(tfScreenSubConfigKey, InputTagWithSubTypeList);
                                 }
                                 InputTagWithSubTypeList.Add(tempInputTagModel);
-                                // ----Peocess Screening----
+                                // ----Process Screening----
                             }
                             else
                             {
-                                // ----Peocess Screening----
+                                // ----Process Screening----
                                 List<ScreeningInputTagModel> InputTagList = null;
                                 if (ScreeningInputTags.ContainsKey(tfScreenConfigKey))
                                 {
@@ -130,28 +136,20 @@ namespace MegaTFLT.Utilitys
                                     ScreeningInputTags.Add(tfScreenConfigKey, InputTagList);
                                 }
                                 InputTagList.Add(tempInputTagModel);
-                                // ----Peocess Screening----
+                                // ----Process Screening----
                             }
 
                             break;
                         default:
                             break;
                     }
-                    // ----Peocess Message----
+                    // ----Process Message----
                 }
             }
-            foreach (string tfScreenConfigKey in ScreeningInputTags.Keys)
-            {
-                List<ScreeningInputTagModel> InputTagList = ScreeningInputTags[tfScreenConfigKey];
-                IEnumerable<ScreeningInputTagModel> noduplicates = (InputTagList.Distinct());
-                ScreeningInputTags[tfScreenConfigKey] = noduplicates.ToList();
-            }
-            foreach (string tfScreenSubConfigKey in ScreeningInputSubTags.Keys)
-            {
-                List<ScreeningInputTagModel> InputTagList = ScreeningInputSubTags[tfScreenSubConfigKey];
-                IEnumerable<ScreeningInputTagModel> noduplicates = (InputTagList.Distinct());
-                ScreeningInputSubTags[tfScreenSubConfigKey] = noduplicates.ToList();
-            }
+
+            this.DistinctDictionary(ScreeningInputTags);
+
+            this.DistinctDictionary(ScreeningInputSubTags);
 
             isSuccess = true;
             return isSuccess;

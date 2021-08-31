@@ -7,20 +7,25 @@ using System.Linq;
 using MegaTFLT.Models.MegaEcm.Models;
 using MegaTFLT.MegaEcm.Models;
 using CommonMegaAp11.Enums;
+using System.Threading.Tasks;
 
-namespace MegaTFLT.Utilitys
+namespace MegaTFLT.Services.Parsers
 {
-    public class MxPaser : BaseMessagePaser
+    public class MxParser : BaseMessageParser
     {
-        public override bool ReadFromText(string text)
+        public override async Task<bool> ReadFromText(string text)
         {
             bool isSuccess = false;
-            XmlReader reader = XmlReader.Create(new StringReader(text));
+            XmlReaderSettings settings = new XmlReaderSettings
+            {
+                Async = true
+            };
+            XmlReader reader = XmlReader.Create(new StringReader(text), settings);
             ScreeningInputTags = new Dictionary<string, List<ScreeningInputTagModel>>();
             string ElementText = "";
             string ValueText = "";
 
-            // ----Peocess Message----
+            // ----Process Message----
             TfMessageModel = new TfMessageModel(text, "MX");
             TfMessageModel.SwallowId = TfMessageModel.CreateDatetime.ToString("yyyyMMddHHmmssffffff", DateTimeFormatInfo.InvariantInfo) + "I0";
             Console.WriteLine($"MessageGuid:{TfMessageModel.Id}");
@@ -29,22 +34,22 @@ namespace MegaTFLT.Utilitys
             bool isFindFrom = false;
             bool isFindTo = false;
             bool isFindInstdAmt = false;
-            // ----Peocess Message----
+            // ----Process Message----
 
-            while (reader.Read())
+            while (await reader.ReadAsync())
             {
                 if (reader.NodeType == XmlNodeType.Element)
                 {
                     ElementText = reader.Name;
 
-                    // ----Peocess Message----
+                    // ----Process Message----
                     if (!isFindFrom && TfMessageModel.FromId == null && "Fr" == ElementText)
                         isFindFrom = true;
                     else if (!isFindTo && TfMessageModel.ToId == null && "To" == ElementText)
                         isFindTo = true;
                     else if (!isFindInstdAmt && (TfMessageModel.Amount == null || TfMessageModel.Currency == null) && "InstdAmt" == ElementText)
                         isFindInstdAmt = true;
-                    // ----Peocess Message----
+                    // ----Process Message----
 
                     if (reader.HasAttributes)
                     {
@@ -53,10 +58,10 @@ namespace MegaTFLT.Utilitys
                             reader.MoveToAttribute(i);
                             Console.WriteLine($"{ElementText}:[{i}][{reader.Name}]:{reader.Value}");
 
-                            // ----Peocess Message----
+                            // ----Process Message----
                             if (isFindInstdAmt && TfMessageModel.Currency == null && "InstdAmt" == ElementText && "Ccy" == reader.Name)
                                 TfMessageModel.Currency = reader.Value;
-                            // ----Peocess Message----
+                            // ----Process Message----
 
                         }
                         reader.MoveToElement();
@@ -67,7 +72,7 @@ namespace MegaTFLT.Utilitys
                     ValueText = reader.Value;
                     Console.WriteLine($"{ElementText}:{ValueText}");
 
-                    // ----Peocess Message----
+                    // ----Process Message----
                     switch (ElementText)
                     {
                         case "BizMsgIdr":
@@ -108,9 +113,9 @@ namespace MegaTFLT.Utilitys
                         default:
                             break;
                     }
-                    // ----Peocess Message----
+                    // ----Process Message----
 
-                    // ----Peocess Screening----
+                    // ----Process Screening----
                     List<ScreeningInputTagModel> InputTagList = null;
                     string tfScreenConfigKey = new TfScreenConfigKeyModel(MessageSource.Mx, ElementText).ToString();
                     if (ScreeningInputTags.ContainsKey(tfScreenConfigKey))
@@ -126,15 +131,11 @@ namespace MegaTFLT.Utilitys
                     tempInputTagModel.Input = ValueText;
                     tempInputTagModel.TagName = ElementText;
                     InputTagList.Add(tempInputTagModel);
-                    // ----Peocess Screening----
+                    // ----Process Screening----
                 }
             }
-            foreach (string tfScreenConfigKey in ScreeningInputTags.Keys)
-            {
-                List<ScreeningInputTagModel> InputTagList = ScreeningInputTags[tfScreenConfigKey];
-                IEnumerable<ScreeningInputTagModel> noduplicates = (InputTagList.Distinct());
-                ScreeningInputTags[tfScreenConfigKey] = noduplicates.ToList();
-            }
+
+            this.DistinctDictionary(ScreeningInputTags);
 
             isSuccess = true;
             return isSuccess;

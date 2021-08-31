@@ -5,6 +5,7 @@ using System.Reflection;
 using MegaTFLT.MegaEcm.Models;
 using MegaTFLT.Models.Edq.Models;
 using MegaTFLT.Models.MegaEcm.Repositorys;
+using MegaTFLT.Models.MQ;
 using Microsoft.Extensions.Configuration;
 
 namespace MegaTFLT.Utilitys
@@ -16,11 +17,13 @@ namespace MegaTFLT.Utilitys
             .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 
         public static IConfiguration Configuration = builder.Build();
-        public static EdqConfigModel EdqConfigModel = Configuration.GetSection("EdqConfig").Get<EdqConfigModel>();
-        public static string MegaEcmConnectionString = Configuration.GetSection("ConnectionStrings").GetValue<string>("MegaEcm");
-        public static string FccmAtomicSchema = Configuration.GetSection("ConnectionStrings").GetValue<string>("FccmAtomicSchema");
-        public static Dictionary<string, TfScreenConfigModel> ScreenConfigs;
-        public static Dictionary<string, TfScreenSubConfigModel> ScreenSubConfigs;
+        public static readonly EdqConfigModel EdqConfigModel = Configuration.GetSection("EdqConfig").Get<EdqConfigModel>();
+        public static readonly string MegaEcmConnectionString = Configuration.GetSection("ConnectionStrings").GetValue<string>("MegaEcm");
+        public static readonly int ThreadNum = Configuration.GetValue<int>("ThreadNum");
+        public static readonly string FccmAtomicSchema = Configuration.GetSection("ConnectionStrings").GetValue<string>("FccmAtomicSchema");
+        public static readonly MqModel MqModel = Configuration.GetSection("MqConfig").Get<MqModel>();
+        public static readonly Dictionary<string, TfScreenConfigModel> ScreenConfigs;
+        public static readonly Dictionary<string, TfScreenSubConfigModel> ScreenSubConfigs;
 
         static ConfigUtility()
         {

@@ -17,7 +17,9 @@ namespace MegaTFLT.Services
 
         public HttpClientSerivce()
         {
-            _client = new HttpClient();
+            HttpClientHandler httpClientHandle = new HttpClientHandler();
+            httpClientHandle.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; };
+            _client = new HttpClient(httpClientHandle);
             _options = new()
             {
                 DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull

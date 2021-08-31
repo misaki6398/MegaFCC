@@ -95,5 +95,18 @@
         <country></country>
         <year_of_birth></year_of_birth>
     </seq>
-
+    <seq>
+        <check_seq>007</check_seq>
+        <entity_type>02</entity_type>
+        <entity_relationship>09</entity_relationship>
+        <entity_relationship_desc>Name</entity_relationship_desc>
+        <english_name></english_name>
+        <non_english_name>李 桂 华</non_english_name>
+        <ccc_code></ccc_code>
+        <id_number></id_number>
+        <bic_swift_code></bic_swift_code>
+        <free_format_text></free_format_text>
+        <country></country>
+        <year_of_birth></year_of_birth>
+    </seq>
 </aml>
