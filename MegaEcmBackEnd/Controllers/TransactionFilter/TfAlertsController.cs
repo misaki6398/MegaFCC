@@ -37,9 +37,9 @@ namespace MegaEcmBackEnd.Controllers.TransactionFilter
                 var result = await _megaEcmUnitOfWork.TfAlertsRepository.QueryAlertAsync(GuidUtility.ToRaw16(caseId));
                 return Ok(result);
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
-
+                _logger.LogError(ex.ToString());
                 return BadRequest(ex.Message);
             }
 
@@ -54,8 +54,9 @@ namespace MegaEcmBackEnd.Controllers.TransactionFilter
 
                 return Ok(result);
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
+                _logger.LogError(ex.ToString());
                 return BadRequest(ex.Message);
             }
         }
@@ -68,8 +69,9 @@ namespace MegaEcmBackEnd.Controllers.TransactionFilter
                 string result = await _megaEcmUnitOfWork.TfAlertsRepository.QueryListAsync(GuidUtility.ToRaw16(alertId));
                 return Content(result, "application/json");
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
+                _logger.LogError(ex.ToString());
                 return BadRequest(ex.Message);
             }
         }
@@ -87,9 +89,10 @@ namespace MegaEcmBackEnd.Controllers.TransactionFilter
                 _megaEcmUnitOfWork.Commit();
                 return Ok(result);
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 _megaEcmUnitOfWork.Rollback();
+                _logger.LogError(ex.ToString());
                 return BadRequest(ex.Message);
             }
         }

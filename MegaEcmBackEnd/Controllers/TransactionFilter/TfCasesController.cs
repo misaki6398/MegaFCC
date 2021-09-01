@@ -28,22 +28,47 @@ namespace MegaEcmBackEnd.Controllers.TransactionFilter
         [HttpGet("")]
         public async Task<IActionResult> Get(string caseId)
         {
-            var result = await _megaEcmUnitOfWork.TfCasesRepository.QueryCaseAsync();
-            return Ok(result);
+            try
+            {
+                var result = await _megaEcmUnitOfWork.TfCasesRepository.QueryCaseAsync();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                return BadRequest(ex.Message);
+            }            
         }
 
         [HttpGet("{guid}")]
         public async Task<IActionResult> GetById(Guid guid)
         {
-            var result = await _megaEcmUnitOfWork.TfCasesRepository.QueryCaseAsync(GuidUtility.ToRaw16(guid));
-            return Ok(result);
+            try
+            {
+                var result = await _megaEcmUnitOfWork.TfCasesRepository.QueryCaseAsync(GuidUtility.ToRaw16(guid));
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                return BadRequest(ex.Message);
+            }            
         }
 
         [HttpGet("RawData/{guid}")]
         public async Task<IActionResult> GetRawdataById(Guid guid)
         {
-            var result = await _megaEcmUnitOfWork.TfCasesRepository.QueryRawdataAsync(GuidUtility.ToRaw16(guid));
-            return Ok(result);
+            try
+            {
+                var result = await _megaEcmUnitOfWork.TfCasesRepository.QueryRawdataAsync(GuidUtility.ToRaw16(guid));
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                return BadRequest(ex.Message);                
+            }
+            
         }
 
         [HttpPost("Workflow")]
@@ -63,14 +88,17 @@ namespace MegaEcmBackEnd.Controllers.TransactionFilter
                 }
                 catch (TaskCanceledException ex)
                 {
+                    _logger.LogError(ex.ToString());
                     return BadRequest(ex.Message);
                 }
                 catch (OracleException ex)
                 {
+                    _logger.LogError(ex.ToString());
                     return BadRequest(ex.Message);
                 }
                 catch (Exception ex)
                 {
+                    _logger.LogError(ex.ToString());
                     return BadRequest(ex.Message);
                 }
                 finally

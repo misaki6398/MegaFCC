@@ -13,11 +13,14 @@ using MegaTFLT.Services.Parsers;
 using MegaTFLT.Utilitys;
 using IBM.WMQ;
 using System.Threading;
+using NLog;
 
 namespace MegaTFLT
 {
     class Program
     {
+        private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
+
         static void Main(string[] args)
         {
             int threadNum = ConfigUtility.ThreadNum;
@@ -60,19 +63,23 @@ namespace MegaTFLT
                     {
                         await WriteTfCaseAlerts(messagePaser.TfMessageModel, tfAlertsModels);
                     }
-                    Console.WriteLine("Complete");
+                    _logger.Info("test");
+                    
                 }
                 catch (OracleException ex)
                 {
-                    throw ex;
+                    Console.WriteLine(ex.Message);
+                    _logger.Error(ex.ToString());
                 }
                 catch (MQException ex)
                 {
-                    throw ex;
+                    Console.WriteLine(ex.Message);
+                    _logger.Error(ex.ToString());
                 }
-                catch (System.Exception ex)
+                catch (Exception ex)
                 {
-                    throw ex;
+                    Console.WriteLine(ex.Message);
+                    _logger.Error(ex.ToString());
                 }
             }
         }
