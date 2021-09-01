@@ -12,7 +12,7 @@ namespace MegaTFLT.Models.MegaEcm.Repositorys
     public class ScreenConfigRepository : BaseRepository<TfScreenConfigModel>
     {
         private readonly string _sql = $@"
-        SELECT 
+        SELECT
              ID
             ,MESSAGESOURCECODE	
             ,TAGNAME
@@ -28,8 +28,30 @@ namespace MegaTFLT.Models.MegaEcm.Repositorys
             ,CREATEDATETIME
             ,UPDATEUSER
             ,UPDATEDATETIME
-        FROM SCREENCONFIG
-        Where 
+        FROM
+            SCREENCONFIG
+        Where
+            VALIDFLAG = 1
+        UNION
+        SELECT
+             ID
+            ,MESSAGESOURCECODE
+            ,TAGNAME || '||' || EntityType
+            ,0
+            ,NAMEADDRESS
+            ,COUNTRYANDCITY
+            ,GOODS
+            ,NARRATIVE
+            ,BICCODE
+            ,PORT
+            ,VALIDFLAG
+            ,CREATEUSER
+            ,CREATEDATETIME
+            ,UPDATEUSER
+            ,UPDATEDATETIME
+        FROM
+            SCREENSUBCONFIG
+        Where
             VALIDFLAG = 1
     ";
 

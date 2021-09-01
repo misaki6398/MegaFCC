@@ -16,7 +16,6 @@ namespace MegaTFLT.Services.Parsers
     {
         public TfMessageModel TfMessageModel { get; protected set; }
         public Dictionary<string, List<ScreeningInputTagModel>> ScreeningInputTags { get; protected set; }
-        public Dictionary<string, List<ScreeningInputTagModel>> ScreeningInputSubTags { get; protected set; }
 
         public virtual async Task<bool> ReadFromFile(string filePath)
         {
