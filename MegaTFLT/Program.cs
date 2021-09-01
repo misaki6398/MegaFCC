@@ -55,7 +55,7 @@ namespace MegaTFLT
 
                     // Screen
                     EdqService edqService = new EdqService();
-                    List<TfAlertsModel> tfAlertsModels = await edqService.ProcessScreeningAsync(messagePaser.ScreeningInputTags, messagePaser.ScreeningInputSubTags);
+                    List<TfAlertsModel> tfAlertsModels = await edqService.ProcessScreeningAsync(messagePaser.ScreeningInputTags);
                     if (tfAlertsModels.Count() > 0)
                     {
                         await WriteTfCaseAlerts(messagePaser.TfMessageModel, tfAlertsModels);
