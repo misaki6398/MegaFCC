@@ -53,7 +53,7 @@ namespace MegaTFLT.Services
 
         public void PutMessage(string queueName, string messageString)
         {
-            MQQueue putQueue = QueueManager.AccessQueue(queueName, 10256);
+            MQQueue putQueue = QueueManager.AccessQueue(queueName, 10256 | MQC.MQOO_INQUIRE);
 
             MQMessage message = new MQMessage
             {
@@ -80,7 +80,7 @@ namespace MegaTFLT.Services
                 {
                     putQueue.Put(message, putMessageOptions);
                 } else {
-                    // todo: backup
+                    throw new Exception("Can not put message");
                 }
             }
             catch (MQException ex)
@@ -132,7 +132,7 @@ namespace MegaTFLT.Services
                 {
                     // _logger.Error(ex.ToString());
                 }
-                return string.Empty;
+                throw;
             }
             catch (Exception)
             {
