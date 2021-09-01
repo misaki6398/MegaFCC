@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using CommonMegaAp11.Enums;
+
 namespace MegaTFLT.Models.MQ
 {
     public class MqModel
@@ -10,8 +13,8 @@ namespace MegaTFLT.Models.MQ
         public int Encoding {get; set;}
         public string ApplicationName {get; set;}
         public int CharacterSet {get; set;}
-        public string LocalQueueName {get; set;}
-        public string RemoteQueueName {get; set;}
+        public Dictionary<MessageSource,string> LocalQueueName {get; set;}
+        public Dictionary<MessageSource,string> RemoteQueueName {get; set;}
         public string ErrorQueueName {get; set;}
         public string UserName {get; set;}
         public string Password {get; set;}

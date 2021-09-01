@@ -32,11 +32,11 @@ namespace MegaTFLT.Services.Parsers
             catch (DirectoryNotFoundException ex)
             {
                 Console.WriteLine("DirectoryNotFoundException");
-                Console.WriteLine(ex.ToString());
+                Console.WriteLine(ex.Message, ex.ToString());
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                Console.WriteLine(ex.Message, ex.ToString());
             }
             finally
             {
@@ -48,6 +48,9 @@ namespace MegaTFLT.Services.Parsers
         public virtual async Task<bool> ReadFromMq(MqModel model,  MessageSource messageSource)
         {
             bool isSuccess = false;
+            Console.WriteLine("-------------------------");
+            Console.WriteLine(value: $"ReadFromQueueManager:{model.MqManagerName},{messageSource}:{model.LocalQueueName[messageSource]}");
+            Console.WriteLine("-------------------------");
             MqSerivce mqSerivce = null;
             try
             {
@@ -55,9 +58,6 @@ namespace MegaTFLT.Services.Parsers
                 string Text = mqSerivce.ReceiveMessage(model.LocalQueueName[messageSource]);
                 if (!Text.Equals(string.Empty))
                 {
-                    Console.WriteLine("-------------------------");
-                    Console.WriteLine(value: $"ReadFromQueueManager:{model.MqManagerName},{messageSource}:{model.LocalQueueName[messageSource]}");
-                    Console.WriteLine("-------------------------");
                     isSuccess = await this.ReadFromText(Text);
                 }
             }

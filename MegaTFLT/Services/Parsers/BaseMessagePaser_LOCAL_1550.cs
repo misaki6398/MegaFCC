@@ -9,7 +9,6 @@ using MegaTFLT.Models.MegaEcm.Models;
 using System.Linq;
 using MegaTFLT.Models.MQ;
 using IBM.WMQ;
-using CommonMegaAp11.Enums;
 
 namespace MegaTFLT.Services.Parsers
 {
@@ -45,18 +44,18 @@ namespace MegaTFLT.Services.Parsers
             return isSuccess;
         }
 
-        public virtual async Task<bool> ReadFromMq(MqModel model,  MessageSource messageSource)
+        public virtual async Task<bool> ReadFromMq(MqModel model)
         {
-            bool isSuccess = false;
+            bool isSuccess = false;           
             MqSerivce mqSerivce = null;
             try
             {
                 mqSerivce = new MqSerivce(model);
-                string Text = mqSerivce.ReceiveMessage(model.LocalQueueName[messageSource]);
+                string Text = mqSerivce.ReceiveMessage(model.LocalQueueName);
                 if (!Text.Equals(string.Empty))
                 {
                     Console.WriteLine("-------------------------");
-                    Console.WriteLine(value: $"ReadFromQueueManager:{model.MqManagerName},{messageSource}:{model.LocalQueueName[messageSource]}");
+                    Console.WriteLine(value: $"ReadFromQueueManager:{model.MqManagerName}");
                     Console.WriteLine("-------------------------");
                     isSuccess = await this.ReadFromText(Text);
                 }

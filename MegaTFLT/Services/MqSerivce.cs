@@ -41,7 +41,11 @@ namespace MegaTFLT.Services
             {
                 using (MQQueue receiveQueue = QueueManager.AccessQueue(queueName, openOptions))
                 {
-                    return receiveQueue.CurrentDepth;
+                    MQQueue receiveBaseQueue = receiveQueue;
+                    //Console.WriteLine($"{receiveQueue.QueueType}{receiveQueue.BaseQueueName}");
+                    if (receiveQueue.QueueType == MQC.MQQT_ALIAS)
+                        receiveBaseQueue = QueueManager.AccessQueue(receiveQueue.BaseQueueName, openOptions);
+                    return receiveBaseQueue.CurrentDepth;
                 }
             }
             catch (MQException ex)
@@ -79,7 +83,9 @@ namespace MegaTFLT.Services
                 if (putQueue.InhibitPut.Equals(MQC.MQQA_PUT_ALLOWED))
                 {
                     putQueue.Put(message, putMessageOptions);
-                } else {
+                }
+                else
+                {
                     throw new Exception("Can not put message");
                 }
             }
@@ -113,7 +119,12 @@ namespace MegaTFLT.Services
                 mqGetMessageOptions.WaitInterval = 5000;
                 MQMessage mqMessage = new MQMessage();
 
-                if (receiveQueue.CurrentDepth > 0 && receiveQueue.InhibitGet.Equals(MQC.MQQA_GET_ALLOWED))
+                //if receiveQueue is an Alias queue definition, Can't get CurrentDepth
+                MQQueue receiveBaseQueue = receiveQueue;
+                if (receiveQueue.QueueType == MQC.MQQT_ALIAS)
+                    receiveBaseQueue = QueueManager.AccessQueue(receiveQueue.BaseQueueName, openOptions);
+
+                if (receiveBaseQueue.CurrentDepth > 0 && receiveQueue.InhibitGet.Equals(MQC.MQQA_GET_ALLOWED))
                 {
                     receiveQueue.Get(mqMessage, mqGetMessageOptions);
                     string message = mqMessage.ReadString(mqMessage.DataLength);

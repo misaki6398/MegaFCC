@@ -47,7 +47,14 @@ namespace MegaTFLT.Services.Parsers
 
         public virtual async Task<bool> ReadFromMq(MqModel model,  MessageSource messageSource)
         {
+<<<<<<< HEAD
+            bool isSuccess = false;           
+=======
             bool isSuccess = false;
+            Console.WriteLine("-------------------------");
+            Console.WriteLine(value: $"ReadFromQueueManager:{model.MqManagerName},{messageSource}:{model.LocalQueueName[messageSource]}");
+            Console.WriteLine("-------------------------");
+>>>>>>> aa504d5 (Multi Queue)
             MqSerivce mqSerivce = null;
             try
             {
@@ -56,7 +63,7 @@ namespace MegaTFLT.Services.Parsers
                 if (!Text.Equals(string.Empty))
                 {
                     Console.WriteLine("-------------------------");
-                    Console.WriteLine(value: $"ReadFromQueueManager:{model.MqManagerName},{messageSource}:{model.LocalQueueName[messageSource]}");
+                    Console.WriteLine(value: $"ReadFromQueueManager:{model.MqManagerName}");
                     Console.WriteLine("-------------------------");
                     isSuccess = await this.ReadFromText(Text);
                 }

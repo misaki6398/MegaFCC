@@ -46,7 +46,7 @@ namespace MegaTFLT
                 {
                     BaseMessageParser messagePaser = PaserFactory.PaserType(MessageSource.TxnObs);
                     // isReadSuccess = await messagePaser.ReadFromFile(@"./Sample/TXN/OBS/BlueTest.xml");
-                    isReadSuccess = await messagePaser.ReadFromMq(ConfigUtility.MqModel);
+                    isReadSuccess = await messagePaser.ReadFromMq(ConfigUtility.MqModel, MessageSource.TxnObs);
                     if (isReadSuccess)
                     {
                         await WriteTfMessage(messagePaser.TfMessageModel);

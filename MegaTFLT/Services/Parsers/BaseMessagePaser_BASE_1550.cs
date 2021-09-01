@@ -9,7 +9,6 @@ using MegaTFLT.Models.MegaEcm.Models;
 using System.Linq;
 using MegaTFLT.Models.MQ;
 using IBM.WMQ;
-using CommonMegaAp11.Enums;
 
 namespace MegaTFLT.Services.Parsers
 {
@@ -32,11 +31,11 @@ namespace MegaTFLT.Services.Parsers
             catch (DirectoryNotFoundException ex)
             {
                 Console.WriteLine("DirectoryNotFoundException");
-                Console.WriteLine(ex.ToString());
+                Console.WriteLine(ex.Message, ex.ToString());
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                Console.WriteLine(ex.Message, ex.ToString());
             }
             finally
             {
@@ -45,19 +44,19 @@ namespace MegaTFLT.Services.Parsers
             return isSuccess;
         }
 
-        public virtual async Task<bool> ReadFromMq(MqModel model,  MessageSource messageSource)
+        public virtual async Task<bool> ReadFromMq(MqModel model)
         {
             bool isSuccess = false;
+            Console.WriteLine("-------------------------");
+            Console.WriteLine(value: $"ReadFromQueueManager:{model.MqManagerName}");
+            Console.WriteLine("-------------------------");
             MqSerivce mqSerivce = null;
             try
             {
                 mqSerivce = new MqSerivce(model);
-                string Text = mqSerivce.ReceiveMessage(model.LocalQueueName[messageSource]);
+                string Text = mqSerivce.ReceiveMessage(model.LocalQueueName);
                 if (!Text.Equals(string.Empty))
                 {
-                    Console.WriteLine("-------------------------");
-                    Console.WriteLine(value: $"ReadFromQueueManager:{model.MqManagerName},{messageSource}:{model.LocalQueueName[messageSource]}");
-                    Console.WriteLine("-------------------------");
                     isSuccess = await this.ReadFromText(Text);
                 }
             }
