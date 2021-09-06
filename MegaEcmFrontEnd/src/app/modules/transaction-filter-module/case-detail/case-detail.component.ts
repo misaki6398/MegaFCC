@@ -67,6 +67,7 @@ export class CaseDetailComponent implements OnInit, AfterViewInit {
   caseResolution = 0;
   newAlerDecisionCount;
   caseDetail: any = [];
+  caseAudits: any = [];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -112,6 +113,10 @@ export class CaseDetailComponent implements OnInit, AfterViewInit {
       }
       this.hitColumns = responses;
       this.distinctColumns = distinctColumns;
+    });
+
+    this.datasourceService.doGetTfCaseAudits(this.caseId).subscribe((response: any) => {
+      this.caseAudits = response;
     });
 
   }

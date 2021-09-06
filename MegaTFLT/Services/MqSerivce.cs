@@ -48,9 +48,8 @@ namespace MegaTFLT.Services
                     return receiveBaseQueue.CurrentDepth;
                 }
             }
-            catch (MQException ex)
-            {
-                // _logger.Error(ex.ToString());
+            catch (MQException)
+            {                
                 return -1;
             }
         }
@@ -89,9 +88,8 @@ namespace MegaTFLT.Services
                     throw new Exception("Can not put message");
                 }
             }
-            catch (MQException ex)
-            {
-                // _logger.Error(ex.ToString());
+            catch (MQException)
+            {                
                 throw;
             }
             finally
@@ -157,9 +155,9 @@ namespace MegaTFLT.Services
             {
                 QueueManager.Backout();
             }
-            catch (MQException ex)
+            catch (MQException)
             {
-                // _logger.Error(ex.ToString());
+                throw;
             }
         }
 
@@ -177,9 +175,9 @@ namespace MegaTFLT.Services
                 }
 
             }
-            catch (MQException ex)
+            catch (MQException)
             {
-                // _logger.Error(ex.ToString());
+                throw;
             }
         }
     }

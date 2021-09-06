@@ -17,7 +17,7 @@ namespace MegaTFLT.Models.MQ
         public Dictionary<MessageSource,string> RemoteQueueName {get; set;}
         public string ErrorQueueName {get; set;}
         public string UserName {get; set;}
-        public string Password {get; set;}
+        public string PuiPui {get; set;}
 
     }
 }

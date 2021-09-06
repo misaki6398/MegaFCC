@@ -33,7 +33,9 @@ export class DatasourceService {
 
   doGetTfAlerts(caseId: string): Observable<any> {
     return this.http.get(`${this.url}/api/TfAlerts/${caseId}`, this.options);
-
+  }
+  doGetTfCaseAudits(caseId: string): Observable<any> {
+    return this.http.get(`${this.url}/api/TfCaseAudit/${caseId}`, this.options);
   }
   doGetHitColumn(caseId: string): Observable<any> {
     return this.http.get(`${this.url}/api/TfAlerts/HitColumn/${caseId}`, this.options);

@@ -15,11 +15,12 @@ using IBM.WMQ;
 using System.Threading;
 using NLog;
 
+
 namespace MegaTFLT
 {
     class Program
     {
-        private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
+        private static readonly ILogger _logger = LogManager.GetCurrentClassLogger();
 
         static void Main(string[] args)
         {
@@ -37,8 +38,6 @@ namespace MegaTFLT
 
         public static async void ReceiveMessage()
         {
-
-            bool isReadSuccess = false;
             while (true)
             {
                 // Decide Message Type
@@ -46,7 +45,7 @@ namespace MegaTFLT
                 {
                     BaseMessageParser messagePaser = PaserFactory.PaserType(MessageSource.TxnObs);
                     // isReadSuccess = await messagePaser.ReadFromFile(@"./Sample/TXN/OBS/BlueTest.xml");
-                    isReadSuccess = await messagePaser.ReadFromMq(ConfigUtility.MqModel, MessageSource.TxnObs);
+                    bool isReadSuccess = await messagePaser.ReadFromMq(ConfigUtility.MqModel, MessageSource.TxnObs);
                     if (isReadSuccess)
                     {
                         await WriteTfMessage(messagePaser.TfMessageModel);
@@ -63,12 +62,10 @@ namespace MegaTFLT
                     {
                         await WriteTfCaseAlerts(messagePaser.TfMessageModel, tfAlertsModels);
                     }
-                    _logger.Info("test");
-                    
                 }
                 catch (OracleException ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    Console.WriteLine(ex.Message);                    
                     _logger.Error(ex.ToString());
                 }
                 catch (MQException ex)
@@ -90,6 +87,7 @@ namespace MegaTFLT
                 try
                 {
                     await _unitOfWork.TfMessagesRepository.InsertAsync(model);
+                    _unitOfWork.Commit();
                 }
                 catch (OracleException ex)
                 {
@@ -99,11 +97,7 @@ namespace MegaTFLT
                 catch (Exception)
                 {
                     _unitOfWork.Rollback();
-                }
-                finally
-                {
-                    _unitOfWork.Commit();
-                }
+                }                
             }
         }
 
@@ -123,6 +117,7 @@ namespace MegaTFLT
                 {
                     await _unitOfWork.TfCasesRepository.InsertAsync(tfCasesModel);
                     await _unitOfWork.TfAlertsRepository.InsertAsync(tfAlertsModels);
+                    _unitOfWork.Commit();
                 }
                 catch (OracleException ex)
                 {
@@ -132,11 +127,7 @@ namespace MegaTFLT
                 catch (Exception)
                 {
                     _unitOfWork.Rollback();
-                }
-                finally
-                {
-                    _unitOfWork.Commit();
-                }
+                }                
             }
         }
     }

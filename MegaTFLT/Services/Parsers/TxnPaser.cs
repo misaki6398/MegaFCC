@@ -21,7 +21,11 @@ namespace MegaTFLT.Services.Parsers
             {
                 Async = true
             };
-            XmlReader reader = XmlReader.Create(new StringReader(text), settings);
+            XmlReader reader;
+            using (StringReader stringReader = new StringReader(text))
+            {
+                reader = XmlReader.Create(stringReader, settings);
+            }
             ScreeningInputTags = new Dictionary<string, List<ScreeningInputTagModel>>();
             string ElementText = "";
             string ValueText = "";
@@ -36,6 +40,7 @@ namespace MegaTFLT.Services.Parsers
             TfMessageModel = new TfMessageModel(text, "TxnObs");
             TfMessageModel.MessageType = "Transaction";
             // ----Process Message----
+
             while (await reader.ReadAsync())
             {
                 if (reader.NodeType == XmlNodeType.Element)
@@ -131,6 +136,8 @@ namespace MegaTFLT.Services.Parsers
                     // ----Process Message----
                 }
             }
+
+            reader.Dispose();
 
             this.DistinctDictionary(ScreeningInputTags);
 

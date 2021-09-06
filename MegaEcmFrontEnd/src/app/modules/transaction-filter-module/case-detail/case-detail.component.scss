@@ -108,3 +108,8 @@ tr.element-row:not(.example-expanded-row):active {
     margin-right: 5px;
   }
 }
+
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}

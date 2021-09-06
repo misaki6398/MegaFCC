@@ -35,6 +35,19 @@ namespace MegaEcmBackEnd.Models.MegaEcm.Repositorys
             )
         ";
 
+        private readonly string _readAuditSql = @"
+            select 
+                UserComment,
+                CaseStatus,
+                tf_case_audits.CreateUser,
+                tf_case_audits.CreateDatetime
+            from tf_case_audits
+            join tf_case_status on tf_case_audits.CaseStatusCode = tf_case_status.CaseStatusCode
+            where 
+                CaseId = :CaseId
+            order by tf_case_audits.CreateDatetime desc
+        ";
+
         public TfCasesAuditsRepository(IDbTransaction transaction) : base(transaction)
         {
 
@@ -45,6 +58,21 @@ namespace MegaEcmBackEnd.Models.MegaEcm.Repositorys
             try
             {
                 return await Connection.ExecuteAsync(_insertAuditSql, model, Transaction);
+            }
+            catch (OracleException)
+            {
+                throw;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public async Task<IEnumerable<TfCaseAuditResource>> QueryAsync(byte[] caseId)
+        {
+            try
+            {
+                return await Connection.QueryAsync<TfCaseAuditResource>(_readAuditSql, new { CaseId = caseId }, Transaction);
             }
             catch (OracleException)
             {

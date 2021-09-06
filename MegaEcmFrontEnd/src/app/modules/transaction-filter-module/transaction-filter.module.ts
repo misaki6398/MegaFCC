@@ -23,6 +23,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatMenuModule } from '@angular/material/menu';
 import { CaseCommentComponent } from './case-comment/case-comment.component';
 import { FormsModule } from '@angular/forms';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { FormsModule } from '@angular/forms';
     MatDialogModule,
     MatCheckboxModule,
     MatMenuModule,
-    FormsModule
+    FormsModule,
+    MatExpansionModule
   ],
   providers: [DatasourceService],
   exports: [

@@ -159,7 +159,22 @@
         </table>
       </mat-tab>
       <mat-tab label="Audit" i18n-label="@@Audit">
-        Audit
+        <mat-accordion class="example-headers-align">
+          <mat-expansion-panel *ngFor="let caseAudit of caseAudits" [disabled]="caseAudit.userComment == null">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{caseAudit.caseStatus}}
+              </mat-panel-title>
+              <mat-panel-description>
+                {{caseAudit.createUser}}
+              </mat-panel-description>
+              <mat-panel-description>
+                {{caseAudit.createDateTime | date:'YYYY-MM-dd hh:mm:ss'}}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <pre>{{caseAudit.userComment}}</pre>
+          </mat-expansion-panel>
+        </mat-accordion>
       </mat-tab>
       <mat-tab label="Attachment" i18n-label="@@Attachment">
         Attachment
